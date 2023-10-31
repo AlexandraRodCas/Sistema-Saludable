@@ -174,9 +174,6 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Ventas"/>
               </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuConsultasVentas1ActionPerformed"/>
-              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="menuConsultasProductos1">
               <Properties>
@@ -198,9 +195,6 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Categor&#xed;as"/>
               </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuConsultasCategorias1ActionPerformed"/>
-              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>

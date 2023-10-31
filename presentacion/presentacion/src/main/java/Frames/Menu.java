@@ -164,11 +164,6 @@ public class Menu extends javax.swing.JFrame {
         menuConsultas1.setText("Planes");
 
         menuConsultasVentas1.setText("Ventas");
-        menuConsultasVentas1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuConsultasVentas1ActionPerformed(evt);
-            }
-        });
         menuConsultas1.add(menuConsultasVentas1);
 
         menuConsultasProductos1.setText("Productos");
@@ -188,11 +183,6 @@ public class Menu extends javax.swing.JFrame {
         menuConsultas1.add(menuConsultasProveedores1);
 
         menuConsultasCategorias1.setText("Categorías");
-        menuConsultasCategorias1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuConsultasCategorias1ActionPerformed(evt);
-            }
-        });
         menuConsultas1.add(menuConsultasCategorias1);
 
         menuPrincipal.add(menuConsultas1);
@@ -227,78 +217,33 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_menuInicioSalirAplicacion3ActionPerformed
 
     private void menuVentasVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuVentasVentaActionPerformed
-        FrmVentasAgregar frmVenta = new FrmVentasAgregar(usuarioLogueado);
-        frmVenta.addWindowListener(new WindowAdapter() {
-            @Override
-            public void windowClosed(WindowEvent e) {
-                // Aquí es donde se ejecutará el código cuando se cierre el FrmVentasAgregar
-                setVisible(true); // Hace visible el FrmPrincipal
-            }
-        });
-        frmVenta.setVisible(true);
+        
         setVisible(false); // Oculta el FrmPrincipal
     }//GEN-LAST:event_menuVentasVentaActionPerformed
 
     private void menuConsultasVentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuConsultasVentasActionPerformed
-        FrmVentasConsultar frmConsultarVentas = new FrmVentasConsultar(usuarioLogueado);
-        frmConsultarVentas.addWindowListener(new WindowAdapter() {
-            @Override
-            public void windowClosed(WindowEvent e) {
-                // Aquí es donde se ejecutará el código cuando se cierre el FrmVentasConsultar
-                setVisible(true); // Hace visible el FrmPrincipal
-            }
-        });
-        frmConsultarVentas.setVisible(true);
+        
         setVisible(false); // Oculta el FrmPrincipal
     }//GEN-LAST:event_menuConsultasVentasActionPerformed
 
     private void menuConsultasProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuConsultasProductosActionPerformed
-        FrmProductos frmConsultarProductos = new FrmProductos();
-        frmConsultarProductos.addWindowListener(new WindowAdapter() {
-            @Override
-            public void windowClosed(WindowEvent e) {
-                // Aquí es donde se ejecutará el código cuando se cierre el frmConsultarProductos
-                setVisible(true); // Hace visible el FrmPrincipal
-            }
-        });
-        frmConsultarProductos.setVisible(true);
+     
         setVisible(false); // Oculta el FrmPrincipal
 
     }//GEN-LAST:event_menuConsultasProductosActionPerformed
 
     private void menuConsultasProveedoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuConsultasProveedoresActionPerformed
-        FrmProveedores consultarProveedores = new FrmProveedores();
-        consultarProveedores.addWindowListener(new WindowAdapter() {
-            @Override
-            public void windowClosed(WindowEvent e) {
-                // Aquí es donde se ejecutará el código cuando se cierre el consultarProveedores
-                setVisible(true); // Hace visible el FrmPrincipal
-            }
-        });
-        consultarProveedores.setVisible(true);
         setVisible(false); // Oculta el FrmPrincipal
     }//GEN-LAST:event_menuConsultasProveedoresActionPerformed
 
     private void menuConsultasCategoriasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuConsultasCategoriasActionPerformed
-        FrmCategorias consultarProveedores = new FrmCategorias();
-        consultarProveedores.addWindowListener(new WindowAdapter() {
-            @Override
-            public void windowClosed(WindowEvent e) {
-                // Aquí es donde se ejecutará el código cuando se cierre el consultarProveedores
-                setVisible(true); // Hace visible el FrmPrincipal
-            }
-        });
-        consultarProveedores.setVisible(true);
+        
         setVisible(false); // Oculta el FrmPrincipal
     }//GEN-LAST:event_menuConsultasCategoriasActionPerformed
 
     private void menuInicioSalirAplicacion4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuInicioSalirAplicacion4ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_menuInicioSalirAplicacion4ActionPerformed
-
-    private void menuConsultasVentas1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuConsultasVentas1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_menuConsultasVentas1ActionPerformed
 
     private void menuConsultasProductos1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuConsultasProductos1ActionPerformed
         // TODO add your handling code here:
@@ -307,10 +252,6 @@ public class Menu extends javax.swing.JFrame {
     private void menuConsultasProveedores1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuConsultasProveedores1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_menuConsultasProveedores1ActionPerformed
-
-    private void menuConsultasCategorias1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuConsultasCategorias1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_menuConsultasCategorias1ActionPerformed
 
     /**
      * @param args the command line arguments
