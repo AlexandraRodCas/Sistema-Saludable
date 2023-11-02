@@ -1,5 +1,7 @@
 package com.mycompany.presentacion;
 
+import Frames.FrmCalculadora;
+
 /**
  *
  * @author gabri
@@ -7,6 +9,7 @@ package com.mycompany.presentacion;
 public class Presentacion {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        FrmCalculadora calculadora = new FrmCalculadora();
+        calculadora.setVisible(true);
     }
 }

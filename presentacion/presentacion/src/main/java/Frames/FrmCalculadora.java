@@ -1,17 +1,28 @@
 
 package Frames;
 
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author gabri
  */
-public class FrmEntrenadores2 extends javax.swing.JFrame {
+public class FrmCalculadora extends javax.swing.JFrame {
 
     /**
      * Creates new form FrmEntrenadores2
      */
-    public FrmEntrenadores2() {
+    public FrmCalculadora() {
         initComponents();
+        DefaultTableModel model = new DefaultTableModel();
+        model.addColumn("Medios");
+        model.addColumn("Etapa general");
+        model.addColumn("Etapa especial");
+        model.addColumn("Etapa competitiva");
+        model.addColumn("Macro");
+        model.addRow(new Object[]{"Subtítulo 1", "Subtítulo 2"});
+        tblCalculadora.setModel(model);
+
     }
 
     /**
@@ -26,7 +37,7 @@ public class FrmEntrenadores2 extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         btnSalir = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tblProveedores = new javax.swing.JTable();
+        tblCalculadora = new javax.swing.JTable();
         lblApartado = new javax.swing.JLabel();
         lblCriterioBusqueda1 = new javax.swing.JLabel();
         FondoTitulo = new javax.swing.JTextField();
@@ -62,8 +73,8 @@ public class FrmEntrenadores2 extends javax.swing.JFrame {
         jPanel1.add(btnSalir);
         btnSalir.setBounds(590, 320, 90, 80);
 
-        tblProveedores.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        tblProveedores.setModel(new javax.swing.table.DefaultTableModel(
+        tblCalculadora.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        tblCalculadora.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -86,24 +97,24 @@ public class FrmEntrenadores2 extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        tblProveedores.setShowGrid(true);
-        tblProveedores.getTableHeader().setReorderingAllowed(false);
-        jScrollPane1.setViewportView(tblProveedores);
+        tblCalculadora.setShowGrid(true);
+        tblCalculadora.getTableHeader().setReorderingAllowed(false);
+        jScrollPane1.setViewportView(tblCalculadora);
 
         jPanel1.add(jScrollPane1);
-        jScrollPane1.setBounds(10, 140, 570, 260);
+        jScrollPane1.setBounds(10, 200, 570, 260);
 
         lblApartado.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         lblApartado.setForeground(new java.awt.Color(255, 255, 255));
-        lblApartado.setText("Entrenadores");
+        lblApartado.setText("Calculadora Volumen");
         jPanel1.add(lblApartado);
-        lblApartado.setBounds(10, 0, 130, 30);
+        lblApartado.setBounds(10, 0, 260, 30);
 
         lblCriterioBusqueda1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         lblCriterioBusqueda1.setForeground(new java.awt.Color(255, 255, 255));
         lblCriterioBusqueda1.setText("Sistema Saludable");
         jPanel1.add(lblCriterioBusqueda1);
-        lblCriterioBusqueda1.setBounds(260, 10, 164, 22);
+        lblCriterioBusqueda1.setBounds(360, 2, 162, 30);
 
         FondoTitulo.setEditable(false);
         FondoTitulo.setBackground(new java.awt.Color(110, 88, 68));
@@ -113,7 +124,7 @@ public class FrmEntrenadores2 extends javax.swing.JFrame {
             }
         });
         jPanel1.add(FondoTitulo);
-        FondoTitulo.setBounds(0, 0, 696, 30);
+        FondoTitulo.setBounds(0, 0, 840, 30);
 
         btnBuscar.setBackground(new java.awt.Color(255, 145, 77));
         btnBuscar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -154,7 +165,7 @@ public class FrmEntrenadores2 extends javax.swing.JFrame {
             }
         });
         jPanel2.add(radioID);
-        radioID.setBounds(140, 20, 40, 20);
+        radioID.setBounds(140, 20, 40, 21);
 
         radioNombre.setForeground(new java.awt.Color(255, 255, 255));
         radioNombre.setText("Nombre");
@@ -164,7 +175,7 @@ public class FrmEntrenadores2 extends javax.swing.JFrame {
             }
         });
         jPanel2.add(radioNombre);
-        radioNombre.setBounds(20, 20, 67, 20);
+        radioNombre.setBounds(20, 20, 67, 21);
 
         jPanel1.add(jPanel2);
         jPanel2.setBounds(10, 50, 420, 80);
@@ -229,11 +240,11 @@ public class FrmEntrenadores2 extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 696, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 835, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 421, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 511, Short.MAX_VALUE)
         );
 
         pack();
@@ -302,70 +313,70 @@ public class FrmEntrenadores2 extends javax.swing.JFrame {
 //        listarEntrenadores();
     }//GEN-LAST:event_btnListarProveedoresActionPerformed
 
-    private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
-        int indiceFilaSeleccionada = tblProveedores.getSelectedRow();
-        int numfilas = tblProveedores.getSelectedRowCount();
-        if (indiceFilaSeleccionada == -1 || numfilas > 1) {
-//            JOptionPane.showMessageDialog(null, "Seleccione un proveedor", "ERROR", JOptionPane.INFORMATION_MESSAGE);
-        } else {
-//            Proveedor proveedorAModificar = null;
-//            String nombre = (String) tblProveedores.getValueAt(indiceFilaSeleccionada, 0);
-//            try {
-//                proveedorAModificar = proveedoresNegocio.consultarPorNombre(nombre);
-//            } catch (NegocioException ex) {
-//                JOptionPane.showMessageDialog(null, ex.getMessage(), "ERROR", JOptionPane.INFORMATION_MESSAGE);
-//            }
-//            DlgProveedor dlgProveedor = new DlgProveedor(this, true, proveedorAModificar);
-//            dlgProveedor.setVisible(true);
-//            while (dlgProveedor.isVisible()) {
-//                try {
-//                    Thread.sleep(100);
-//                } catch (InterruptedException io) {
-//                    io.printStackTrace();
-//                }
-//            }
-//            listarProveedores();
-        }
-    }//GEN-LAST:event_btnModificarActionPerformed
-
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-        int indiceFilaSeleccionada = tblProveedores.getSelectedRow();
-        int numfilas = tblProveedores.getSelectedRowCount();
+        int indiceFilaSeleccionada = tblCalculadora.getSelectedRow();
+        int numfilas = tblCalculadora.getSelectedRowCount();
         if (indiceFilaSeleccionada == -1 || numfilas > 1) {
-//            JOptionPane.showMessageDialog(null, "Seleccione un proveedor", "ERROR", JOptionPane.INFORMATION_MESSAGE);
+            //            JOptionPane.showMessageDialog(null, "Seleccione un proveedor", "ERROR", JOptionPane.INFORMATION_MESSAGE);
         } else {
-//            Proveedor proveedorAEliminar = null;
-//            String nombre = (String) tblProveedores.getValueAt(indiceFilaSeleccionada, 0);
-//            try {
-//                proveedorAEliminar = proveedoresNegocio.consultarPorNombre(nombre);
-//            } catch (NegocioException ex) {
-//                JOptionPane.showMessageDialog(null, ex.getMessage(), "ERROR", JOptionPane.INFORMATION_MESSAGE);
-//            }
-//            int confirmaEliminacion = JOptionPane.showConfirmDialog(null, "¿Está seguro que desea eliminar el proveedor: " + proveedorAEliminar.getNombre() + " ?", "Eliminar proveedor", JOptionPane.YES_NO_OPTION);
-//            if (confirmaEliminacion == 0) {
-//                try {
-//                    proveedoresNegocio.eliminar(proveedorAEliminar);
-//                    JOptionPane.showMessageDialog(null, "Se elimino el proveedor exitosamente", "Eliminar proveedor", JOptionPane.INFORMATION_MESSAGE);
-//                    listarProveedores();
-//                } catch (NegocioException ex) {
-//                    JOptionPane.showMessageDialog(null, ex.getMessage(), "ERROR", JOptionPane.INFORMATION_MESSAGE);
-//                }
-//
-//            }
+            //            Proveedor proveedorAEliminar = null;
+            //            String nombre = (String) tblProveedores.getValueAt(indiceFilaSeleccionada, 0);
+            //            try {
+                //                proveedorAEliminar = proveedoresNegocio.consultarPorNombre(nombre);
+                //            } catch (NegocioException ex) {
+                //                JOptionPane.showMessageDialog(null, ex.getMessage(), "ERROR", JOptionPane.INFORMATION_MESSAGE);
+                //            }
+            //            int confirmaEliminacion = JOptionPane.showConfirmDialog(null, "¿Está seguro que desea eliminar el proveedor: " + proveedorAEliminar.getNombre() + " ?", "Eliminar proveedor", JOptionPane.YES_NO_OPTION);
+            //            if (confirmaEliminacion == 0) {
+                //                try {
+                    //                    proveedoresNegocio.eliminar(proveedorAEliminar);
+                    //                    JOptionPane.showMessageDialog(null, "Se elimino el proveedor exitosamente", "Eliminar proveedor", JOptionPane.INFORMATION_MESSAGE);
+                    //                    listarProveedores();
+                    //                } catch (NegocioException ex) {
+                    //                    JOptionPane.showMessageDialog(null, ex.getMessage(), "ERROR", JOptionPane.INFORMATION_MESSAGE);
+                    //                }
+                //
+                //            }
         }
     }//GEN-LAST:event_btnEliminarActionPerformed
 
+    private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
+        int indiceFilaSeleccionada = tblCalculadora.getSelectedRow();
+        int numfilas = tblCalculadora.getSelectedRowCount();
+        if (indiceFilaSeleccionada == -1 || numfilas > 1) {
+            //            JOptionPane.showMessageDialog(null, "Seleccione un proveedor", "ERROR", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            //            Proveedor proveedorAModificar = null;
+            //            String nombre = (String) tblProveedores.getValueAt(indiceFilaSeleccionada, 0);
+            //            try {
+                //                proveedorAModificar = proveedoresNegocio.consultarPorNombre(nombre);
+                //            } catch (NegocioException ex) {
+                //                JOptionPane.showMessageDialog(null, ex.getMessage(), "ERROR", JOptionPane.INFORMATION_MESSAGE);
+                //            }
+            //            DlgProveedor dlgProveedor = new DlgProveedor(this, true, proveedorAModificar);
+            //            dlgProveedor.setVisible(true);
+            //            while (dlgProveedor.isVisible()) {
+                //                try {
+                    //                    Thread.sleep(100);
+                    //                } catch (InterruptedException io) {
+                    //                    io.printStackTrace();
+                    //                }
+                //            }
+            //            listarProveedores();
+        }
+    }//GEN-LAST:event_btnModificarActionPerformed
+
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
-//        DlgProveedor dlgProveedor = new DlgProveedor(this, true);
-//        dlgProveedor.setVisible(true);
-//        while (dlgProveedor.isVisible()) {
-//            try {
-//                Thread.sleep(100);
-//            } catch (InterruptedException io) {
-//                io.printStackTrace();
-//            }
-//        }
-//        listarProveedores();
+        //        DlgProveedor dlgProveedor = new DlgProveedor(this, true);
+        //        dlgProveedor.setVisible(true);
+        //        while (dlgProveedor.isVisible()) {
+            //            try {
+                //                Thread.sleep(100);
+                //            } catch (InterruptedException io) {
+                //                io.printStackTrace();
+                //            }
+            //        }
+        //        listarProveedores();
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     /**
@@ -385,20 +396,21 @@ public class FrmEntrenadores2 extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FrmEntrenadores2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmCalculadora.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FrmEntrenadores2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmCalculadora.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FrmEntrenadores2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmCalculadora.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FrmEntrenadores2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmCalculadora.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FrmEntrenadores2().setVisible(true);
+                new FrmCalculadora().setVisible(true);
             }
         });
     }
@@ -419,7 +431,7 @@ public class FrmEntrenadores2 extends javax.swing.JFrame {
     private javax.swing.JLabel lblCriterioBusqueda1;
     private javax.swing.JRadioButton radioID;
     private javax.swing.JRadioButton radioNombre;
-    private javax.swing.JTable tblProveedores;
+    private javax.swing.JTable tblCalculadora;
     private javax.swing.JTextField txtBusqueda;
     // End of variables declaration//GEN-END:variables
 }
