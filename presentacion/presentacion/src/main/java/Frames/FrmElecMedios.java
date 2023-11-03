@@ -45,6 +45,7 @@ public class FrmElecMedios extends javax.swing.JFrame {
         lblCriterioBusqueda = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Medios a practicar");
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -192,6 +193,7 @@ public class FrmElecMedios extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void FondoTituloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FondoTituloActionPerformed
@@ -204,7 +206,9 @@ public class FrmElecMedios extends javax.swing.JFrame {
 
     private void btnContinuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContinuarActionPerformed
         FrmCalculadora calculadora = new FrmCalculadora();
+        this.dispose();
         calculadora.setVisible(true);
+        
     }//GEN-LAST:event_btnContinuarActionPerformed
 
     /**

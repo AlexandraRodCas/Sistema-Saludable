@@ -36,11 +36,13 @@ public class FrmCalculadora extends javax.swing.JFrame {
         lblApartado = new javax.swing.JLabel();
         lblCriterioBusqueda2 = new javax.swing.JLabel();
         lblCriterioBusqueda3 = new javax.swing.JLabel();
+        lblCriterioBusqueda4 = new javax.swing.JLabel();
         btnEliminar = new javax.swing.JButton();
         btnAgregar = new javax.swing.JButton();
         lblCriterioBusqueda = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Calculadora de volumen");
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -58,17 +60,17 @@ public class FrmCalculadora extends javax.swing.JFrame {
         tblCalculadora.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         tblCalculadora.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-
+                {"RAG (KM)", null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Nombre", "min", "max", "prom", "ins", "semanas", "v. etapa", "min", "max", "prom", "ins", "semanas", "v. etapa", "min", "max", "prom", "ins", "semanas", "v. etapa"
+                "Nombre", "min", "max", "prom", "ins", "semanas", "v. etapa", "min", "max", "prom", "ins", "semanas", "v. etapa", "min", "max", "prom", "ins", "semanas", "v. etapa", "Vol. total"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
             };
             boolean[] canEdit = new boolean [] {
-                false, true, true, false, true, false, false, true, true, false, false, false, false, true, true, false, true, false, false
+                false, true, true, false, true, false, false, true, true, false, false, false, false, true, true, false, true, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -88,9 +90,9 @@ public class FrmCalculadora extends javax.swing.JFrame {
 
         lblCriterioBusqueda1.setBackground(new java.awt.Color(255, 255, 255));
         lblCriterioBusqueda1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        lblCriterioBusqueda1.setText("Etapa competitiva");
+        lblCriterioBusqueda1.setText("Macro");
         jPanel2.add(lblCriterioBusqueda1);
-        lblCriterioBusqueda1.setBounds(640, 20, 162, 30);
+        lblCriterioBusqueda1.setBounds(900, 20, 70, 30);
 
         lblApartado.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         lblApartado.setText("Medios");
@@ -109,6 +111,12 @@ public class FrmCalculadora extends javax.swing.JFrame {
         lblCriterioBusqueda3.setText("Etapa especial");
         jPanel2.add(lblCriterioBusqueda3);
         lblCriterioBusqueda3.setBounds(370, 20, 162, 30);
+
+        lblCriterioBusqueda4.setBackground(new java.awt.Color(255, 255, 255));
+        lblCriterioBusqueda4.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        lblCriterioBusqueda4.setText("Etapa competitiva");
+        jPanel2.add(lblCriterioBusqueda4);
+        lblCriterioBusqueda4.setBounds(640, 20, 162, 30);
 
         btnEliminar.setBackground(new java.awt.Color(56, 133, 185));
         btnEliminar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -280,6 +288,7 @@ public class FrmCalculadora extends javax.swing.JFrame {
     private javax.swing.JLabel lblCriterioBusqueda1;
     private javax.swing.JLabel lblCriterioBusqueda2;
     private javax.swing.JLabel lblCriterioBusqueda3;
+    private javax.swing.JLabel lblCriterioBusqueda4;
     private javax.swing.JTable tblCalculadora;
     // End of variables declaration//GEN-END:variables
 }
