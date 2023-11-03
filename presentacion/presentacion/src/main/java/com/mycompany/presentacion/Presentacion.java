@@ -1,6 +1,6 @@
 package com.mycompany.presentacion;
 
-import Frames.FrmCalculadora;
+import Frames.FrmElecMedios;
 
 /**
  *
@@ -9,7 +9,7 @@ import Frames.FrmCalculadora;
 public class Presentacion {
 
     public static void main(String[] args) {
-        FrmCalculadora calculadora = new FrmCalculadora();
-        calculadora.setVisible(true);
+        FrmElecMedios frmEleccionMedios = new FrmElecMedios();
+        frmEleccionMedios.setVisible(true);
     }
 }
