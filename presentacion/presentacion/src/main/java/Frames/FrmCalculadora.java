@@ -2,6 +2,7 @@
 package Frames;
 
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 
 /**
  *
@@ -32,16 +33,15 @@ public class FrmCalculadora extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblCalculadora = new javax.swing.JTable();
-        lblCriterioBusqueda1 = new javax.swing.JLabel();
-        lblApartado = new javax.swing.JLabel();
-        lblCriterioBusqueda2 = new javax.swing.JLabel();
-        lblCriterioBusqueda3 = new javax.swing.JLabel();
-        lblCriterioBusqueda4 = new javax.swing.JLabel();
+        macro = new javax.swing.JLabel();
+        medios = new javax.swing.JLabel();
+        general = new javax.swing.JLabel();
+        especial = new javax.swing.JLabel();
+        competitiva = new javax.swing.JLabel();
         btnEliminar = new javax.swing.JButton();
         btnAgregar = new javax.swing.JButton();
         lblCriterioBusqueda = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Calculadora de volumen");
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -60,7 +60,7 @@ public class FrmCalculadora extends javax.swing.JFrame {
         tblCalculadora.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         tblCalculadora.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"RAG (KM)", null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null}
+                {"RAG (KM)", null, null, null, null, "20", null, null, null, null, null, "10", null, null, null, null, null, "5", null, null}
             },
             new String [] {
                 "Nombre", "min", "max", "prom", "ins", "semanas", "v. etapa", "min", "max", "prom", "ins", "semanas", "v. etapa", "min", "max", "prom", "ins", "semanas", "v. etapa", "Vol. total"
@@ -83,40 +83,50 @@ public class FrmCalculadora extends javax.swing.JFrame {
         });
         tblCalculadora.setShowGrid(true);
         tblCalculadora.getTableHeader().setReorderingAllowed(false);
+        tblCalculadora.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblCalculadoraMouseClicked(evt);
+            }
+        });
+        tblCalculadora.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                tblCalculadoraKeyReleased(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblCalculadora);
 
         jPanel2.add(jScrollPane1);
         jScrollPane1.setBounds(20, 60, 940, 260);
 
-        lblCriterioBusqueda1.setBackground(new java.awt.Color(255, 255, 255));
-        lblCriterioBusqueda1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        lblCriterioBusqueda1.setText("Macro");
-        jPanel2.add(lblCriterioBusqueda1);
-        lblCriterioBusqueda1.setBounds(900, 20, 70, 30);
+        macro.setBackground(new java.awt.Color(255, 255, 255));
+        macro.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        macro.setText("Macro");
+        jPanel2.add(macro);
+        macro.setBounds(900, 20, 70, 30);
 
-        lblApartado.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        lblApartado.setText("Medios");
-        jPanel2.add(lblApartado);
-        lblApartado.setBounds(10, 20, 70, 30);
+        medios.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        medios.setText("Medios");
+        jPanel2.add(medios);
+        medios.setBounds(10, 20, 70, 30);
 
-        lblCriterioBusqueda2.setBackground(new java.awt.Color(255, 255, 255));
-        lblCriterioBusqueda2.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        lblCriterioBusqueda2.setText("Etapa general");
-        lblCriterioBusqueda2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jPanel2.add(lblCriterioBusqueda2);
-        lblCriterioBusqueda2.setBounds(130, 20, 130, 30);
+        general.setBackground(new java.awt.Color(255, 255, 255));
+        general.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        general.setText("Etapa general");
+        general.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jPanel2.add(general);
+        general.setBounds(130, 20, 130, 30);
 
-        lblCriterioBusqueda3.setBackground(new java.awt.Color(255, 255, 255));
-        lblCriterioBusqueda3.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        lblCriterioBusqueda3.setText("Etapa especial");
-        jPanel2.add(lblCriterioBusqueda3);
-        lblCriterioBusqueda3.setBounds(370, 20, 162, 30);
+        especial.setBackground(new java.awt.Color(255, 255, 255));
+        especial.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        especial.setText("Etapa especial");
+        jPanel2.add(especial);
+        especial.setBounds(370, 20, 162, 30);
 
-        lblCriterioBusqueda4.setBackground(new java.awt.Color(255, 255, 255));
-        lblCriterioBusqueda4.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        lblCriterioBusqueda4.setText("Etapa competitiva");
-        jPanel2.add(lblCriterioBusqueda4);
-        lblCriterioBusqueda4.setBounds(640, 20, 162, 30);
+        competitiva.setBackground(new java.awt.Color(255, 255, 255));
+        competitiva.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        competitiva.setText("Etapa competitiva");
+        jPanel2.add(competitiva);
+        competitiva.setBounds(640, 20, 162, 30);
 
         btnEliminar.setBackground(new java.awt.Color(56, 133, 185));
         btnEliminar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -201,30 +211,7 @@ public class FrmCalculadora extends javax.swing.JFrame {
     }//GEN-LAST:event_FondoTituloActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-        int indiceFilaSeleccionada = tblCalculadora.getSelectedRow();
-        int numfilas = tblCalculadora.getSelectedRowCount();
-        if (indiceFilaSeleccionada == -1 || numfilas > 1) {
-            //            JOptionPane.showMessageDialog(null, "Seleccione un proveedor", "ERROR", JOptionPane.INFORMATION_MESSAGE);
-        } else {
-            //            Proveedor proveedorAEliminar = null;
-            //            String nombre = (String) tblProveedores.getValueAt(indiceFilaSeleccionada, 0);
-            //            try {
-                //                proveedorAEliminar = proveedoresNegocio.consultarPorNombre(nombre);
-                //            } catch (NegocioException ex) {
-                //                JOptionPane.showMessageDialog(null, ex.getMessage(), "ERROR", JOptionPane.INFORMATION_MESSAGE);
-                //            }
-            //            int confirmaEliminacion = JOptionPane.showConfirmDialog(null, "¿Está seguro que desea eliminar el proveedor: " + proveedorAEliminar.getNombre() + " ?", "Eliminar proveedor", JOptionPane.YES_NO_OPTION);
-            //            if (confirmaEliminacion == 0) {
-                //                try {
-                    //                    proveedoresNegocio.eliminar(proveedorAEliminar);
-                    //                    JOptionPane.showMessageDialog(null, "Se elimino el proveedor exitosamente", "Eliminar proveedor", JOptionPane.INFORMATION_MESSAGE);
-                    //                    listarProveedores();
-                    //                } catch (NegocioException ex) {
-                    //                    JOptionPane.showMessageDialog(null, ex.getMessage(), "ERROR", JOptionPane.INFORMATION_MESSAGE);
-                    //                }
-                //
-                //            }
-        }
+        this.dispose();
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
@@ -240,55 +227,81 @@ public class FrmCalculadora extends javax.swing.JFrame {
         //        listarProveedores();
     }//GEN-LAST:event_btnAgregarActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FrmCalculadora.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FrmCalculadora.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FrmCalculadora.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FrmCalculadora.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
+    private void tblCalculadoraKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tblCalculadoraKeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tblCalculadoraKeyReleased
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new FrmCalculadora().setVisible(true);
+    private void tblCalculadoraMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblCalculadoraMouseClicked
+        // TODO add your handling code here:
+        int row = tblCalculadora.getSelectedRow();
+        int col = tblCalculadora.getSelectedColumn();
+
+        if (col == 2) {
+            Object data = tblCalculadora.getValueAt(row, col);
+            updateAverage(col);
+        }
+        if (col == 8) {
+            Object data = tblCalculadora.getValueAt(row, col);
+            updateAverage(col);
+        }
+        if (col == 14) {
+            Object data = tblCalculadora.getValueAt(row, col);
+            updateAverage(col);
+        }
+        if (col == 4) {
+            Object data = tblCalculadora.getValueAt(row, col);
+            updateVolumen(col);
+        }
+    }//GEN-LAST:event_tblCalculadoraMouseClicked
+
+    private void updateAverage(int colNum2) {
+    int rowCount = tblCalculadora.getRowCount();
+    int colCount = tblCalculadora.getColumnCount();
+    DefaultTableModel model= (DefaultTableModel) tblCalculadora.getModel();
+    for (int i = 0; i < rowCount; i++) {
+            if(model.getValueAt(i, colNum2-1) != null || model.getValueAt(i, colNum2) != null){
+                String dato1 =  model.getValueAt(i, colNum2-1).toString();
+                String dato2 = model.getValueAt(i, colNum2).toString();
+                double dato1I = Double.parseDouble(dato1);
+                double dato2I = Double.parseDouble(dato2);
+                double promedio = (dato1I + dato2I) / 2;
+                tblCalculadora.setValueAt(promedio, i, colNum2+1);
             }
-        });
+        }
     }
+    
+    private void updateVolumen(int colNum2) {
+    int rowCount = tblCalculadora.getRowCount();
+    int colCount = tblCalculadora.getColumnCount();
+    DefaultTableModel model= (DefaultTableModel) tblCalculadora.getModel();
+    for (int i = 0; i < rowCount; i++) {
+            if(model.getValueAt(i, colNum2-1) != null || model.getValueAt(i, colNum2) != null){
+                String dato1 =  model.getValueAt(i, colNum2-1).toString();
+                String dato2 = model.getValueAt(i, colNum2).toString();
+                String dato3 = model.getValueAt(i, colNum2+1).toString();
+                double dato1I = Double.parseDouble(dato1);
+                double dato2I = Double.parseDouble(dato2);
+                double dato3I = Double.parseDouble(dato3);
+                double promedio = dato1I * dato2I * dato3I;
+                tblCalculadora.setValueAt(promedio, i, colNum2+2);
+            }
+        }
+    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField FondoTitulo;
     private javax.swing.JButton btnAgregar;
     private javax.swing.JButton btnEliminar;
+    private javax.swing.JLabel competitiva;
+    private javax.swing.JLabel especial;
+    private javax.swing.JLabel general;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel lblApartado;
     private javax.swing.JLabel lblCriterioBusqueda;
-    private javax.swing.JLabel lblCriterioBusqueda1;
-    private javax.swing.JLabel lblCriterioBusqueda2;
-    private javax.swing.JLabel lblCriterioBusqueda3;
-    private javax.swing.JLabel lblCriterioBusqueda4;
+    private javax.swing.JLabel macro;
+    private javax.swing.JLabel medios;
     private javax.swing.JTable tblCalculadora;
     // End of variables declaration//GEN-END:variables
 }

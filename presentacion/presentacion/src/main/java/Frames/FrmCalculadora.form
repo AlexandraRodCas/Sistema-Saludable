@@ -2,7 +2,6 @@
 
 <Form version="1.9" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <Properties>
-    <Property name="defaultCloseOperation" type="int" value="3"/>
     <Property name="title" type="java.lang.String" value="Calculadora de volumen"/>
   </Properties>
   <SyntheticProperties>
@@ -136,19 +135,25 @@
                         <Column editable="true" title="max" type="java.lang.String"/>
                         <Column editable="false" title="prom" type="java.lang.Object"/>
                         <Column editable="true" title="ins" type="java.lang.Object"/>
-                        <Column editable="false" title="semanas" type="java.lang.Object"/>
+                        <Column editable="false" title="semanas" type="java.lang.Object">
+                          <Data value="20"/>
+                        </Column>
                         <Column editable="false" title="v. etapa" type="java.lang.Object"/>
                         <Column editable="true" title="min" type="java.lang.Object"/>
                         <Column editable="true" title="max" type="java.lang.Object"/>
                         <Column editable="false" title="prom" type="java.lang.Object"/>
                         <Column editable="false" title="ins" type="java.lang.String"/>
-                        <Column editable="false" title="semanas" type="java.lang.Object"/>
+                        <Column editable="false" title="semanas" type="java.lang.Object">
+                          <Data value="10"/>
+                        </Column>
                         <Column editable="false" title="v. etapa" type="java.lang.Object"/>
                         <Column editable="true" title="min" type="java.lang.Object"/>
                         <Column editable="true" title="max" type="java.lang.Object"/>
                         <Column editable="false" title="prom" type="java.lang.Object"/>
                         <Column editable="true" title="ins" type="java.lang.Object"/>
-                        <Column editable="false" title="semanas" type="java.lang.Object"/>
+                        <Column editable="false" title="semanas" type="java.lang.Object">
+                          <Data value="5"/>
+                        </Column>
                         <Column editable="false" title="v. etapa" type="java.lang.Object"/>
                         <Column editable="false" title="Vol. total" type="java.lang.Object"/>
                       </Table>
@@ -262,10 +267,17 @@
                       <TableHeader reorderingAllowed="false" resizingAllowed="true"/>
                     </Property>
                   </Properties>
+                  <Events>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tblCalculadoraMouseClicked"/>
+                    <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="tblCalculadoraKeyReleased"/>
+                  </Events>
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_SerializeTo" type="java.lang.String" value="FrmCalculadora_tblCalculadora"/>
+                  </AuxValues>
                 </Component>
               </SubComponents>
             </Container>
-            <Component class="javax.swing.JLabel" name="lblCriterioBusqueda1">
+            <Component class="javax.swing.JLabel" name="macro">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -281,7 +293,7 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Component class="javax.swing.JLabel" name="lblApartado">
+            <Component class="javax.swing.JLabel" name="medios">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Segoe UI" size="18" style="1"/>
@@ -294,7 +306,7 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Component class="javax.swing.JLabel" name="lblCriterioBusqueda2">
+            <Component class="javax.swing.JLabel" name="general">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -311,7 +323,7 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Component class="javax.swing.JLabel" name="lblCriterioBusqueda3">
+            <Component class="javax.swing.JLabel" name="especial">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -327,7 +339,7 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Component class="javax.swing.JLabel" name="lblCriterioBusqueda4">
+            <Component class="javax.swing.JLabel" name="competitiva">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
