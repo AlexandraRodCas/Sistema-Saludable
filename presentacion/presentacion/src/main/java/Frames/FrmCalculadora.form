@@ -142,7 +142,7 @@
                         <Column editable="true" title="min" type="java.lang.Object"/>
                         <Column editable="true" title="max" type="java.lang.Object"/>
                         <Column editable="false" title="prom" type="java.lang.Object"/>
-                        <Column editable="false" title="ins" type="java.lang.String"/>
+                        <Column editable="true" title="ins" type="java.lang.String"/>
                         <Column editable="false" title="semanas" type="java.lang.Object">
                           <Data value="10"/>
                         </Column>

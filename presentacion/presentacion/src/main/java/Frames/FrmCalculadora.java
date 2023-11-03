@@ -70,7 +70,7 @@ public class FrmCalculadora extends javax.swing.JFrame {
                 java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
             };
             boolean[] canEdit = new boolean [] {
-                false, true, true, false, true, false, false, true, true, false, false, false, false, true, true, false, true, false, false, false
+                false, true, true, false, true, false, false, true, true, false, true, false, false, true, true, false, true, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -249,6 +249,14 @@ public class FrmCalculadora extends javax.swing.JFrame {
             updateAverage(col);
         }
         if (col == 4) {
+            Object data = tblCalculadora.getValueAt(row, col);
+            updateVolumen(col);
+        }
+        if (col == 10) {
+            Object data = tblCalculadora.getValueAt(row, col);
+            updateVolumen(col);
+        }
+        if (col == 16) {
             Object data = tblCalculadora.getValueAt(row, col);
             updateVolumen(col);
         }
