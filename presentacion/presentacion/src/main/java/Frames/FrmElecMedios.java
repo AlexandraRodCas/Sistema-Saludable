@@ -1,19 +1,24 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package Frames;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
- * @author Alexandra
+ * @author Alexandra c: 
  */
 public class FrmElecMedios extends javax.swing.JFrame {
+
+    List<String> listaJCB = new ArrayList<>();
 
     /**
      * Creates new form FrmElecMedios
      */
     public FrmElecMedios() {
+        initComponents();
+    }
+
+    public FrmElecMedios(String[] arreglo) {
         initComponents();
     }
 
@@ -152,15 +157,15 @@ public class FrmElecMedios extends javax.swing.JFrame {
                         .addComponent(lblCriterioBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(394, 394, 394)
-                        .addComponent(btnContinuar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(126, 126, 126)
-                        .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 360, Short.MAX_VALUE))
+                        .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(148, 148, 148)
+                        .addComponent(btnContinuar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 404, Short.MAX_VALUE))
             .addComponent(FondoTitulo)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(40, 40, 40)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 984, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(36, Short.MAX_VALUE))
+                .addContainerGap(102, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -201,15 +206,74 @@ public class FrmElecMedios extends javax.swing.JFrame {
     }//GEN-LAST:event_FondoTituloActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-        
+
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnContinuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContinuarActionPerformed
-        FrmCalculadora calculadora = new FrmCalculadora();
+
+        revisarCheckedBox();
+        FrmCalculadora calculadora = new FrmCalculadora(listaJCB);
         this.dispose();
         calculadora.setVisible(true);
-        
     }//GEN-LAST:event_btnContinuarActionPerformed
+
+    public void revisarCheckedBox() {
+        listaJCB = new ArrayList<>();
+        if (RAG.isSelected()) {
+            System.out.println("RAG Está seleccionado");
+            String rag = RAG.getText();
+            listaJCB.add(rag);
+        }
+        if (RAE.isSelected()) {
+            System.out.println("RAE Está seleccionado");
+            String rae = RAE.getText();
+            listaJCB.add(rae);
+        }
+        if (VelGeneral.isSelected()) {
+            System.out.println("VelGeneral Está seleccionado");
+            String velGeneral = VelGeneral.getText();
+            listaJCB.add(velGeneral);
+        }
+        if (VelEspecial.isSelected()) {
+            System.out.println("VelEspecial Está seleccionado");
+            String velEspecial = VelEspecial.getText();
+            listaJCB.add(velEspecial);
+        }
+        if (ResVelGen.isSelected()) {
+            System.out.println("ResVelGen Está seleccionado");
+            String resVelGen = ResVelGen.getText();
+            listaJCB.add(resVelGen);
+        }
+        if (ResVelEsp.isSelected()) {
+            System.out.println("ResVelEsp Está seleccionado");
+            String relVelEsp = ResVelEsp.getText();
+            listaJCB.add(relVelEsp);
+        }
+        if (FuerzaGen.isSelected()) {
+            System.out.println("FuerzaGen Está seleccionado");
+            String fuerzaGen = FuerzaGen.getText();
+            listaJCB.add(fuerzaGen);
+        }
+        if (FuerzaEsp.isSelected()) {
+            System.out.println("FuerzaEsp Está seleccionado");
+            String fuerzaEsp = FuerzaEsp.getText();
+            listaJCB.add(fuerzaEsp);
+        }
+        if (CoordinacionTecnica.isSelected()) {
+            System.out.println("CoordinacionTecnica Está seleccionado");
+            String coordTec = CoordinacionTecnica.getText();
+            listaJCB.add(coordTec);
+        }
+        if (Flexibilidad.isSelected()) {
+            System.out.println("Flexibilidad Está seleccionado");
+            String Flex = Flexibilidad.getText();
+            listaJCB.add(Flex);
+        }
+        System.out.println("------------------------------------------");
+        for (String string : listaJCB) {
+            System.out.println(string);
+        }
+    }
 
     /**
      * @param args the command line arguments
