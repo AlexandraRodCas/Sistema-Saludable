@@ -1,6 +1,7 @@
-
 package Frames;
 
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
@@ -10,12 +11,35 @@ import javax.swing.table.TableModel;
  */
 public class FrmCalculadora extends javax.swing.JFrame {
 
+    List<String> listaJCB = new ArrayList<>();
+
     /**
      * Creates new form FrmEntrenadores2
+     * @param listaJCB
      */
-    public FrmCalculadora() {
+    public FrmCalculadora(List<String> listaJCB) {
         initComponents();
-        
+        DefaultTableModel model = new DefaultTableModel();
+
+        //Comprobando que llegan los medios
+//        for (String string : listaJCB) {
+//            System.out.println("elementos: ");
+//            System.out.println(string);
+//        }
+//        for (int i = 0; i < listaJCB.size(); i++) {
+//            var valor = listaJCB.get(i);
+////            tblCalculadora.addColumn(valor.ge);
+////            model.addColumn("valor agregado" );
+//            System.out.println("VALOR : " + valor);
+////            System.out.println("Entra al for");
+//            model.addRow(new Object[]{valor.indexOf(i)});
+//
+//        }
+        model.addColumn("Columna");
+        for (String valor : listaJCB) {
+            model.addRow(new Object[]{valor});
+        }
+        tblCalculadora.setModel(model);
 
     }
 
@@ -218,12 +242,12 @@ public class FrmCalculadora extends javax.swing.JFrame {
         //        DlgProveedor dlgProveedor = new DlgProveedor(this, true);
         //        dlgProveedor.setVisible(true);
         //        while (dlgProveedor.isVisible()) {
-            //            try {
-                //                Thread.sleep(100);
-                //            } catch (InterruptedException io) {
-                //                io.printStackTrace();
-                //            }
-            //        }
+        //            try {
+        //                Thread.sleep(100);
+        //            } catch (InterruptedException io) {
+        //                io.printStackTrace();
+        //            }
+        //        }
         //        listarProveedores();
     }//GEN-LAST:event_btnAgregarActionPerformed
 
@@ -253,42 +277,41 @@ public class FrmCalculadora extends javax.swing.JFrame {
         }
         if (col == 16) {
             updateVolumen(col);
-        }
-        else{
+        } else {
             updateVolumenTotal();
         }
     }//GEN-LAST:event_tblCalculadoraMouseClicked
 
     private void updateAverage(int colNum2) {
-    int rowCount = tblCalculadora.getRowCount();
-    int colCount = tblCalculadora.getColumnCount();
-    DefaultTableModel model= (DefaultTableModel) tblCalculadora.getModel();
-    for (int i = 0; i < rowCount; i++) {
-            if(model.getValueAt(i, colNum2-1) != null || model.getValueAt(i, colNum2) != null){
-                String dato1 =  model.getValueAt(i, colNum2-1).toString();
+        int rowCount = tblCalculadora.getRowCount();
+        int colCount = tblCalculadora.getColumnCount();
+        DefaultTableModel model = (DefaultTableModel) tblCalculadora.getModel();
+        for (int i = 0; i < rowCount; i++) {
+            if (model.getValueAt(i, colNum2 - 1) != null || model.getValueAt(i, colNum2) != null) {
+                String dato1 = model.getValueAt(i, colNum2 - 1).toString();
                 String dato2 = model.getValueAt(i, colNum2).toString();
                 double dato1I = Double.parseDouble(dato1);
                 double dato2I = Double.parseDouble(dato2);
                 double promedio = (dato1I + dato2I) / 2;
-                tblCalculadora.setValueAt(promedio, i, colNum2+1);
+                tblCalculadora.setValueAt(promedio, i, colNum2 + 1);
             }
         }
     }
-    
+
     private void updateVolumen(int colNum2) {
         int rowCount = tblCalculadora.getRowCount();
         int colCount = tblCalculadora.getColumnCount();
-        DefaultTableModel model= (DefaultTableModel) tblCalculadora.getModel();
+        DefaultTableModel model = (DefaultTableModel) tblCalculadora.getModel();
         for (int i = 0; i < rowCount; i++) {
-            if(model.getValueAt(i, colNum2-1) != null || model.getValueAt(i, colNum2) != null){
-                String dato1 =  model.getValueAt(i, colNum2-1).toString();
+            if (model.getValueAt(i, colNum2 - 1) != null || model.getValueAt(i, colNum2) != null) {
+                String dato1 = model.getValueAt(i, colNum2 - 1).toString();
                 String dato2 = model.getValueAt(i, colNum2).toString();
-                String dato3 = model.getValueAt(i, colNum2+1).toString();
+                String dato3 = model.getValueAt(i, colNum2 + 1).toString();
                 double dato1I = Double.parseDouble(dato1);
                 double dato2I = Double.parseDouble(dato2);
                 double dato3I = Double.parseDouble(dato3);
                 double promedio = dato1I * dato2I * dato3I;
-                tblCalculadora.setValueAt(promedio, i, colNum2+2);
+                tblCalculadora.setValueAt(promedio, i, colNum2 + 2);
             }
         }
     }
@@ -296,10 +319,10 @@ public class FrmCalculadora extends javax.swing.JFrame {
     private void updateVolumenTotal() {
         int rowCount = tblCalculadora.getRowCount();
         int colCount = tblCalculadora.getColumnCount();
-        DefaultTableModel model= (DefaultTableModel) tblCalculadora.getModel();
+        DefaultTableModel model = (DefaultTableModel) tblCalculadora.getModel();
         for (int i = 0; i < rowCount; i++) {
-            if(model.getValueAt(i, 6) != null || model.getValueAt(i, 12) != null && model.getValueAt(i, 18) != null){
-                String dato1 =  model.getValueAt(i, 6).toString();
+            if (model.getValueAt(i, 6) != null || model.getValueAt(i, 12) != null && model.getValueAt(i, 18) != null) {
+                String dato1 = model.getValueAt(i, 6).toString();
                 String dato2 = model.getValueAt(i, 12).toString();
                 String dato3 = model.getValueAt(i, 18).toString();
                 double dato1I = Double.parseDouble(dato1);
@@ -310,7 +333,7 @@ public class FrmCalculadora extends javax.swing.JFrame {
             }
         }
     }
-    
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField FondoTitulo;

@@ -5,7 +5,7 @@ import java.util.List;
 
 /**
  *
- * @author Alexandra c: 
+ * @author Alexandra c:
  */
 public class FrmElecMedios extends javax.swing.JFrame {
 
