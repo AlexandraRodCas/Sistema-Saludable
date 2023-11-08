@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package Frames;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -18,30 +19,21 @@ public class FrmSemEtapas extends javax.swing.JFrame {
     }
 
     public void calcularPeriodos() {
-        int eGen = 0, eEsp = 0, eP = 0, eC = 0;
         
-        if(!(txtEtapaG.toString().isBlank())){
-            eGen = Integer.parseInt(txtEtapaG.getText());
-        }
-        if(!txtEtapaE.toString().isBlank()){
-            eEsp = Integer.parseInt(txtEtapaE.getText());
-        }
-        if(!txtEtapaP.toString().isBlank()){
-            eP = Integer.parseInt(txtEtapaP.getText());
-        }
-        if(!txtEtapaC.toString().isBlank()){
-            eC = Integer.parseInt(txtEtapaC.getText());
-        }
-        
-        
-        
-        int pP = eGen +eEsp;
+        int eG = Integer.parseInt(txtEtapaG.getText());
+        int eE = Integer.parseInt(txtEtapaE.getText());
+        int eP = Integer.parseInt(txtEtapaP.getText()); 
+        int eC = Integer.parseInt(txtEtapaC.getText()); 
+
+
+        int pP = eG + eE;
         int pC = eP + eC;
 
         txtPerP.setText(String.valueOf(pP));
         txtPerC.setText(String.valueOf(pC));
 
     }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -299,32 +291,72 @@ public class FrmSemEtapas extends javax.swing.JFrame {
     }//GEN-LAST:event_txtPerCActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        // TODO add your handling code here:
+        // Cambiar mas tarde paa regresar al menu o algo asi.
         this.dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void txtEtapaGKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEtapaGKeyTyped
-        
+        int key = evt.getKeyChar();
+
+        boolean numeros = key >= 48 && key <= 57;
+
+        if (!numeros) {
+            evt.consume();
+        }
+
+        if (txtEtapaG.getText().trim().length() == 3) {
+            evt.consume();
+        }
     }//GEN-LAST:event_txtEtapaGKeyTyped
 
     private void txtEtapaEKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEtapaEKeyTyped
-      
+        int key = evt.getKeyChar();
+
+        boolean numeros = key >= 48 && key <= 57;
+
+        if (!numeros) {
+            evt.consume();
+        }
+
+        if (txtEtapaE.getText().trim().length() == 3) {
+            evt.consume();
+        }
     }//GEN-LAST:event_txtEtapaEKeyTyped
 
     private void txtEtapaPKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEtapaPKeyTyped
-       
+        int key = evt.getKeyChar();
+
+        boolean numeros = key >= 48 && key <= 57;
+
+        if (!numeros) {
+            evt.consume();
+        }
+
+        if (txtEtapaP.getText().trim().length() == 3) {
+            evt.consume();
+        }
     }//GEN-LAST:event_txtEtapaPKeyTyped
 
     private void txtEtapaCKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEtapaCKeyTyped
-       
+        int key = evt.getKeyChar();
+
+        boolean numeros = key >= 48 && key <= 57;
+
+        if (!numeros) {
+            evt.consume();
+        }
+
+        if (txtEtapaC.getText().trim().length() == 3) {
+            evt.consume();
+        }
     }//GEN-LAST:event_txtEtapaCKeyTyped
 
     private void txtEtapaCKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEtapaCKeyReleased
-       
+
     }//GEN-LAST:event_txtEtapaCKeyReleased
 
     private void txtEtapaPKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEtapaPKeyReleased
-       
+
     }//GEN-LAST:event_txtEtapaPKeyReleased
 
     private void txtEtapaEKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEtapaEKeyReleased
@@ -333,13 +365,20 @@ public class FrmSemEtapas extends javax.swing.JFrame {
 
     private void txtEtapaGKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEtapaGKeyReleased
         // TODO add your handling code here:
-       
+
     }//GEN-LAST:event_txtEtapaGKeyReleased
 
     private void btnContinuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContinuarActionPerformed
         // TODO add your handling code here:
-        this.calcularPeriodos();
-        
+       
+        if(txtEtapaG.getText().isBlank()||txtEtapaE.getText().isBlank()||txtEtapaP.getText().isBlank()||txtEtapaC.getText().isBlank()){
+            JOptionPane.showMessageDialog(null,  
+                    "Es necesario llenar todos los campos requeridos", 
+                    "Error", JOptionPane.ERROR_MESSAGE);
+        }else{
+             this.calcularPeriodos();
+        }
+
     }//GEN-LAST:event_btnContinuarActionPerformed
 
     /**
