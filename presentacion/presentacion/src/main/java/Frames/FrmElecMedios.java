@@ -45,7 +45,7 @@ public class FrmElecMedios extends javax.swing.JFrame {
         VelGeneral = new javax.swing.JCheckBox();
         VelEspecial = new javax.swing.JCheckBox();
         FuerzaEsp = new javax.swing.JCheckBox();
-        btnEliminar = new javax.swing.JButton();
+        btnCancelar = new javax.swing.JButton();
         btnContinuar = new javax.swing.JButton();
         lblCriterioBusqueda = new javax.swing.JLabel();
 
@@ -120,14 +120,14 @@ public class FrmElecMedios extends javax.swing.JFrame {
         jPanel2.add(FuerzaEsp);
         FuerzaEsp.setBounds(360, 270, 200, 20);
 
-        btnEliminar.setBackground(new java.awt.Color(56, 133, 185));
-        btnEliminar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btnEliminar.setText("Cancelar");
-        btnEliminar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnEliminar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+        btnCancelar.setBackground(new java.awt.Color(56, 133, 185));
+        btnCancelar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnCancelar.setText("Cancelar");
+        btnCancelar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnCancelar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEliminarActionPerformed(evt);
+                btnCancelarActionPerformed(evt);
             }
         });
 
@@ -157,7 +157,7 @@ public class FrmElecMedios extends javax.swing.JFrame {
                         .addComponent(lblCriterioBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(394, 394, 394)
-                        .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(148, 148, 148)
                         .addComponent(btnContinuar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(0, 404, Short.MAX_VALUE))
@@ -178,7 +178,7 @@ public class FrmElecMedios extends javax.swing.JFrame {
                 .addGap(30, 30, 30)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnContinuar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(36, Short.MAX_VALUE))
         );
 
@@ -205,9 +205,9 @@ public class FrmElecMedios extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_FondoTituloActionPerformed
 
-    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
 
-    }//GEN-LAST:event_btnEliminarActionPerformed
+    }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnContinuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContinuarActionPerformed
 
@@ -322,8 +322,8 @@ public class FrmElecMedios extends javax.swing.JFrame {
     private javax.swing.JCheckBox ResVelGen;
     private javax.swing.JCheckBox VelEspecial;
     private javax.swing.JCheckBox VelGeneral;
+    private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnContinuar;
-    private javax.swing.JButton btnEliminar;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel lblApartado;
