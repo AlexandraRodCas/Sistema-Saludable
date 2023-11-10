@@ -38,6 +38,7 @@ public class FrmDuracionMesociclos extends javax.swing.JFrame {
         btnCancelar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
 
         FondoTitulo.setEditable(false);
         FondoTitulo.setBackground(new java.awt.Color(156, 164, 175));
@@ -60,9 +61,9 @@ public class FrmDuracionMesociclos extends javax.swing.JFrame {
         jPanel2.add(jLabel2);
         jLabel2.setBounds(70, 40, 150, 30);
         jPanel2.add(jDateChooser1);
-        jDateChooser1.setBounds(70, 70, 110, 30);
+        jDateChooser1.setBounds(50, 70, 180, 30);
         jPanel2.add(jDateChooser2);
-        jDateChooser2.setBounds(488, 72, 100, 30);
+        jDateChooser2.setBounds(440, 70, 200, 30);
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel3.setText("Fin del plan");
@@ -127,6 +128,7 @@ public class FrmDuracionMesociclos extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void FondoTituloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FondoTituloActionPerformed
@@ -135,7 +137,10 @@ public class FrmDuracionMesociclos extends javax.swing.JFrame {
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         //        this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        System.exit(0);
+        //        System.exit(0);
+        this.dispose();
+        FrmMesociclo frmC = new FrmMesociclo();
+        frmC.setVisible(true);
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnContinuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContinuarActionPerformed
