@@ -117,6 +117,9 @@ public class FrmCalculadora extends javax.swing.JFrame {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 tblCalculadoraKeyReleased(evt);
             }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                tblCalculadoraKeyTyped(evt);
+            }
         });
         jScrollPane1.setViewportView(tblCalculadora);
 
@@ -283,18 +286,32 @@ public class FrmCalculadora extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_tblCalculadoraMouseClicked
 
+    private void tblCalculadoraKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tblCalculadoraKeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+                if (c == '.' || c == ',') {
+                    evt.consume(); 
+                }
+    }//GEN-LAST:event_tblCalculadoraKeyTyped
+
     private void updateAverage(int colNum2) {
         int rowCount = tblCalculadora.getRowCount();
         int colCount = tblCalculadora.getColumnCount();
         DefaultTableModel model = (DefaultTableModel) tblCalculadora.getModel();
         for (int i = 0; i < rowCount; i++) {
             if (model.getValueAt(i, colNum2 - 1) != null || model.getValueAt(i, colNum2) != null) {
-                String dato1 = model.getValueAt(i, colNum2 - 1).toString();
-                String dato2 = model.getValueAt(i, colNum2).toString();
-                double dato1I = Double.parseDouble(dato1);
-                double dato2I = Double.parseDouble(dato2);
-                double promedio = (dato1I + dato2I) / 2;
-                tblCalculadora.setValueAt(promedio, i, colNum2 + 1);
+                if(esNumero(model.getValueAt(i, colNum2 - 1).toString()) && esNumero(model.getValueAt(i, colNum2).toString()))  {
+                    String dato1 = model.getValueAt(i, colNum2 - 1).toString();
+                    String dato2 = model.getValueAt(i, colNum2).toString();
+                    double dato1I = Double.parseDouble(dato1);
+                    double dato2I = Double.parseDouble(dato2);
+                    double promedio = (dato1I + dato2I) / 2;
+                    tblCalculadora.setValueAt(promedio, i, colNum2 + 1);
+                }
+                else{
+                    JOptionPane.showMessageDialog(null, "No es un número válido. Por favor, ingresa un número válido.", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+                
             }
         }
     }
@@ -305,14 +322,19 @@ public class FrmCalculadora extends javax.swing.JFrame {
         DefaultTableModel model = (DefaultTableModel) tblCalculadora.getModel();
         for (int i = 0; i < rowCount; i++) {
             if (model.getValueAt(i, colNum2 - 1) != null || model.getValueAt(i, colNum2) != null) {
-                String dato1 = model.getValueAt(i, colNum2 - 1).toString();
-                String dato2 = model.getValueAt(i, colNum2).toString();
-                String dato3 = model.getValueAt(i, colNum2 + 1).toString();
-                double dato1I = Double.parseDouble(dato1);
-                double dato2I = Double.parseDouble(dato2);
-                double dato3I = Double.parseDouble(dato3);
-                double promedio = dato1I * dato2I * dato3I;
-                tblCalculadora.setValueAt(promedio, i, colNum2 + 2);
+                if(esNumero(model.getValueAt(i, colNum2 - 1).toString()) && esNumero(model.getValueAt(i, colNum2).toString()))  {
+                    String dato1 = model.getValueAt(i, colNum2 - 1).toString();
+                    String dato2 = model.getValueAt(i, colNum2).toString();
+                    String dato3 = model.getValueAt(i, colNum2 + 1).toString();
+                    double dato1I = Double.parseDouble(dato1);
+                    double dato2I = Double.parseDouble(dato2);
+                    double dato3I = Double.parseDouble(dato3);
+                    double promedio = dato1I * dato2I * dato3I;
+                    tblCalculadora.setValueAt(promedio, i, colNum2 + 2);
+                }
+                else{
+                    JOptionPane.showMessageDialog(null, "No es un número válido. Por favor, ingresa un número válido.", "Error", JOptionPane.ERROR_MESSAGE);
+                }
             }
         }
     }
@@ -323,7 +345,7 @@ public class FrmCalculadora extends javax.swing.JFrame {
         DefaultTableModel model = (DefaultTableModel) tblCalculadora.getModel();
         for (int i = 0; i < rowCount; i++) {
             if (model.getValueAt(i, 6) != null || model.getValueAt(i, 12) != null && model.getValueAt(i, 18) != null) {
-                if(esNumero(model.getValueAt(i, 6).toString()) && esNumero(model.getValueAt(i, 6).toString()) && esNumero(model.getValueAt(i, 6).toString()))  {  
+                  
                     String dato1 = model.getValueAt(i, 6).toString();
                     String dato2 = model.getValueAt(i, 12).toString();
                     String dato3 = model.getValueAt(i, 18).toString();
@@ -332,17 +354,14 @@ public class FrmCalculadora extends javax.swing.JFrame {
                     double dato3I = Double.parseDouble(dato3);
                     double promedio = dato1I + dato2I + dato3I;
                     tblCalculadora.setValueAt(promedio, i, 19);
-                }
-                else{
-                    JOptionPane.showMessageDialog(null, "No es un número válido. Por favor, ingresa un número válido.", "Error", JOptionPane.ERROR_MESSAGE);
-                }
+                
             }
         }
     }
     
     public static boolean esNumero(String cadena) {
         try {
-            Double.parseDouble(cadena);
+            Integer.parseInt(cadena);
             return true;
         } catch (NumberFormatException e) {
             return false;
