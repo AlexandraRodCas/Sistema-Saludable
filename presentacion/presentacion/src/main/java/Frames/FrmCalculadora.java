@@ -2,6 +2,7 @@ package Frames;
 
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
@@ -19,7 +20,7 @@ public class FrmCalculadora extends javax.swing.JFrame {
      */
     public FrmCalculadora(List<String> listaJCB) {
         initComponents();
-        DefaultTableModel model = new DefaultTableModel();
+        DefaultTableModel model = (DefaultTableModel) tblCalculadora.getModel();
 
         //Comprobando que llegan los medios
 //        for (String string : listaJCB) {
@@ -35,10 +36,10 @@ public class FrmCalculadora extends javax.swing.JFrame {
 //            model.addRow(new Object[]{valor.indexOf(i)});
 //
 //        }
-        model.addColumn("Columna");
-        for (String valor : listaJCB) {
-            model.addRow(new Object[]{valor});
+        for (int i = 0; i < listaJCB.size(); i++) {
+            model.addRow(new Object[] {listaJCB.get(i).toString()});
         }
+        
         tblCalculadora.setModel(model);
 
     }
@@ -322,17 +323,32 @@ public class FrmCalculadora extends javax.swing.JFrame {
         DefaultTableModel model = (DefaultTableModel) tblCalculadora.getModel();
         for (int i = 0; i < rowCount; i++) {
             if (model.getValueAt(i, 6) != null || model.getValueAt(i, 12) != null && model.getValueAt(i, 18) != null) {
-                String dato1 = model.getValueAt(i, 6).toString();
-                String dato2 = model.getValueAt(i, 12).toString();
-                String dato3 = model.getValueAt(i, 18).toString();
-                double dato1I = Double.parseDouble(dato1);
-                double dato2I = Double.parseDouble(dato2);
-                double dato3I = Double.parseDouble(dato3);
-                double promedio = dato1I + dato2I + dato3I;
-                tblCalculadora.setValueAt(promedio, i, 19);
+                if(esNumero(model.getValueAt(i, 6).toString()) && esNumero(model.getValueAt(i, 6).toString()) && esNumero(model.getValueAt(i, 6).toString()))  {  
+                    String dato1 = model.getValueAt(i, 6).toString();
+                    String dato2 = model.getValueAt(i, 12).toString();
+                    String dato3 = model.getValueAt(i, 18).toString();
+                    double dato1I = Double.parseDouble(dato1);
+                    double dato2I = Double.parseDouble(dato2);
+                    double dato3I = Double.parseDouble(dato3);
+                    double promedio = dato1I + dato2I + dato3I;
+                    tblCalculadora.setValueAt(promedio, i, 19);
+                }
+                else{
+                    JOptionPane.showMessageDialog(null, "No es un número válido. Por favor, ingresa un número válido.", "Error", JOptionPane.ERROR_MESSAGE);
+                }
             }
         }
     }
+    
+    public static boolean esNumero(String cadena) {
+        try {
+            Double.parseDouble(cadena);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
