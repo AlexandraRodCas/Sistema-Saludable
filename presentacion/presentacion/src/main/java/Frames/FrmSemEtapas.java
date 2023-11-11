@@ -1,8 +1,6 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package Frames;
+
+import java.awt.Color;
 import javax.swing.JOptionPane;
 
 /**
@@ -19,21 +17,19 @@ public class FrmSemEtapas extends javax.swing.JFrame {
     }
 
     public void calcularPeriodos() {
-        
+
         int eG = Integer.parseInt(txtEtapaG.getText());
         int eE = Integer.parseInt(txtEtapaE.getText());
-        int eP = Integer.parseInt(txtEtapaP.getText()); 
-        int eC = Integer.parseInt(txtEtapaC.getText()); 
-
+        int eP = Integer.parseInt(txtEtapaP.getText());
+        int eC = Integer.parseInt(txtEtapaC.getText());
 
         int pP = eG + eE;
         int pC = eP + eC;
 
-        txtPerP.setText(String.valueOf(pP));
-        txtPerC.setText(String.valueOf(pC));
+        txtFieldPeriodoPrep.setText(String.valueOf(pP));
+        txtFieldPeriodoCom.setText(String.valueOf(pC));
 
     }
-
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -55,12 +51,13 @@ public class FrmSemEtapas extends javax.swing.JFrame {
         txtEtapaC = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        txtPerP = new javax.swing.JTextField();
-        txtPerC = new javax.swing.JTextField();
-        btnContinuar = new javax.swing.JToggleButton();
+        txtFieldPeriodoPrep = new javax.swing.JTextField();
+        txtFieldPeriodoCom = new javax.swing.JTextField();
         btnCancelar = new javax.swing.JToggleButton();
+        btnContinuar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
 
         jPanel1.setBackground(new java.awt.Color(0, 109, 182));
 
@@ -76,10 +73,14 @@ public class FrmSemEtapas extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel4.setText("Competitivo");
 
+        txtEtapaG.setForeground(new java.awt.Color(204, 204, 204));
         txtEtapaG.setText("0");
-        txtEtapaG.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtEtapaGActionPerformed(evt);
+        txtEtapaG.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtEtapaGFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtEtapaGFocusLost(evt);
             }
         });
         txtEtapaG.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -92,6 +93,14 @@ public class FrmSemEtapas extends javax.swing.JFrame {
         });
 
         txtEtapaP.setText("0");
+        txtEtapaP.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtEtapaPFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtEtapaPFocusLost(evt);
+            }
+        });
         txtEtapaP.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtEtapaPActionPerformed(evt);
@@ -107,6 +116,14 @@ public class FrmSemEtapas extends javax.swing.JFrame {
         });
 
         txtEtapaE.setText("0");
+        txtEtapaE.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtEtapaEFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtEtapaEFocusLost(evt);
+            }
+        });
         txtEtapaE.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtEtapaEActionPerformed(evt);
@@ -122,6 +139,14 @@ public class FrmSemEtapas extends javax.swing.JFrame {
         });
 
         txtEtapaC.setText("0");
+        txtEtapaC.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtEtapaCFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtEtapaCFocusLost(evt);
+            }
+        });
         txtEtapaC.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtEtapaCActionPerformed(evt);
@@ -142,19 +167,33 @@ public class FrmSemEtapas extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel6.setText("Periodo preparatorio");
 
-        txtPerP.setEditable(false);
-        txtPerP.setText("0");
-        txtPerP.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtPerPActionPerformed(evt);
+        txtFieldPeriodoPrep.setText("0");
+        txtFieldPeriodoPrep.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtFieldPeriodoPrepFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtFieldPeriodoPrepFocusLost(evt);
+            }
+        });
+        txtFieldPeriodoPrep.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtFieldPeriodoPrepKeyTyped(evt);
             }
         });
 
-        txtPerC.setEditable(false);
-        txtPerC.setText("0");
-        txtPerC.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtPerCActionPerformed(evt);
+        txtFieldPeriodoCom.setText("0");
+        txtFieldPeriodoCom.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtFieldPeriodoComFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtFieldPeriodoComFocusLost(evt);
+            }
+        });
+        txtFieldPeriodoCom.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtFieldPeriodoComKeyTyped(evt);
             }
         });
 
@@ -185,8 +224,8 @@ public class FrmSemEtapas extends javax.swing.JFrame {
                                     .addComponent(jLabel6))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtPerP, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtPerC, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                    .addComponent(txtFieldPeriodoPrep, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtFieldPeriodoCom, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -204,14 +243,14 @@ public class FrmSemEtapas extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(txtEtapaE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtPerP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6))
+                    .addComponent(jLabel6)
+                    .addComponent(txtFieldPeriodoPrep, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(22, 22, 22)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(txtEtapaP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5)
-                    .addComponent(txtPerC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtFieldPeriodoCom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(22, 22, 22)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
@@ -219,19 +258,19 @@ public class FrmSemEtapas extends javax.swing.JFrame {
                 .addContainerGap(32, Short.MAX_VALUE))
         );
 
-        btnContinuar.setBackground(new java.awt.Color(0, 109, 182));
-        btnContinuar.setText("Continuar");
-        btnContinuar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnContinuarActionPerformed(evt);
-            }
-        });
-
         btnCancelar.setBackground(new java.awt.Color(0, 109, 182));
         btnCancelar.setText("Cancelar");
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCancelarActionPerformed(evt);
+            }
+        });
+
+        btnContinuar.setBackground(new java.awt.Color(0, 109, 182));
+        btnContinuar.setText("Continuar");
+        btnContinuar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnContinuarActionPerformed(evt);
             }
         });
 
@@ -246,29 +285,26 @@ public class FrmSemEtapas extends javax.swing.JFrame {
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(108, 108, 108)
-                        .addComponent(btnContinuar)
-                        .addGap(81, 81, 81)
+                        .addComponent(btnContinuar, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(73, 73, 73)
                         .addComponent(btnCancelar)))
                 .addContainerGap(20, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(45, 45, 45)
+                .addGap(44, 44, 44)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnContinuar)
-                    .addComponent(btnCancelar))
-                .addContainerGap(20, Short.MAX_VALUE))
+                    .addComponent(btnCancelar)
+                    .addComponent(btnContinuar))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void txtEtapaGActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEtapaGActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtEtapaGActionPerformed
 
     private void txtEtapaPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEtapaPActionPerformed
         // TODO add your handling code here:
@@ -281,14 +317,6 @@ public class FrmSemEtapas extends javax.swing.JFrame {
     private void txtEtapaCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEtapaCActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtEtapaCActionPerformed
-
-    private void txtPerPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPerPActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtPerPActionPerformed
-
-    private void txtPerCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPerCActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtPerCActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         // Cambiar mas tarde paa regresar al menu o algo asi.
@@ -367,19 +395,147 @@ public class FrmSemEtapas extends javax.swing.JFrame {
         // TODO add your handling code here:
 
     }//GEN-LAST:event_txtEtapaGKeyReleased
+    /*
+    * Método que funciona para quitar el "placeholder"
+     */
+    private void txtEtapaGFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtEtapaGFocusGained
+        // TODO add your handling code here:
+        if (txtEtapaG.getText().equals("0")) {
+            txtEtapaG.setText("");
+            txtEtapaG.setForeground(new Color(0, 0, 0));
+        }
+    }//GEN-LAST:event_txtEtapaGFocusGained
+
+    private void txtEtapaGFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtEtapaGFocusLost
+        // TODO add your handling code here:
+        if (txtEtapaG.getText().equals("")) {
+            txtEtapaG.setText("0");
+            txtEtapaG.setForeground(new Color(153, 153, 153));
+        }
+    }//GEN-LAST:event_txtEtapaGFocusLost
+
+    private void txtEtapaEFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtEtapaEFocusGained
+        // TODO add your handling code here:
+        if (txtEtapaE.getText().equals("0")) {
+            txtEtapaE.setText("");
+            txtEtapaE.setForeground(new Color(0, 0, 0));
+        }
+    }//GEN-LAST:event_txtEtapaEFocusGained
+
+    private void txtEtapaEFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtEtapaEFocusLost
+        // TODO add your handling code here:
+        if (txtEtapaE.getText().equals("")) {
+            txtEtapaE.setText("0");
+            txtEtapaE.setForeground(new Color(153, 153, 153));
+        }
+    }//GEN-LAST:event_txtEtapaEFocusLost
+
+    private void txtEtapaPFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtEtapaPFocusGained
+        // TODO add your handling code here:
+        if (txtEtapaP.getText().equals("0")) {
+            txtEtapaP.setText("");
+            txtEtapaP.setForeground(new Color(0, 0, 0));
+        }
+    }//GEN-LAST:event_txtEtapaPFocusGained
+
+    private void txtEtapaPFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtEtapaPFocusLost
+        // TODO add your handling code here:
+        if (txtEtapaP.getText().equals("")) {
+            txtEtapaP.setText("0");
+            txtEtapaP.setForeground(new Color(153, 153, 153));
+        }
+    }//GEN-LAST:event_txtEtapaPFocusLost
+
+    private void txtEtapaCFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtEtapaCFocusGained
+        // TODO add your handling code here:
+        if (txtEtapaC.getText().equals("0")) {
+            txtEtapaC.setText("");
+            txtEtapaC.setForeground(new Color(0, 0, 0));
+        }
+    }//GEN-LAST:event_txtEtapaCFocusGained
+
+    private void txtEtapaCFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtEtapaCFocusLost
+        // TODO add your handling code here:
+        if (txtEtapaC.getText().equals("")) {
+            txtEtapaC.setText("0");
+            txtEtapaC.setForeground(new Color(153, 153, 153));
+        }
+    }//GEN-LAST:event_txtEtapaCFocusLost
 
     private void btnContinuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContinuarActionPerformed
         // TODO add your handling code here:
-       
-        if(txtEtapaG.getText().isBlank()||txtEtapaE.getText().isBlank()||txtEtapaP.getText().isBlank()||txtEtapaC.getText().isBlank()){
-            JOptionPane.showMessageDialog(null,  
-                    "Es necesario llenar todos los campos requeridos", 
+        //|| txtEtapaE.getText().isBlank() || txtEtapaP.getText().isBlank() || txtEtapaC.getText().isBlank() || txtFieldPeriodoCom.getText().isBlank() || txtFieldPeriodoPrep.getText().isBlank()
+        if (txtEtapaG.getText().equals("0")) {
+            JOptionPane.showMessageDialog(null,
+                    "Es necesario llenar todos los campos requeridos",
                     "Error", JOptionPane.ERROR_MESSAGE);
-        }else{
-             this.calcularPeriodos();
+        } else {
+            System.out.println("Excelente");
+            this.calcularPeriodos();
+        }
+    }//GEN-LAST:event_btnContinuarActionPerformed
+
+    private void txtFieldPeriodoPrepFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtFieldPeriodoPrepFocusGained
+        // TODO add your handling code here:
+        if (txtFieldPeriodoPrep.getText().equals("0")) {
+            txtFieldPeriodoPrep.setText("");
+            txtFieldPeriodoPrep.setForeground(new Color(0, 0, 0));
+        }
+    }//GEN-LAST:event_txtFieldPeriodoPrepFocusGained
+
+    private void txtFieldPeriodoPrepFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtFieldPeriodoPrepFocusLost
+        // TODO add your handling code here:
+        if (txtFieldPeriodoPrep.getText().equals("")) {
+            txtFieldPeriodoPrep.setText("0");
+            txtFieldPeriodoPrep.setForeground(new Color(153, 153, 153));
+        }
+    }//GEN-LAST:event_txtFieldPeriodoPrepFocusLost
+
+    private void txtFieldPeriodoPrepKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFieldPeriodoPrepKeyTyped
+        // TODO add your handling code here:
+        int key = evt.getKeyChar();
+
+        boolean numeros = key >= 48 && key <= 57;
+
+        if (!numeros) {
+            evt.consume();
         }
 
-    }//GEN-LAST:event_btnContinuarActionPerformed
+        if (txtFieldPeriodoPrep.getText().trim().length() == 3) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtFieldPeriodoPrepKeyTyped
+
+    private void txtFieldPeriodoComFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtFieldPeriodoComFocusGained
+        // TODO add your handling code here:
+        if (txtFieldPeriodoCom.getText().equals("")) {
+            txtFieldPeriodoCom.setText("0");
+            txtFieldPeriodoCom.setForeground(new Color(153, 153, 153));
+        }
+    }//GEN-LAST:event_txtFieldPeriodoComFocusGained
+
+    private void txtFieldPeriodoComFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtFieldPeriodoComFocusLost
+        // TODO add your handling code here:
+        if (txtFieldPeriodoPrep.getText().equals("")) {
+            txtFieldPeriodoPrep.setText("0");
+            txtFieldPeriodoPrep.setForeground(new Color(153, 153, 153));
+        }
+    }//GEN-LAST:event_txtFieldPeriodoComFocusLost
+
+    private void txtFieldPeriodoComKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFieldPeriodoComKeyTyped
+        // TODO add your handling code here:
+        int key = evt.getKeyChar();
+
+        boolean numeros = key >= 48 && key <= 57;
+
+        if (!numeros) {
+            evt.consume();
+        }
+
+        if (txtFieldPeriodoCom.getText().trim().length() == 3) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtFieldPeriodoComKeyTyped
 
     /**
      * @param args the command line arguments
@@ -418,7 +574,7 @@ public class FrmSemEtapas extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JToggleButton btnCancelar;
-    private javax.swing.JToggleButton btnContinuar;
+    private javax.swing.JButton btnContinuar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -430,7 +586,7 @@ public class FrmSemEtapas extends javax.swing.JFrame {
     private javax.swing.JTextField txtEtapaE;
     private javax.swing.JTextField txtEtapaG;
     private javax.swing.JTextField txtEtapaP;
-    private javax.swing.JTextField txtPerC;
-    private javax.swing.JTextField txtPerP;
+    private javax.swing.JTextField txtFieldPeriodoCom;
+    private javax.swing.JTextField txtFieldPeriodoPrep;
     // End of variables declaration//GEN-END:variables
 }
