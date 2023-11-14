@@ -4,6 +4,10 @@
  */
 package Frames;
 
+import java.sql.Date;
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
+
 /**
  *
  * @author gabri
@@ -15,6 +19,23 @@ public class FrmDuracionMesociclos extends javax.swing.JFrame {
      */
     public FrmDuracionMesociclos() {
         initComponents();
+    }
+    
+    public void recopilarInfo(){
+        Date inicio=(Date) jDateChooser1.getDate();
+        Date fin=(Date)jDateChooser2.getDate();
+        
+        // Convert java.sql.Date to LocalDate
+        LocalDate inicioLocalDate = inicio.toLocalDate();
+
+        // Convert java.sql.Date to LocalDate
+        LocalDate finLocalDate = fin.toLocalDate();
+        
+        int semanasEntreFechas = (int) ChronoUnit.WEEKS.between(inicioLocalDate, finLocalDate);
+
+        //Aqui faltarian validaciones o algo para antes del cambio de pantalla
+        txtSemanas.setText(String.valueOf(semanasEntreFechas));
+        
     }
 
     /**
@@ -33,7 +54,7 @@ public class FrmDuracionMesociclos extends javax.swing.JFrame {
         jDateChooser1 = new com.toedter.calendar.JDateChooser();
         jDateChooser2 = new com.toedter.calendar.JDateChooser();
         jLabel3 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtSemanas = new javax.swing.JTextField();
         btnContinuar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
 
@@ -70,10 +91,10 @@ public class FrmDuracionMesociclos extends javax.swing.JFrame {
         jPanel2.add(jLabel3);
         jLabel3.setBounds(490, 40, 150, 30);
 
-        jTextField1.setEditable(false);
-        jTextField1.setText("0");
-        jPanel2.add(jTextField1);
-        jTextField1.setBounds(340, 190, 71, 22);
+        txtSemanas.setEditable(false);
+        txtSemanas.setText("0");
+        jPanel2.add(txtSemanas);
+        txtSemanas.setBounds(340, 190, 71, 22);
 
         btnContinuar.setBackground(new java.awt.Color(56, 133, 185));
         btnContinuar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -192,6 +213,6 @@ public class FrmDuracionMesociclos extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField txtSemanas;
     // End of variables declaration//GEN-END:variables
 }

@@ -1,11 +1,16 @@
 package Frames;
 
+import entidades.*;
+import implementaciones.EtapasDAO;
 import java.awt.Color;
+import java.sql.Date;
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import javax.swing.JOptionPane;
 
 /**
  *
- * @author Alexandra
+ * @author elisa
  */
 public class FrmSemEtapas extends javax.swing.JFrame {
 
@@ -16,7 +21,7 @@ public class FrmSemEtapas extends javax.swing.JFrame {
         initComponents();
     }
 
-    public void calcularPeriodos() {
+    public void calcularPeriodos(Date inicio, Date fin, int semanas) {
 
         int eG = Integer.parseInt(txtEtapaG.getText());
         int eE = Integer.parseInt(txtEtapaE.getText());
@@ -26,8 +31,41 @@ public class FrmSemEtapas extends javax.swing.JFrame {
         int pP = eG + eE;
         int pC = eP + eC;
 
-        txtFieldPeriodoPrep.setText(String.valueOf(pP));
-        txtFieldPeriodoCom.setText(String.valueOf(pC));
+        // Convert java.sql.Date to LocalDate
+        LocalDate inicioLocalDate = inicio.toLocalDate();
+
+        // Calculate fin2 as inicio + 2 weeks
+        LocalDate fin1LocalDate = inicioLocalDate.plus(eG, ChronoUnit.WEEKS);
+
+        // Convert LocalDate back to java.sql.Date
+        Date fin1 = Date.valueOf(fin1LocalDate);
+        Etapa etapa = new Etapa(inicio, fin1, eG, Tipo.General.toString());
+
+        LocalDate fin2LocalDate = fin1LocalDate.plus(eE, ChronoUnit.WEEKS);
+        Date fin2 = Date.valueOf(fin2LocalDate);
+        Etapa etapa2 = new Etapa(fin1, fin2, eE, Tipo.Especial.toString());
+        
+        LocalDate fin3LocalDate = fin2LocalDate.plus(eP, ChronoUnit.WEEKS);
+        Date fin3 = Date.valueOf(fin3LocalDate);
+        Etapa etapa3 = new Etapa(fin2, fin3, eP, Tipo.Precompetitiva.toString());
+    
+        Etapa etapa4 = new Etapa(fin3, fin, eC, Tipo.Competitiva.toString());
+        
+        EtapasDAO daoE=new EtapasDAO();
+        boolean et=daoE.agregarEtapa(etapa);
+        boolean et2=daoE.agregarEtapa(etapa2);
+        boolean et3=daoE.agregarEtapa(etapa3);
+        boolean et4=daoE.agregarEtapa(etapa4);
+
+        if (et&&et2&&et3&&et4) {
+            JOptionPane.showMessageDialog(this, "Se guardo la informacion de las etapas",
+                    "Información", JOptionPane.INFORMATION_MESSAGE);
+            txtFieldPeriodoPrep.setText(String.valueOf(pP));
+            txtFieldPeriodoCom.setText(String.valueOf(pC));
+        } else {
+            JOptionPane.showMessageDialog(this, "No se pudieron guardar las etapas",
+                    "Error", JOptionPane.ERROR_MESSAGE);
+        }
 
     }
 
@@ -471,7 +509,7 @@ public class FrmSemEtapas extends javax.swing.JFrame {
                     "Error", JOptionPane.ERROR_MESSAGE);
         } else {
             System.out.println("Excelente");
-            this.calcularPeriodos();
+            //this.calcularPeriodos();
         }
     }//GEN-LAST:event_btnContinuarActionPerformed
 
