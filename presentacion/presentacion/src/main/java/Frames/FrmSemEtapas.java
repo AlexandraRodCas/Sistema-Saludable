@@ -14,14 +14,23 @@ import javax.swing.JOptionPane;
  */
 public class FrmSemEtapas extends javax.swing.JFrame {
 
+    private Date inicio, fin;
+    private int semanas;
     /**
      * Creates new form FrmSemEtapas
      */
     public FrmSemEtapas() {
         initComponents();
     }
+    
+    public FrmSemEtapas(Date inicio, Date fin, int semanas) {
+        initComponents();
+        this.inicio=inicio;
+        this.fin=fin;
+        this.semanas=semanas;
+    }
 
-    public void calcularPeriodos(Date inicio, Date fin, int semanas) {
+    public void calcularPeriodos() {
 
         int eG = Integer.parseInt(txtEtapaG.getText());
         int eE = Integer.parseInt(txtEtapaE.getText());
@@ -509,7 +518,7 @@ public class FrmSemEtapas extends javax.swing.JFrame {
                     "Error", JOptionPane.ERROR_MESSAGE);
         } else {
             System.out.println("Excelente");
-            //this.calcularPeriodos();
+            this.calcularPeriodos();
         }
     }//GEN-LAST:event_btnContinuarActionPerformed
 

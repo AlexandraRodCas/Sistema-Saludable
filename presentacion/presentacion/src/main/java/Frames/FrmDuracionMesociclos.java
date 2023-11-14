@@ -7,12 +7,18 @@ package Frames;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author gabri
  */
 public class FrmDuracionMesociclos extends javax.swing.JFrame {
+    
+    private Date inicio, fin;
+    private int semanasEntreFechas;
 
     /**
      * Creates new form FrmDuracionMesociclos
@@ -21,9 +27,11 @@ public class FrmDuracionMesociclos extends javax.swing.JFrame {
         initComponents();
     }
     
+    //Tecnicamente funciona pero no se como hacer que se espere 
+    //unos segundos antes de mostrar la otra pantalla.
     public void recopilarInfo(){
-        Date inicio=(Date) jDateChooser1.getDate();
-        Date fin=(Date)jDateChooser2.getDate();
+        inicio= new Date(jDateChooser1.getDate().getTime());
+        fin=new Date(jDateChooser2.getDate().getTime());
         
         // Convert java.sql.Date to LocalDate
         LocalDate inicioLocalDate = inicio.toLocalDate();
@@ -31,10 +39,18 @@ public class FrmDuracionMesociclos extends javax.swing.JFrame {
         // Convert java.sql.Date to LocalDate
         LocalDate finLocalDate = fin.toLocalDate();
         
-        int semanasEntreFechas = (int) ChronoUnit.WEEKS.between(inicioLocalDate, finLocalDate);
+        if (finLocalDate.isBefore(inicioLocalDate)||(finLocalDate.isEqual(inicioLocalDate))) {
+        // Manejar el caso en el que la fecha de fin es anterior a la fecha de inicio
+        JOptionPane.showMessageDialog(this, "La fecha de fin debe ser posterior a la fecha de inicio.", "Error", JOptionPane.ERROR_MESSAGE);
+        return; // No continuar con el proceso
+    }
+        
+        semanasEntreFechas = (int) ChronoUnit.WEEKS.between(inicioLocalDate, finLocalDate);
 
         //Aqui faltarian validaciones o algo para antes del cambio de pantalla
         txtSemanas.setText(String.valueOf(semanasEntreFechas));
+        
+        
         
     }
 
@@ -165,7 +181,16 @@ public class FrmDuracionMesociclos extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnContinuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContinuarActionPerformed
-
+        this.recopilarInfo();/*
+        FrmSemEtapas fE= new FrmSemEtapas(inicio, fin, semanasEntreFechas);
+        try {
+        // Pausar la ejecución del hilo actual (en este caso, el hilo de la interfaz gráfica) durante 10 segundos
+        Thread.sleep(10000);
+    } catch (InterruptedException ex) {
+        Logger.getLogger(FrmDuracionMesociclos.class.getName()).log(Level.SEVERE, null, ex);
+    }
+        this.dispose();
+        fE.setVisible(true);*/
     }//GEN-LAST:event_btnContinuarActionPerformed
 
     /**
