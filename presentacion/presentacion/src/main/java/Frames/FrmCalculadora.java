@@ -21,6 +21,9 @@ public class FrmCalculadora extends javax.swing.JFrame {
     public FrmCalculadora(List<String> listaJCB) {
         initComponents();
         DefaultTableModel model = (DefaultTableModel) tblCalculadora.getModel();
+        int semEtGen = 20;
+        int semEtEsp = 10;
+        int semEtCom = 5;
 
         //Comprobando que llegan los medios
 //        for (String string : listaJCB) {
@@ -36,8 +39,18 @@ public class FrmCalculadora extends javax.swing.JFrame {
 //            model.addRow(new Object[]{valor.indexOf(i)});
 //
 //        }
+        
+        //Se agregan filas por cada medio seleccionado
         for (int i = 0; i < listaJCB.size(); i++) {
             model.addRow(new Object[] {listaJCB.get(i).toString()});
+        }
+        
+        //Se establece la semana
+        int rowCount = tblCalculadora.getRowCount();
+        for (int i = 0; i < rowCount; i++) {
+            tblCalculadora.setValueAt(semEtGen, i, 5);
+            tblCalculadora.setValueAt(semEtEsp, i, 11);
+            tblCalculadora.setValueAt(semEtCom, i, 17);
         }
         
         tblCalculadora.setModel(model);
@@ -243,16 +256,15 @@ public class FrmCalculadora extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
-        //        DlgProveedor dlgProveedor = new DlgProveedor(this, true);
-        //        dlgProveedor.setVisible(true);
-        //        while (dlgProveedor.isVisible()) {
-        //            try {
-        //                Thread.sleep(100);
-        //            } catch (InterruptedException io) {
-        //                io.printStackTrace();
-        //            }
-        //        }
-        //        listarProveedores();
+        int rowCount = tblCalculadora.getRowCount();
+        DefaultTableModel model = (DefaultTableModel) tblCalculadora.getModel();
+        for (int i = 0; i < rowCount; i++) {
+            Object colmFinal = model.getValueAt(i, 19);
+            if(colmFinal == null){
+                JOptionPane.showMessageDialog(null, "Datos vacíos. No es posible continuar", "Error", JOptionPane.ERROR_MESSAGE);
+                break;
+            }
+        }
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void tblCalculadoraKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tblCalculadoraKeyReleased
@@ -267,7 +279,7 @@ public class FrmCalculadora extends javax.swing.JFrame {
     private void tblCalculadoraKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tblCalculadoraKeyTyped
         // TODO add your handling code here:
         char c = evt.getKeyChar();
-                if (c == '.' || c == ',') {
+                if (c == '.' || c == ',' || c == '-') {
                     evt.consume(); 
                 }
                 
@@ -283,13 +295,13 @@ public class FrmCalculadora extends javax.swing.JFrame {
         if (col == 15) {
             updateAverage(col);
         }
-        if (col == 4) {
+        if (col == 6) {
             updateVolumen(col);
         }
-        if (col == 10) {
+        if (col == 12) {
             updateVolumen(col);
         }
-        if (col == 16) {
+        if (col == 18) {
             updateVolumen(col);
         } else {
             updateVolumenTotal();
@@ -302,15 +314,23 @@ public class FrmCalculadora extends javax.swing.JFrame {
         int colCount = tblCalculadora.getColumnCount();
         DefaultTableModel model = (DefaultTableModel) tblCalculadora.getModel();
         for (int i = 0; i < rowCount; i++) {
+            
+            //Condición para que se haga el calculo si las columnas no están vacias
             if (model.getValueAt(i, colNum2 - 1) != null && model.getValueAt(i, colNum2-2) != null) {
                 
                 //Condición para que el min y max sean numeros enteros
                 if(esNumero(model.getValueAt(i, colNum2 - 1).toString()) && esNumero(model.getValueAt(i, colNum2-2).toString()))  {
+                    
+                    //Se agarra el valor de las columnas
                     String dato1 = model.getValueAt(i, colNum2 - 1).toString();
                     String dato2 = model.getValueAt(i, colNum2-2).toString();
                     double dato1I = Double.parseDouble(dato1);
                     double dato2I = Double.parseDouble(dato2);
+                    
+                    //Se calcula el promedio
                     double promedio = (dato1I + dato2I) / 2;
+                    
+                    //Se muestra en la tabla
                     tblCalculadora.setValueAt(promedio, i, colNum2);
                 }
                 else{
@@ -326,19 +346,35 @@ public class FrmCalculadora extends javax.swing.JFrame {
         int rowCount = tblCalculadora.getRowCount();
         int colCount = tblCalculadora.getColumnCount();
         DefaultTableModel model = (DefaultTableModel) tblCalculadora.getModel();
+        
+        //Ciclo para recorrer todas las filas
         for (int i = 0; i < rowCount; i++) {
-            if (model.getValueAt(i, colNum2 - 1) != null && model.getValueAt(i, colNum2) != null) {
+            
+            //Condición para que se haga el calculo si las columnas no están vacias
+            if (model.getValueAt(i, colNum2 - 2) != null && model.getValueAt(i, colNum2 - 3) != null) {
                 
                 //Condición para que el ins sea numero entero
-                if(esNumero(model.getValueAt(i, colNum2).toString()))  {
-                    String dato1 = model.getValueAt(i, colNum2 - 1).toString();
-                    String dato2 = model.getValueAt(i, colNum2).toString();
-                    String dato3 = model.getValueAt(i, colNum2 + 1).toString();
+                if(esNumero(model.getValueAt(i, colNum2 - 2).toString()))  {
+                    
+                    //Se agarra el valor de las columnas
+                    String dato1 = model.getValueAt(i, colNum2 - 3).toString();
+                    String dato2 = model.getValueAt(i, colNum2 - 2).toString();
+                    String dato3 = model.getValueAt(i, colNum2 - 1 ).toString();
+                    
+                    //Se parsea el valor a double
                     double dato1I = Double.parseDouble(dato1);
                     double dato2I = Double.parseDouble(dato2);
                     double dato3I = Double.parseDouble(dato3);
-                    double promedio = dato1I * dato2I * dato3I;
-                    tblCalculadora.setValueAt(promedio, i, colNum2 + 2);
+                    
+                    System.out.println("Dato1 : " + dato1I);
+                    System.out.println("Dato2 : " + dato2I);
+                    System.out.println("Dato3 : " + dato3I);
+                    
+                    //Se calcula el volumen de la etapa
+                    double volEtapa = dato1I * dato2I * dato3I;
+                    
+                    //Se muestra en la tabla
+                    tblCalculadora.setValueAt(volEtapa, i, colNum2);
                 }
                 else{
                     JOptionPane.showMessageDialog(null, "No es un número válido. Por favor, ingresa un número válido.", "Error", JOptionPane.ERROR_MESSAGE);
@@ -356,15 +392,22 @@ public class FrmCalculadora extends javax.swing.JFrame {
             
             //Condición para que si el volumen de cada etapa no está vacio haga el calculo total
             if (model.getValueAt(i, 6) != null && model.getValueAt(i, 12) != null && model.getValueAt(i, 18) != null) {
-                  
-                    String dato1 = model.getValueAt(i, 6).toString();
-                    String dato2 = model.getValueAt(i, 12).toString();
-                    String dato3 = model.getValueAt(i, 18).toString();
-                    double dato1I = Double.parseDouble(dato1);
-                    double dato2I = Double.parseDouble(dato2);
-                    double dato3I = Double.parseDouble(dato3);
-                    double promedio = dato1I + dato2I + dato3I;
-                    tblCalculadora.setValueAt(promedio, i, 19);
+
+                //Se agarra el valor de las columnas
+                String dato1 = model.getValueAt(i, 6).toString();
+                String dato2 = model.getValueAt(i, 12).toString();
+                String dato3 = model.getValueAt(i, 18).toString();
+                
+                //Se parsea el valor a double
+                double dato1I = Double.parseDouble(dato1);
+                double dato2I = Double.parseDouble(dato2);
+                double dato3I = Double.parseDouble(dato3);
+                
+                //Se realiza calculo del columen de todo el macrociclo
+                double volTotal = dato1I + dato2I + dato3I;
+                
+                //Se muestra en la tabla
+                tblCalculadora.setValueAt(volTotal, i, 19);
                 
             }
         }
