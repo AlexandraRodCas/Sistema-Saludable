@@ -10,7 +10,7 @@ import javax.swing.JOptionPane;
  * @author gabri
  */
 public class FrmDuracionMesociclos extends javax.swing.JFrame {
-    
+
     private Date inicio, fin;
     private int semanasEntreFechas;
 
@@ -32,18 +32,22 @@ public class FrmDuracionMesociclos extends javax.swing.JFrame {
 
         // Convert java.sql.Date to LocalDate
         LocalDate finLocalDate = fin.toLocalDate();
-        
+
         if (finLocalDate.isBefore(inicioLocalDate) || (finLocalDate.isEqual(inicioLocalDate))) {
             // Manejar el caso en el que la fecha de fin es anterior a la fecha de inicio
             JOptionPane.showMessageDialog(this, "La fecha de fin debe ser posterior a la fecha de inicio.", "Error", JOptionPane.ERROR_MESSAGE);
             return; // No continuar con el proceso
         }
-        
+
         semanasEntreFechas = (int) ChronoUnit.WEEKS.between(inicioLocalDate, finLocalDate);
 
         //Aqui faltarian validaciones o algo para antes del cambio de pantalla
         txtSemanas.setText(String.valueOf(semanasEntreFechas));
 
+        /*
+        - Modificar lo de calcular semanas - 
+        Gabriel 
+        */
         //Si ya están calculadas las semanas: 
         this.dispose();
         FrmElecMedios medios = new FrmElecMedios();
