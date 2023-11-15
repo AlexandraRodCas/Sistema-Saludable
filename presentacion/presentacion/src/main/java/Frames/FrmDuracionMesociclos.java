@@ -1,14 +1,8 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package Frames;
 
 import java.sql.Date;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -26,32 +20,34 @@ public class FrmDuracionMesociclos extends javax.swing.JFrame {
     public FrmDuracionMesociclos() {
         initComponents();
     }
-    
+
     //Tecnicamente funciona pero no se como hacer que se espere 
     //unos segundos antes de mostrar la otra pantalla.
-    public void recopilarInfo(){
-        inicio= new Date(jDateChooser1.getDate().getTime());
-        fin=new Date(jDateChooser2.getDate().getTime());
-        
+    public void recopilarInfo() {
+        inicio = new Date(jDateChooser1.getDate().getTime());
+        fin = new Date(jDateChooser2.getDate().getTime());
+
         // Convert java.sql.Date to LocalDate
         LocalDate inicioLocalDate = inicio.toLocalDate();
 
         // Convert java.sql.Date to LocalDate
         LocalDate finLocalDate = fin.toLocalDate();
         
-        if (finLocalDate.isBefore(inicioLocalDate)||(finLocalDate.isEqual(inicioLocalDate))) {
-        // Manejar el caso en el que la fecha de fin es anterior a la fecha de inicio
-        JOptionPane.showMessageDialog(this, "La fecha de fin debe ser posterior a la fecha de inicio.", "Error", JOptionPane.ERROR_MESSAGE);
-        return; // No continuar con el proceso
-    }
+        if (finLocalDate.isBefore(inicioLocalDate) || (finLocalDate.isEqual(inicioLocalDate))) {
+            // Manejar el caso en el que la fecha de fin es anterior a la fecha de inicio
+            JOptionPane.showMessageDialog(this, "La fecha de fin debe ser posterior a la fecha de inicio.", "Error", JOptionPane.ERROR_MESSAGE);
+            return; // No continuar con el proceso
+        }
         
         semanasEntreFechas = (int) ChronoUnit.WEEKS.between(inicioLocalDate, finLocalDate);
 
         //Aqui faltarian validaciones o algo para antes del cambio de pantalla
         txtSemanas.setText(String.valueOf(semanasEntreFechas));
-        
-        
-        
+
+        //Si ya están calculadas las semanas: 
+        this.dispose();
+        FrmElecMedios medios = new FrmElecMedios();
+        medios.setVisible(true);
     }
 
     /**

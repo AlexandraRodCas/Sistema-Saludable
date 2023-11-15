@@ -1,6 +1,5 @@
 package Frames;
 
-import javax.swing.WindowConstants;
 
 /**
  *

@@ -42,12 +42,6 @@ public class Menu extends javax.swing.JFrame {
         menuInicioSalirAplicacion4 = new javax.swing.JMenuItem();
         menuVentas1 = new javax.swing.JMenu();
         menuVentasVenta1 = new javax.swing.JMenuItem();
-        menuConsultas1 = new javax.swing.JMenu();
-        menuConsultasVentas1 = new javax.swing.JMenuItem();
-        menuConsultasProductos1 = new javax.swing.JMenuItem();
-        menuConsultasProveedores1 = new javax.swing.JMenuItem();
-        menuConsultasCategorias1 = new javax.swing.JMenuItem();
-        jMenu1 = new javax.swing.JMenu();
 
         jFrame1.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         jFrame1.setTitle("Menu Principal");
@@ -135,6 +129,7 @@ public class Menu extends javax.swing.JFrame {
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
 
         jPanel2.setBackground(new java.awt.Color(207, 216, 227));
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153), 2));
@@ -154,41 +149,17 @@ public class Menu extends javax.swing.JFrame {
 
         menuPrincipal.add(menuInicio4);
 
-        menuVentas1.setText("Macros");
+        menuVentas1.setText("Planear");
 
-        menuVentasVenta1.setText("Venta");
+        menuVentasVenta1.setText("Planear");
+        menuVentasVenta1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuVentasVenta1ActionPerformed(evt);
+            }
+        });
         menuVentas1.add(menuVentasVenta1);
 
         menuPrincipal.add(menuVentas1);
-
-        menuConsultas1.setText("Planes");
-
-        menuConsultasVentas1.setText("Ventas");
-        menuConsultas1.add(menuConsultasVentas1);
-
-        menuConsultasProductos1.setText("Productos");
-        menuConsultasProductos1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuConsultasProductos1ActionPerformed(evt);
-            }
-        });
-        menuConsultas1.add(menuConsultasProductos1);
-
-        menuConsultasProveedores1.setText("Proveedores");
-        menuConsultasProveedores1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuConsultasProveedores1ActionPerformed(evt);
-            }
-        });
-        menuConsultas1.add(menuConsultasProveedores1);
-
-        menuConsultasCategorias1.setText("Categorías");
-        menuConsultas1.add(menuConsultasCategorias1);
-
-        menuPrincipal.add(menuConsultas1);
-
-        jMenu1.setText("Calculadora Volumen");
-        menuPrincipal.add(jMenu1);
 
         setJMenuBar(menuPrincipal);
 
@@ -206,6 +177,7 @@ public class Menu extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void menuInicioSalirAplicacion3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuInicioSalirAplicacion3ActionPerformed
@@ -217,17 +189,17 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_menuInicioSalirAplicacion3ActionPerformed
 
     private void menuVentasVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuVentasVentaActionPerformed
-        
+
         setVisible(false); // Oculta el FrmPrincipal
     }//GEN-LAST:event_menuVentasVentaActionPerformed
 
     private void menuConsultasVentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuConsultasVentasActionPerformed
-        
+
         setVisible(false); // Oculta el FrmPrincipal
     }//GEN-LAST:event_menuConsultasVentasActionPerformed
 
     private void menuConsultasProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuConsultasProductosActionPerformed
-     
+
         setVisible(false); // Oculta el FrmPrincipal
 
     }//GEN-LAST:event_menuConsultasProductosActionPerformed
@@ -237,7 +209,7 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_menuConsultasProveedoresActionPerformed
 
     private void menuConsultasCategoriasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuConsultasCategoriasActionPerformed
-        
+
         setVisible(false); // Oculta el FrmPrincipal
     }//GEN-LAST:event_menuConsultasCategoriasActionPerformed
 
@@ -245,13 +217,13 @@ public class Menu extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_menuInicioSalirAplicacion4ActionPerformed
 
-    private void menuConsultasProductos1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuConsultasProductos1ActionPerformed
+    private void menuVentasVenta1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuVentasVenta1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_menuConsultasProductos1ActionPerformed
-
-    private void menuConsultasProveedores1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuConsultasProveedores1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_menuConsultasProveedores1ActionPerformed
+        //HU3 
+        this.dispose();
+        FrmMesociclo mesociclo = new FrmMesociclo();
+        mesociclo.setVisible(true);
+    }//GEN-LAST:event_menuVentasVenta1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -290,20 +262,14 @@ public class Menu extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JFrame jFrame1;
-    private javax.swing.JMenu jMenu1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JMenuBar menu3;
     private javax.swing.JMenu menuConsultas;
-    private javax.swing.JMenu menuConsultas1;
     private javax.swing.JMenuItem menuConsultasCategorias;
-    private javax.swing.JMenuItem menuConsultasCategorias1;
     private javax.swing.JMenuItem menuConsultasProductos;
-    private javax.swing.JMenuItem menuConsultasProductos1;
     private javax.swing.JMenuItem menuConsultasProveedores;
-    private javax.swing.JMenuItem menuConsultasProveedores1;
     private javax.swing.JMenuItem menuConsultasVentas;
-    private javax.swing.JMenuItem menuConsultasVentas1;
     private javax.swing.JMenu menuInicio3;
     private javax.swing.JMenu menuInicio4;
     private javax.swing.JMenuItem menuInicioSalirAplicacion3;
