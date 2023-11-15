@@ -17,6 +17,10 @@ public class FrmElecMedios extends javax.swing.JFrame {
     public FrmElecMedios() {
         initComponents();
     }
+    
+    public FrmElecMedios(int id_mesociclo) {
+        initComponents();
+    }
 
     public FrmElecMedios(String[] arreglo) {
         initComponents();

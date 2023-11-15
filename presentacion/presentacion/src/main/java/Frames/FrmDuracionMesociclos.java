@@ -16,12 +16,18 @@ public class FrmDuracionMesociclos extends javax.swing.JFrame {
 
     private Date inicio, fin;
     private int semanasEntreFechas;
+    private int id_mesociclo;
 
     /**
      * Creates new form FrmDuracionMesociclos
      */
     public FrmDuracionMesociclos() {
         initComponents();
+    }
+    
+    public FrmDuracionMesociclos(int id_mesociclo) {
+        initComponents();
+        this.id_mesociclo=id_mesociclo;
     }
 
     //Tecnicamente funciona pero no se como hacer que se espere 
@@ -56,8 +62,8 @@ public class FrmDuracionMesociclos extends javax.swing.JFrame {
             int confirmar = JOptionPane.showConfirmDialog(null, "Total de semanas: " + semanasEntreFechas, "Total de semanas", JOptionPane.YES_NO_OPTION);
             if (confirmar == JOptionPane.YES_OPTION) {
                 this.dispose();
-                FrmElecMedios medios = new FrmElecMedios();
-                medios.setVisible(true);
+                FrmSemEtapas fE= new FrmSemEtapas(inicio, fin, semanasEntreFechas, id_mesociclo);
+                fE.setVisible(true);
             }else{
             }
 //            Timer timer = new Timer(3500, (ActionEvent e) -> {

@@ -1,7 +1,8 @@
 package Frames;
 
 import entidades.*;
-import implementaciones.EtapasDAO;
+import implementaciones.*;
+import interfaces.*;
 import java.awt.Color;
 import java.sql.Date;
 import java.time.LocalDate;
@@ -15,7 +16,9 @@ import javax.swing.JOptionPane;
 public class FrmSemEtapas extends javax.swing.JFrame {
 
     private Date inicio, fin;
-    private int semanas;
+    private int semanas, id_mesociclo;
+    IConexion conexion = new Conexion();
+    IEtapasDAO etapasDAO = new EtapasDAO(conexion);
     /**
      * Creates new form FrmSemEtapas
      */
@@ -23,11 +26,12 @@ public class FrmSemEtapas extends javax.swing.JFrame {
         initComponents();
     }
     
-    public FrmSemEtapas(Date inicio, Date fin, int semanas) {
+    public FrmSemEtapas(Date inicio, Date fin, int semanas, int id_mesociclo) {
         initComponents();
         this.inicio=inicio;
         this.fin=fin;
         this.semanas=semanas;
+        this.id_mesociclo=id_mesociclo;
     }
 
     public void calcularPeriodos() {
@@ -48,23 +52,18 @@ public class FrmSemEtapas extends javax.swing.JFrame {
 
         // Convert LocalDate back to java.sql.Date
         Date fin1 = Date.valueOf(fin1LocalDate);
-        Etapa etapa = new Etapa(inicio, fin1, eG, Tipo.General.toString());
 
         LocalDate fin2LocalDate = fin1LocalDate.plus(eE, ChronoUnit.WEEKS);
         Date fin2 = Date.valueOf(fin2LocalDate);
-        Etapa etapa2 = new Etapa(fin1, fin2, eE, Tipo.Especial.toString());
         
         LocalDate fin3LocalDate = fin2LocalDate.plus(eP, ChronoUnit.WEEKS);
         Date fin3 = Date.valueOf(fin3LocalDate);
-        Etapa etapa3 = new Etapa(fin2, fin3, eP, Tipo.Precompetitiva.toString());
-    
-        Etapa etapa4 = new Etapa(fin3, fin, eC, Tipo.Competitiva.toString());
         
-        EtapasDAO daoE=new EtapasDAO();
-        boolean et=daoE.agregarEtapa(etapa);
-        boolean et2=daoE.agregarEtapa(etapa2);
-        boolean et3=daoE.agregarEtapa(etapa3);
-        boolean et4=daoE.agregarEtapa(etapa4);
+        //Aqui se guardan las etapas por ahora
+        boolean et=etapasDAO.agregarEtapa(inicio, fin1, eG, Tipo.General.toString(), id_mesociclo);
+        boolean et2=etapasDAO.agregarEtapa(fin1, fin2, eE, Tipo.Especial.toString(), id_mesociclo);
+        boolean et3=etapasDAO.agregarEtapa(fin2, fin3, eP, Tipo.Precompetitiva.toString(), id_mesociclo);
+        boolean et4=etapasDAO.agregarEtapa(fin3, fin, eC, Tipo.Competitiva.toString(), id_mesociclo);
 
         if (et&&et2&&et3&&et4) {
             JOptionPane.showMessageDialog(this, "Se guardo la informacion de las etapas",
@@ -75,6 +74,16 @@ public class FrmSemEtapas extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "No se pudieron guardar las etapas",
                     "Error", JOptionPane.ERROR_MESSAGE);
         }
+        
+        int confirmar = JOptionPane.showConfirmDialog(null, "Periodo preparatorio: " + pP+". Periodo competitivo: "+pC, "Total de semanas", JOptionPane.YES_NO_OPTION);
+            if (confirmar == JOptionPane.YES_OPTION) {
+                this.dispose();
+                FrmElecMedios medios = new FrmElecMedios();
+                medios.setVisible(true);
+            }else{
+            }
+        
+        
 
     }
 

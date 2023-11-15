@@ -5,6 +5,7 @@
 package interfaces;
 
 import entidades.Etapa;
+import java.sql.Date;
 import java.util.List;
 
 /**
@@ -12,7 +13,7 @@ import java.util.List;
  * @author elisa
  */
 public interface IEtapasDAO {
-    public boolean agregarEtapa(Etapa etapa);
+    public boolean agregarEtapa(Date inicio, Date fin, int semanas, String tipo, int id_mesociclo);
     
     /*public boolean actualizarEtapa(Etapa etapa);
     

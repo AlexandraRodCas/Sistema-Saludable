@@ -6,12 +6,16 @@ package Frames;
  * @author gabri
  */
 public class FrmMesociclo extends javax.swing.JFrame {
-
+private int id;
     /**
      * Creates new form FrmMesociclo
      */
     public FrmMesociclo() {
         initComponents();
+    }
+    
+    public void recopilaInfo(){
+        id=0;
     }
 
     /**
@@ -285,8 +289,9 @@ public class FrmMesociclo extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnContinuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContinuarActionPerformed
+        this.recopilaInfo();
         this.dispose();
-        FrmDuracionMesociclos frmDM = new FrmDuracionMesociclos();
+        FrmDuracionMesociclos frmDM = new FrmDuracionMesociclos(id);
         frmDM.setVisible(true);
     }//GEN-LAST:event_btnContinuarActionPerformed
 

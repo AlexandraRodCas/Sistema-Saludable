@@ -36,13 +36,17 @@ public class Etapa implements Serializable {
     @Column(name="tipo",nullable = false,length = 255)
     private String tipo;
     
+    @Column(name="id_plan",nullable = false,length = 255)
+    private int id_mesociclo;
+    
     //constructor
 
-    public Etapa(Date inicio, Date fin, int semanas, String tipo) {
+    public Etapa(Date inicio, Date fin, int semanas, String tipo, int id_mesociclo) {
         this.inicio = inicio;
         this.fin = fin;
         this.semanas = semanas;
         this.tipo = tipo;
+        this.id_mesociclo=id_mesociclo;
     }
     
     
@@ -88,6 +92,15 @@ public class Etapa implements Serializable {
     public void setTipo(String tipo) {
         this.tipo = tipo;
     }
+
+    public int getId_mesociclo() {
+        return id_mesociclo;
+    }
+
+    public void setId_mesociclo(int id_mesociclo) {
+        this.id_mesociclo = id_mesociclo;
+    }
+    
     
 
     @Override
