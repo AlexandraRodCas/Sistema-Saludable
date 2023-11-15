@@ -253,6 +253,8 @@ public class FrmCalculadora extends javax.swing.JFrame {
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         this.dispose();
+        FrmElecMedios frmEleccionMedios = new FrmElecMedios();
+        frmEleccionMedios.setVisible(true);
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
@@ -365,10 +367,6 @@ public class FrmCalculadora extends javax.swing.JFrame {
                     double dato1I = Double.parseDouble(dato1);
                     double dato2I = Double.parseDouble(dato2);
                     double dato3I = Double.parseDouble(dato3);
-                    
-                    System.out.println("Dato1 : " + dato1I);
-                    System.out.println("Dato2 : " + dato2I);
-                    System.out.println("Dato3 : " + dato3I);
                     
                     //Se calcula el volumen de la etapa
                     double volEtapa = dato1I * dato2I * dato3I;

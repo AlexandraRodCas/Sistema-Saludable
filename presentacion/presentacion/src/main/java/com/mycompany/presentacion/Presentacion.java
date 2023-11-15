@@ -1,6 +1,6 @@
 package com.mycompany.presentacion;
 
-import Frames.FrmElecMedios;
+import Frames.Menu;
 
 /**
  *
@@ -9,7 +9,7 @@ import Frames.FrmElecMedios;
 public class Presentacion {
 
     public static void main(String[] args) {
-        FrmElecMedios frmEleccionMedios = new FrmElecMedios();
-        frmEleccionMedios.setVisible(true);
+        Menu menu = new Menu();
+        menu.setVisible(true);
     }
 }
