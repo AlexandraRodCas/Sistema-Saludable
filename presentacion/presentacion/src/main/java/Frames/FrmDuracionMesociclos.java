@@ -1,9 +1,12 @@
 package Frames;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import javax.swing.JOptionPane;
+import javax.swing.Timer;
 
 /**
  *
@@ -25,7 +28,7 @@ public class FrmDuracionMesociclos extends javax.swing.JFrame {
     //unos segundos antes de mostrar la otra pantalla.
     public void recopilarInfo() {
         inicio = new Date(jDateChooser1.getDate().getTime());
-        fin = new Date(jDateChooser2.getDate().getTime());
+        fin = new Date(dateChooserFinPlan.getDate().getTime());
 
         // Convert java.sql.Date to LocalDate
         LocalDate inicioLocalDate = inicio.toLocalDate();
@@ -40,18 +43,41 @@ public class FrmDuracionMesociclos extends javax.swing.JFrame {
         }
 
         semanasEntreFechas = (int) ChronoUnit.WEEKS.between(inicioLocalDate, finLocalDate);
-
-        //Aqui faltarian validaciones o algo para antes del cambio de pantalla
         txtSemanas.setText(String.valueOf(semanasEntreFechas));
+
+        if (inicio != null && fin != null) {
+//            try {
+//                Thread.sleep(5000);
+//                this.dispose();
+//                FrmElecMedios medios = new FrmElecMedios();
+//                medios.setVisible(true);
+//            } catch (InterruptedException e) {
+//            }
+            int confirmar = JOptionPane.showConfirmDialog(null, "Total de semanas: " + semanasEntreFechas, "Total de semanas", JOptionPane.YES_NO_OPTION);
+            if (confirmar == JOptionPane.YES_OPTION) {
+                this.dispose();
+                FrmElecMedios medios = new FrmElecMedios();
+                medios.setVisible(true);
+            }else{
+            }
+//            Timer timer = new Timer(3500, (ActionEvent e) -> {
+//                FrmElecMedios medios = new FrmElecMedios();
+//                medios.setVisible(true);
+//            });
+//            timer.setRepeats(false);
+//            timer.start();
+
+        }
+        //Aqui faltarian validaciones o algo para antes del cambio de pantalla
 
         /*
         - Modificar lo de calcular semanas - 
         Gabriel 
-        */
+         */
         //Si ya están calculadas las semanas: 
-        this.dispose();
-        FrmElecMedios medios = new FrmElecMedios();
-        medios.setVisible(true);
+//        this.dispose();
+//        FrmElecMedios medios = new FrmElecMedios();
+//        medios.setVisible(true);
     }
 
     /**
@@ -68,7 +94,7 @@ public class FrmDuracionMesociclos extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jDateChooser1 = new com.toedter.calendar.JDateChooser();
-        jDateChooser2 = new com.toedter.calendar.JDateChooser();
+        dateChooserFinPlan = new com.toedter.calendar.JDateChooser();
         jLabel3 = new javax.swing.JLabel();
         txtSemanas = new javax.swing.JTextField();
         btnContinuar = new javax.swing.JButton();
@@ -99,8 +125,8 @@ public class FrmDuracionMesociclos extends javax.swing.JFrame {
         jLabel2.setBounds(70, 40, 150, 30);
         jPanel2.add(jDateChooser1);
         jDateChooser1.setBounds(50, 70, 180, 30);
-        jPanel2.add(jDateChooser2);
-        jDateChooser2.setBounds(440, 70, 200, 30);
+        jPanel2.add(dateChooserFinPlan);
+        dateChooserFinPlan.setBounds(440, 70, 200, 30);
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel3.setText("Fin del plan");
@@ -207,16 +233,24 @@ public class FrmDuracionMesociclos extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
+
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FrmDuracionMesociclos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmDuracionMesociclos.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FrmDuracionMesociclos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmDuracionMesociclos.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FrmDuracionMesociclos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmDuracionMesociclos.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FrmDuracionMesociclos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmDuracionMesociclos.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
@@ -232,8 +266,8 @@ public class FrmDuracionMesociclos extends javax.swing.JFrame {
     private javax.swing.JTextField FondoTitulo;
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnContinuar;
+    private com.toedter.calendar.JDateChooser dateChooserFinPlan;
     private com.toedter.calendar.JDateChooser jDateChooser1;
-    private com.toedter.calendar.JDateChooser jDateChooser2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
