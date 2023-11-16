@@ -8,6 +8,7 @@ import controles.ControlMetodologo;
 import controles.ControlRama;
 import entidades.Jefe;
 import entidades.Metodologo;
+import entidades.Plan;
 import entidades.Rama;
 import entidades.Usuario;
 import java.util.List;
@@ -21,6 +22,12 @@ import javax.swing.JOptionPane;
  */
 public class FrmMesociclo extends javax.swing.JFrame {
 private int id;
+private int jefeId;
+private int metodologoId;
+private int deporteId;
+private int ramaId;
+private int entrenadorId;
+Plan plan = new Plan();
 ControlDeporte controlDeporte = new ControlDeporte();
 ControlRama controlRama = new ControlRama();
 ControlJefe controlJefe = new ControlJefe();
@@ -68,6 +75,16 @@ ControlMetodologo controlMetodologo = new ControlMetodologo();
     
     public void recopilaInfo(){
         id=0;
+        deporteId = numeroID(comboBoxDeporte.getSelectedItem().toString());
+        ramaId = numeroID(comboBoxRama.getSelectedItem().toString());
+        jefeId = numeroID(comboBoxJefeRama.getSelectedItem().toString());
+        entrenadorId = numeroID(comboBoxEntAuxPrepFis.getSelectedItem().toString());
+        metodologoId = numeroID(comboBoxMetodologo.getSelectedItem().toString());
+        plan.setDeporteId(deporteId);
+        plan.setJefeId(jefeId);
+        plan.setMetodologoId(metodologoId);
+        plan.setRamaId(ramaId);
+        plan.setUsuarioId(entrenadorId);
     }
 
     /**
@@ -343,7 +360,7 @@ ControlMetodologo controlMetodologo = new ControlMetodologo();
     private void btnContinuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContinuarActionPerformed
         this.recopilaInfo();
         this.dispose();
-        FrmDuracionMesociclos frmDM = new FrmDuracionMesociclos(id);
+        FrmDuracionMesociclos frmDM = new FrmDuracionMesociclos(plan);
         frmDM.setVisible(true);
     }//GEN-LAST:event_btnContinuarActionPerformed
 
@@ -382,6 +399,12 @@ ControlMetodologo controlMetodologo = new ControlMetodologo();
         Menu menu = new Menu();
         menu.setVisible(true);
         this.setVisible(false);
+    }
+    
+    public int numeroID(String id){
+        String numeroStr = id.replaceAll("[^0-9]", ""); // Elimina todos los caracteres no numéricos
+        int numero = Integer.parseInt(numeroStr); // Convierte la cadena resultante a un entero
+        return numero;
     }
     /**
      * @param args the command line arguments

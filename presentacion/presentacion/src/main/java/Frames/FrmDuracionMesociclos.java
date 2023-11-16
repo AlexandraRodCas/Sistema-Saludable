@@ -1,5 +1,7 @@
 package Frames;
 
+import controles.ControlPlan;
+import entidades.Plan;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
@@ -21,7 +23,9 @@ public class FrmDuracionMesociclos extends javax.swing.JFrame {
 
     private Date inicio, fin;
     private int semanasEntreFechas;
-    private int id_mesociclo;
+    private Plan plan;
+    
+    ControlPlan controlPlan = new ControlPlan();
 
     /**
      * Creates new form FrmDuracionMesociclos
@@ -30,15 +34,13 @@ public class FrmDuracionMesociclos extends javax.swing.JFrame {
         initComponents();
     }
     
-    public FrmDuracionMesociclos(int id_mesociclo) {
+    public FrmDuracionMesociclos(Plan plan) {
         initComponents();
-        this.id_mesociclo=id_mesociclo;
+        this.plan=plan;
     }
 
-    //Tecnicamente funciona pero no se como hacer que se espere 
-    //unos segundos antes de mostrar la otra pantalla.
     public void recopilarInfo() {
-        if (jDateChooser1.getDate() != null && dateChooserFinPlan.getDate() != null) {
+        if (!controlPlan.fechaVacia(jDateChooser1.getDate(), dateChooserFinPlan.getDate())) {
             inicio = new Date(jDateChooser1.getDate().getTime());
             fin = new Date(dateChooserFinPlan.getDate().getTime());
 
@@ -69,43 +71,28 @@ public class FrmDuracionMesociclos extends javax.swing.JFrame {
             }
             if(semanasEntreFechas<10){
                 JOptionPane.showMessageDialog(this, "No hay semanas suficientes. Debe ser mayor a 10. Actualmente: " + semanasEntreFechas, "Error", JOptionPane.ERROR_MESSAGE);
-                return; // No continuar con el proceso
+                return; 
             }
-//            try {
-//                Thread.sleep(5000);
-//                this.dispose();
-//                FrmElecMedios medios = new FrmElecMedios();
-//                medios.setVisible(true);
-//            } catch (InterruptedException e) {
-//            }
+            
             int confirmar = JOptionPane.showConfirmDialog(null, "Total de semanas: " + semanasEntreFechas, "Total de semanas", JOptionPane.YES_NO_OPTION);
             if (confirmar == JOptionPane.YES_OPTION) {
+                plan.setInicio(inicio);
+                plan.setFin(fin);
+                
+                System.out.println(plan.getUsuarioId());
+                controlPlan.agregarPlan(plan);
                 this.dispose();
-                FrmSemEtapas fE= new FrmSemEtapas(inicio, fin, semanasEntreFechas, id_mesociclo);
+                FrmSemEtapas fE= new FrmSemEtapas(inicio, fin, semanasEntreFechas, 0);
                 fE.setVisible(true);
             }else{
             }
-//            Timer timer = new Timer(3500, (ActionEvent e) -> {
-//                FrmElecMedios medios = new FrmElecMedios();
-//                medios.setVisible(true);
-//            });
-//            timer.setRepeats(false);
-//            timer.start();
+//           
 
         }
         else{
             JOptionPane.showMessageDialog(this, "Hay campos vacíos", "Error", JOptionPane.ERROR_MESSAGE);
         }
-        //Aqui faltarian validaciones o algo para antes del cambio de pantalla
-
-        /*
-        - Modificar lo de calcular semanas - 
-        Gabriel 
-         */
-        //Si ya están calculadas las semanas: 
-//        this.dispose();
-//        FrmElecMedios medios = new FrmElecMedios();
-//        medios.setVisible(true);
+        
     }
 
     /**
@@ -227,68 +214,16 @@ public class FrmDuracionMesociclos extends javax.swing.JFrame {
     }//GEN-LAST:event_FondoTituloActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        //        this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        //        System.exit(0);
         this.dispose();
         FrmMesociclo frmC = new FrmMesociclo();
         frmC.setVisible(true);
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnContinuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContinuarActionPerformed
-        this.recopilarInfo();/*
-        FrmSemEtapas fE= new FrmSemEtapas(inicio, fin, semanasEntreFechas);
-        try {
-        // Pausar la ejecución del hilo actual (en este caso, el hilo de la interfaz gráfica) durante 10 segundos
-        Thread.sleep(10000);
-    } catch (InterruptedException ex) {
-        Logger.getLogger(FrmDuracionMesociclos.class.getName()).log(Level.SEVERE, null, ex);
-    }
-        this.dispose();
-        fE.setVisible(true);*/
+        this.recopilarInfo();
+        
     }//GEN-LAST:event_btnContinuarActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FrmDuracionMesociclos.class
-                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
-
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FrmDuracionMesociclos.class
-                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
-
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FrmDuracionMesociclos.class
-                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
-
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FrmDuracionMesociclos.class
-                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new FrmDuracionMesociclos().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField FondoTitulo;

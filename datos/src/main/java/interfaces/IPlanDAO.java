@@ -13,6 +13,6 @@ import java.util.List;
  * @author Alexandra
  */
 public interface IPlanDAO {
-    public boolean agregarPlan(Date inicio, Date fin, int jefeId, int metodologoId, int deporteId, int ramaId);
+    public boolean agregarPlan(Plan plan);
     public List<Plan> consultarPlanes();
 }

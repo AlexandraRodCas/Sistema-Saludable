@@ -85,6 +85,6 @@ public class Metodologo implements Serializable {
 
     @Override
     public String toString() {
-        return "Metodologo{" + "id=" + id + ", nombre=" + nombre + '}';
+        return "id: " + id + ", nombre: " + nombre;
     }
 }

@@ -32,16 +32,17 @@ public class PlanDAO implements IPlanDAO {
     }
 
     @Override
-    public boolean agregarPlan(Date inicio, Date fin, int jefeId, int metodologoId, int deporteId, int ramaId) {
+    public boolean agregarPlan(Plan plan) {
         try {
             Connection conexion = this.conexion.crearConexion();
-            PreparedStatement statement = conexion.prepareStatement("INSERT INTO plan (inicio, fin, jefe_id, metodologo_id, deporte_id, rama_id) VALUES (?, ?, ?, ?, ?, ?)");
-            statement.setDate(1, inicio);
-            statement.setDate(2, fin);
-            statement.setInt(3, jefeId);
-            statement.setInt(4, metodologoId);
-            statement.setInt(5, deporteId);
-            statement.setInt(6, ramaId);
+            PreparedStatement statement = conexion.prepareStatement("INSERT INTO plan (inicio, fin, jefe_id, metodologo_id, deporte_id, rama_id, usuario_id) VALUES (?, ?, ?, ?, ?, ?, ?)");
+            statement.setDate(1, plan.getInicio());
+            statement.setDate(2, plan.getInicio());
+            statement.setInt(3, plan.getJefeId());
+            statement.setInt(4, plan.getMetodologoId());
+            statement.setInt(5, plan.getDeporteId());
+            statement.setInt(6, plan.getRamaId());
+            statement.setInt(7, plan.getUsuarioId());
             int numeroRegistrosModificados = statement.executeUpdate();
 
             conexion.close();
@@ -68,8 +69,9 @@ public class PlanDAO implements IPlanDAO {
                 int metodologoId = resultados.getInt("metodologo_id");
                 int deporteId = resultados.getInt("deporte_id");
                 int ramaId = resultados.getInt("rama_id");
+                int usuarioId = resultados.getInt("usuario_id");
 
-                Plan plan = new Plan(id, inicio, fin, jefeId, metodologoId, deporteId, ramaId);
+                Plan plan = new Plan(id, inicio, fin, jefeId, metodologoId, deporteId, ramaId, usuarioId);
                 planes.add(plan);
             }
 

@@ -19,11 +19,12 @@ public class Plan {
     private int metodologoId;
     private int deporteId;
     private int ramaId;
+    private int usuarioId;
 
     public Plan() {
     }
 
-    public Plan(int id, Date inicio, Date fin, int jefeId, int metodologoId, int deporteId, int ramaId) {
+    public Plan(int id, Date inicio, Date fin, int jefeId, int metodologoId, int deporteId, int ramaId, int usuarioId) {
         this.id = id;
         this.inicio = inicio;
         this.fin = fin;
@@ -31,7 +32,9 @@ public class Plan {
         this.metodologoId = metodologoId;
         this.deporteId = deporteId;
         this.ramaId = ramaId;
+        this.usuarioId = usuarioId;
     }
+    
 
     // Getters y Setters para todos los atributos
 
@@ -91,21 +94,30 @@ public class Plan {
         this.ramaId = ramaId;
     }
 
-    // Equals, HashCode y ToString
+    public int getUsuarioId() {
+        return usuarioId;
+    }
+
+    public void setUsuarioId(int usuarioId) {
+        this.usuarioId = usuarioId;
+    }
+
 
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 71 * hash + this.id;
-        hash = 71 * hash + Objects.hashCode(this.inicio);
-        hash = 71 * hash + Objects.hashCode(this.fin);
-        hash = 71 * hash + this.jefeId;
-        hash = 71 * hash + this.metodologoId;
-        hash = 71 * hash + this.deporteId;
-        hash = 71 * hash + this.ramaId;
+        hash = 41 * hash + this.id;
+        hash = 41 * hash + Objects.hashCode(this.inicio);
+        hash = 41 * hash + Objects.hashCode(this.fin);
+        hash = 41 * hash + this.jefeId;
+        hash = 41 * hash + this.metodologoId;
+        hash = 41 * hash + this.deporteId;
+        hash = 41 * hash + this.ramaId;
+        hash = 41 * hash + this.usuarioId;
         return hash;
     }
 
+    // Equals, HashCode y ToString
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
@@ -133,6 +145,9 @@ public class Plan {
         if (this.ramaId != other.ramaId) {
             return false;
         }
+        if (this.usuarioId != other.usuarioId) {
+            return false;
+        }
         if (!Objects.equals(this.inicio, other.inicio)) {
             return false;
         }
@@ -141,7 +156,7 @@ public class Plan {
 
     @Override
     public String toString() {
-        return "id: " + id + ", inicio: " + inicio + ", fin: " + fin + ", jefeId: " + jefeId + ", metodologoId: " + metodologoId + ", deporteId: " + deporteId + ", ramaId: " + ramaId;
+        return "id: " + id + ", inicio: " + inicio + ", fin: " + fin + ", jefeId: " + jefeId + ", metodologoId: " + metodologoId + ", deporteId: " + deporteId + ", ramaId: " + ramaId +", entrenadorId: "+ usuarioId;
     }
     
     

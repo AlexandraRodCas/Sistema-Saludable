@@ -4,10 +4,27 @@
  */
 package controles;
 
+import entidades.Plan;
+import implementaciones.PlanDAO;
+import java.util.Date;
+
 /**
  *
  * @author Alexandra
  */
 public class ControlPlan {
+    PlanDAO planDAO = new PlanDAO();
     
+    public boolean fechaVacia(Date inicio, Date fin){
+        if(inicio == null || fin == null){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+    
+    public void agregarPlan(Plan plan){
+        planDAO.agregarPlan(plan);
+    }
 }
