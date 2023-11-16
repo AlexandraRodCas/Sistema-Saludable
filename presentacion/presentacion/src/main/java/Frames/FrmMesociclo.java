@@ -46,7 +46,7 @@ ControlMetodologo controlMetodologo = new ControlMetodologo();
         DefaultComboBoxModel<String> comboBoxModelMetodologo = new DefaultComboBoxModel();
         
         
-        comboBoxModelDeporte = null;
+        comboBoxModelDeporte = controlDeporte.convertComboBoxModel(listDeportes);
         comboBoxModelRama = controlRama.convertComboBoxModel(listRamas);
         comboBoxModelJefe = controlJefe.convertComboBoxModel(listJefes);
         comboBoxModelEntrenador = controlEntrenador.convertComboBoxModel(listEntrenadores);
