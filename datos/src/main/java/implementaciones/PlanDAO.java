@@ -37,7 +37,7 @@ public class PlanDAO implements IPlanDAO {
             Connection conexion = this.conexion.crearConexion();
             PreparedStatement statement = conexion.prepareStatement("INSERT INTO plan (inicio, fin, jefe_id, metodologo_id, deporte_id, rama_id, usuario_id) VALUES (?, ?, ?, ?, ?, ?, ?)");
             statement.setDate(1, plan.getInicio());
-            statement.setDate(2, plan.getInicio());
+            statement.setDate(2, plan.getFin());
             statement.setInt(3, plan.getJefeId());
             statement.setInt(4, plan.getMetodologoId());
             statement.setInt(5, plan.getDeporteId());
