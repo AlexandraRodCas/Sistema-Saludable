@@ -35,6 +35,11 @@ public class Jefe implements Serializable {
         this.nombre = nombre;
     }
 
+    public Jefe(int id, String nombre) {
+        this.id = id;
+        this.nombre = nombre;
+    }
+
     // Getters y setters
 
     public int getId() {

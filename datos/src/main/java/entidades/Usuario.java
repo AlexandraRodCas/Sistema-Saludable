@@ -47,6 +47,14 @@ public class Usuario implements Serializable {
         this.tipo = tipo;
     }
 
+    public Usuario(int id, String nombre, String contrasenia, String telefono, String tipo) {
+        this.nombre = nombre;
+        this.contrasenia = contrasenia;
+        this.telefono = telefono;
+        this.tipo = tipo;
+        this.id = id;
+    }
+
     // Getters y setters
 
     // ID

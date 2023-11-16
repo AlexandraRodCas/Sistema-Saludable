@@ -33,7 +33,8 @@ public class Deporte implements Serializable {
     }
 
     public Deporte(int id, String nombre) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        this.nombre = nombre;
+        this.id = id;
     }
 
     // Getters y setters

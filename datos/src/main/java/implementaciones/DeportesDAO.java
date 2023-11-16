@@ -26,6 +26,7 @@ public class DeportesDAO implements IDeportesDAO {
     public DeportesDAO() {
     }
 
+    @Override
     public boolean agregarDeporte(String nombre) {
         try {
             Connection conexion = this.conexion.crearConexion();

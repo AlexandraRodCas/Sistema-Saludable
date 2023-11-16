@@ -1,8 +1,7 @@
 package com.mycompany.datos;
 
-import entidades.Etapa;
-import entidades.Tipo;
-import implementaciones.EtapasDAO;
+import entidades.Rama;
+import implementaciones.RamasDAO;
 import java.sql.Date;
 import java.util.List;
 
@@ -13,19 +12,16 @@ import java.util.List;
 public class Datos {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
         
         long tiempoActual = System.currentTimeMillis(); 
         Date fechaI = new Date(tiempoActual);
         Date fechaF = new Date(tiempoActual);
         
-        EtapasDAO etapaDAO = new EtapasDAO();
+        RamasDAO etapaDAO = new RamasDAO();
         
-        etapaDAO.agregarEtapa(fechaI, fechaF, 0, "General", 1);
-        
-        List<Etapa> etapas = etapaDAO.consultarEtapas();
+        List<Rama> etapas = etapaDAO.consultarRamas();
          
-        for(Etapa elementos:etapas){
+        for(Rama elementos:etapas){
             System.out.println(elementos.toString());
         }
         

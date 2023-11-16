@@ -1,5 +1,19 @@
 package Frames;
 
+import entidades.Deporte;
+import controles.ControlDeporte;
+import controles.ControlEntrenador;
+import controles.ControlJefe;
+import controles.ControlMetodologo;
+import controles.ControlRama;
+import entidades.Jefe;
+import entidades.Metodologo;
+import entidades.Rama;
+import entidades.Usuario;
+import java.util.List;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
+
 
 /**
  *
@@ -7,11 +21,50 @@ package Frames;
  */
 public class FrmMesociclo extends javax.swing.JFrame {
 private int id;
+ControlDeporte controlDeporte = new ControlDeporte();
+ControlRama controlRama = new ControlRama();
+ControlJefe controlJefe = new ControlJefe();
+ControlEntrenador controlEntrenador = new ControlEntrenador();
+ControlMetodologo controlMetodologo = new ControlMetodologo();
+    
     /**
      * Creates new form FrmMesociclo
      */
     public FrmMesociclo() {
         initComponents();
+        List<Deporte> listDeportes = controlDeporte.consultarDeportes();
+        List<Rama> listRamas = controlRama.consultarRamas();
+        List<Jefe> listJefes = controlJefe.consultarJefes();
+        List<Usuario> listEntrenadores = controlEntrenador.consultarDeportes();
+        List<Metodologo> listMetodologos = controlMetodologo.consultarMetodologos();
+        
+        
+        DefaultComboBoxModel<String> comboBoxModelDeporte = new DefaultComboBoxModel();
+        DefaultComboBoxModel<String> comboBoxModelRama = new DefaultComboBoxModel();
+        DefaultComboBoxModel<String> comboBoxModelJefe = new DefaultComboBoxModel();
+        DefaultComboBoxModel<String> comboBoxModelEntrenador = new DefaultComboBoxModel();
+        DefaultComboBoxModel<String> comboBoxModelMetodologo = new DefaultComboBoxModel();
+        
+        
+        comboBoxModelDeporte = null;
+        comboBoxModelRama = controlRama.convertComboBoxModel(listRamas);
+        comboBoxModelJefe = controlJefe.convertComboBoxModel(listJefes);
+        comboBoxModelEntrenador = controlEntrenador.convertComboBoxModel(listEntrenadores);
+        comboBoxModelMetodologo = controlMetodologo.convertComboBoxModel(listMetodologos);
+        
+        //Para Deporte
+        if(comboBoxModelDeporte == null || comboBoxModelRama == null || comboBoxModelJefe == null || comboBoxModelEntrenador == null || comboBoxModelMetodologo == null){
+            JOptionPane.showMessageDialog(null, "No hay jefes agregados", "Error", JOptionPane.ERROR_MESSAGE);
+            mandarMenu();
+            
+        }else{
+            comboBoxDeporte.setModel(comboBoxModelDeporte);
+            comboBoxRama.setModel(comboBoxModelRama);
+            comboBoxJefeRama.setModel(comboBoxModelJefe);
+            comboBoxEntAuxPrepFis.setModel(comboBoxModelEntrenador);
+            comboBoxMetodologo.setModel(comboBoxModelMetodologo);
+        }
+        
     }
     
     public void recopilaInfo(){
@@ -325,6 +378,12 @@ private int id;
         comboBoxMetodologo.setSelectedIndex(0);
     }//GEN-LAST:event_btnEliminar1ActionPerformed
 
+    
+    public void mandarMenu(){
+        Menu menu = new Menu();
+        menu.setVisible(true);
+        this.setVisible(false);
+    }
     /**
      * @param args the command line arguments
      */

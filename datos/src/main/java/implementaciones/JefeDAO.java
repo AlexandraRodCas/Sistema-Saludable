@@ -3,10 +3,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package implementaciones;
-
-import entidades.Rama;
+import entidades.Jefe;
 import interfaces.IConexion;
-import interfaces.IRamasDAO;
+import interfaces.IJefeDAO;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,25 +14,24 @@ import java.util.List;
  *
  * @author Alexandra
  */
-public class RamasDAO implements IRamasDAO {
+public class JefeDAO implements IJefeDAO{
 
-    private IConexion conexion = new Conexion();
+    private IConexion conexion =  new Conexion();
 
-    public RamasDAO(IConexion conexion) {
+    public JefeDAO(IConexion conexion) {
         this.conexion = conexion;
     }
 
-    public RamasDAO() {
+    public JefeDAO() {
     }
 
     @Override
-    public boolean agregarRama(String nombre) {
+    public boolean agregarJefe(String nombre) {
         try {
             Connection conexion = this.conexion.crearConexion();
-            PreparedStatement statement = conexion.prepareStatement("INSERT INTO rama (nombre) VALUES (?)");
+            PreparedStatement statement = conexion.prepareStatement("INSERT INTO deporte (nombre) VALUES (?)");
             statement.setString(1, nombre);
             int numeroRegistrosModificados = statement.executeUpdate();
-
             conexion.close();
             return numeroRegistrosModificados == 1;
         } catch (SQLException e) {
@@ -43,26 +41,26 @@ public class RamasDAO implements IRamasDAO {
     }
 
     @Override
-    public List<Rama> consultarRamas() {
-        List<Rama> ramas = new ArrayList<>();
+    public List<Jefe> consultarJefes() {
+        List<Jefe> jefes = new ArrayList<>();
         try {
             Connection conexion = this.conexion.crearConexion();
             Statement statement = conexion.createStatement();
-            ResultSet resultados = statement.executeQuery("SELECT * FROM rama");
+            ResultSet resultados = statement.executeQuery("SELECT * FROM jefe");
 
             while (resultados.next()) {
                 int id = resultados.getInt("id");
                 String nombre = resultados.getString("nombre");
 
-                Rama rama = new Rama(id, nombre);
-                ramas.add(rama);
+                Jefe jefe = new Jefe(id, nombre);
+                jefes.add(jefe);
             }
 
             conexion.close();
         } catch (SQLException e) {
             System.err.println(e.getMessage());
         }
-        return ramas;
+        return jefes;
     }
 }
 
