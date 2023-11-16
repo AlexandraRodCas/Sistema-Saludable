@@ -43,6 +43,13 @@ public class FrmSemEtapas extends javax.swing.JFrame {
 
         int pP = eG + eE;
         int pC = eP + eC;
+        
+        //Validacion semanas mesociclo = semanas repartidas
+        if (!((pP+pC)==semanas)) {
+            // Manejar el caso en el que las semanas repartidas no sean igual a las del mesociclo
+            JOptionPane.showMessageDialog(this, "La cantidad de semanas del mesociclo son: "+semanas+". Debe repartirlas todas entre las etapas disponibles.", "Error", JOptionPane.ERROR_MESSAGE);
+            return; // No continuar con el proceso
+        }
 
         // Convert java.sql.Date to LocalDate
         LocalDate inicioLocalDate = inicio.toLocalDate();
