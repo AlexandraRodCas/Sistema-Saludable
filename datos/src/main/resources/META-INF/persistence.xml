@@ -2,7 +2,17 @@
 <persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
   <persistence-unit name="sistemasaludable" transaction-type="RESOURCE_LOCAL">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+    <class>entidades.Medio</class>
+    <class>entidades.Deporte_1</class>
+    <class>entidades.Rutina</class>
+    <class>entidades.Etapa_1</class>
+    <class>entidades.Rama</class>
+    <class>entidades.Usuario</class>
+    <class>entidades.Metodologo</class>
+    <class>entidades.Deporte</class>
     <class>entidades.Etapa</class>
+    <class>entidades.RutinaMedio</class>
+    <class>entidades.Jefe</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/sistemasaludable?serverTimezone=UTC"/>
       <property name="javax.persistence.jdbc.user" value="root"/>

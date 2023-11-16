@@ -10,8 +10,10 @@ import interfaces.IConexion;
 import interfaces.IEtapasDAO;
 import java.sql.Connection;
 import java.sql.Date;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -20,7 +22,7 @@ import java.util.List;
  */
 public class EtapasDAO implements IEtapasDAO{
 
-    private IConexion conexion;
+    private IConexion conexion = new Conexion();
     
     public EtapasDAO(IConexion conexion)
     {
@@ -51,6 +53,32 @@ public class EtapasDAO implements IEtapasDAO{
             System.err.println(e.getMessage());
             return false;
         }
+    }
+    
+    public List<Etapa> consultarEtapas() {
+        List<Etapa> etapas = new ArrayList<>();
+        try {
+            Connection conexion = this.conexion.crearConexion();
+            Statement comandoSQL = conexion.createStatement();
+            String codigoSQL = "SELECT * FROM etapa";
+            ResultSet resultados = comandoSQL.executeQuery(codigoSQL); 
+
+            while (resultados.next()) {
+                Date inicio = resultados.getDate("inicio");
+                Date fin = resultados.getDate("fin");
+                int semanas = resultados.getInt("semanas");
+                String tipo = resultados.getString("tipo");
+                int id_mesociclo = resultados.getInt("id_plan");
+
+                Etapa etapa = new Etapa(inicio, fin, semanas, tipo, id_mesociclo);
+                etapas.add(etapa);
+            }
+
+            conexion.close();
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
+        }
+        return etapas;
     }
 
     

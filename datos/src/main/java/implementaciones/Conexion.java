@@ -18,9 +18,9 @@ public class Conexion implements IConexion {
         return em;
     }*/
     
-    final String CADENA_CONEXION = "jdbc:mysql://localhost:3306/sistema_saludable";
+    final String CADENA_CONEXION = "jdbc:mysql://localhost:3306/sistemasaludable?serverTimezone=UTC";
     final String USUARIO = "root";
-    final String CONTRASENIA = "12345";
+    final String CONTRASENIA = "root";
     
     @Override
     public Connection crearConexion() throws SQLException

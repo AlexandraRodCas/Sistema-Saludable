@@ -1,3 +1,7 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package entidades;
 
 import java.io.Serializable;
@@ -10,11 +14,10 @@ import javax.persistence.Id;
 
 /**
  *
- * @author Gabriel
+ * @author Alexandra
  */
-//@Entity
 @Entity
-public class Deporte implements Serializable {
+public class Rama implements Serializable {
 
     private static final long serialVersionUID = 1L;
     
@@ -25,14 +28,14 @@ public class Deporte implements Serializable {
     @Column(name = "nombre", nullable = false, length = 255)
     private String nombre;
 
-    public Deporte() {
+    public Rama() {
     }
 
-    public Deporte(String nombre) {
+    public Rama(String nombre) {
         this.nombre = nombre;
     }
 
-    public Deporte(int id, String nombre) {
+    public Rama(int id, String nombre) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
@@ -54,7 +57,7 @@ public class Deporte implements Serializable {
         this.nombre = nombre;
     }
 
-    // Equals, HashCode, y ToString
+    // Equals, HashCode y ToString
 
     @Override
     public int hashCode() {
@@ -72,7 +75,7 @@ public class Deporte implements Serializable {
         if (obj == null || getClass() != obj.getClass()) {
             return false;
         }
-        final Deporte other = (Deporte) obj;
+        final Rama other = (Rama) obj;
         if (this.id != other.id) {
             return false;
         }
@@ -81,7 +84,6 @@ public class Deporte implements Serializable {
 
     @Override
     public String toString() {
-        return "Deporte{" + "id=" + id + ", nombre=" + nombre + '}';
+        return "Rama{" + "id=" + id + ", nombre=" + nombre + '}';
     }
 }
-

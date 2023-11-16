@@ -4,15 +4,15 @@
  */
 package interfaces;
 
-import entidades.Etapa;
-import java.sql.Date;
+import entidades.Deporte;
 import java.util.List;
+
 
 /**
  *
- * @author elisa
+ * @author Alexandra
  */
-public interface IEtapasDAO {
-    public boolean agregarEtapa(Date inicio, Date fin, int semanas, String tipo, int id_mesociclo);
-    public List<Etapa> consultarEtapas();
+public interface IDeportesDAO {
+    public boolean agregarDeporte(String nombre);
+    public List<Deporte> consultarDeportes();
 }

@@ -48,6 +48,10 @@ public class Etapa implements Serializable {
         this.tipo = tipo;
         this.id_mesociclo=id_mesociclo;
     }
+
+    public Etapa() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
     
     
 
