@@ -33,7 +33,7 @@ public class ControlJefe {
         }else{
             
             for (int i = 0; i<jefes.size(); i++) {
-                comboBoxModel.addElement(jefes.get(i).getNombre());
+                comboBoxModel.addElement(jefes.get(i).toString());
             }
             return comboBoxModel;
         }

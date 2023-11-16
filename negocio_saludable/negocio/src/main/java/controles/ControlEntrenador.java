@@ -31,7 +31,7 @@ public class ControlEntrenador {
         }else{
             
             for (int i = 0; i<entrenadores.size(); i++) {
-                comboBoxModel.addElement(entrenadores.get(i).getNombre());
+                comboBoxModel.addElement(entrenadores.get(i).toString());
             }
             return comboBoxModel;
         }

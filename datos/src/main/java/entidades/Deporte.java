@@ -82,7 +82,7 @@ public class Deporte implements Serializable {
 
     @Override
     public String toString() {
-        return "Deporte{" + "id=" + id + ", nombre=" + nombre + '}';
+        return "id: " + id + ", nombre: " + nombre;
     }
 }
 

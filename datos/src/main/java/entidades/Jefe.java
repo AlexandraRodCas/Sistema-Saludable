@@ -85,6 +85,6 @@ public class Jefe implements Serializable {
 
     @Override
     public String toString() {
-        return "Jefe{" + "id=" + id + ", nombre=" + nombre + '}';
+        return  "id: " + id + ", nombre: " + nombre ;
     }
 }

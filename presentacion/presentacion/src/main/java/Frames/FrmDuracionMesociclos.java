@@ -2,7 +2,12 @@ package Frames;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
 import java.sql.Date;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import javax.swing.JOptionPane;
@@ -33,25 +38,39 @@ public class FrmDuracionMesociclos extends javax.swing.JFrame {
     //Tecnicamente funciona pero no se como hacer que se espere 
     //unos segundos antes de mostrar la otra pantalla.
     public void recopilarInfo() {
-        inicio = new Date(jDateChooser1.getDate().getTime());
-        fin = new Date(dateChooserFinPlan.getDate().getTime());
+        if (jDateChooser1.getDate() != null && dateChooserFinPlan.getDate() != null) {
+            inicio = new Date(jDateChooser1.getDate().getTime());
+            fin = new Date(dateChooserFinPlan.getDate().getTime());
 
-        // Convert java.sql.Date to LocalDate
-        LocalDate inicioLocalDate = inicio.toLocalDate();
+            Date fechaActualDate = new Date(15,11,2023);
+            
+            // Convert java.sql.Date to LocalDate
+            LocalDate inicioLocalDate = inicio.toLocalDate();
 
-        // Convert java.sql.Date to LocalDate
-        LocalDate finLocalDate = fin.toLocalDate();
+            // Convert java.sql.Date to LocalDate
+            LocalDate finLocalDate = fin.toLocalDate();
 
-        if (finLocalDate.isBefore(inicioLocalDate) || (finLocalDate.isEqual(inicioLocalDate))) {
-            // Manejar el caso en el que la fecha de fin es anterior a la fecha de inicio
-            JOptionPane.showMessageDialog(this, "La fecha de fin debe ser posterior a la fecha de inicio.", "Error", JOptionPane.ERROR_MESSAGE);
-            return; // No continuar con el proceso
-        }
+            LocalDate actualLocalDate = fechaActualDate.toLocalDate();
+            
+            semanasEntreFechas = (int) ChronoUnit.WEEKS.between(inicioLocalDate, finLocalDate);
 
-        semanasEntreFechas = (int) ChronoUnit.WEEKS.between(inicioLocalDate, finLocalDate);
-        txtSemanas.setText(String.valueOf(semanasEntreFechas));
+            txtSemanas.setText(String.valueOf(semanasEntreFechas));
+            
+            if (finLocalDate.isBefore(inicioLocalDate) || (finLocalDate.isEqual(inicioLocalDate))) {
+                // Manejar el caso en el que la fecha de fin es anterior a la fecha de inicio
+                JOptionPane.showMessageDialog(this, "La fecha de fin debe ser posterior a la fecha de inicio.", "Error", JOptionPane.ERROR_MESSAGE);
+                return; // No continuar con el proceso
+            }
 
-        if (inicio != null && fin != null) {
+            if(inicioLocalDate.isBefore(actualLocalDate) || (finLocalDate.isBefore(actualLocalDate))){
+                // Manejar el caso en el que la fecha de fin es anterior a la fecha de inicio
+                JOptionPane.showMessageDialog(this, "La fecha de fin e inicio debe ser posterior a la fecha actual.", "Error", JOptionPane.ERROR_MESSAGE);
+                return; // No continuar con el proceso
+            }
+            if(semanasEntreFechas<10){
+                JOptionPane.showMessageDialog(this, "No hay semanas suficientes. Debe ser mayor a 10. Actualmente: " + semanasEntreFechas, "Error", JOptionPane.ERROR_MESSAGE);
+                return; // No continuar con el proceso
+            }
 //            try {
 //                Thread.sleep(5000);
 //                this.dispose();
@@ -73,6 +92,9 @@ public class FrmDuracionMesociclos extends javax.swing.JFrame {
 //            timer.setRepeats(false);
 //            timer.start();
 
+        }
+        else{
+            JOptionPane.showMessageDialog(this, "Hay campos vacíos", "Error", JOptionPane.ERROR_MESSAGE);
         }
         //Aqui faltarian validaciones o algo para antes del cambio de pantalla
 

@@ -85,6 +85,6 @@ public class Rama implements Serializable {
 
     @Override
     public String toString() {
-        return "Rama{" + "id=" + id + ", nombre=" + nombre + '}';
+        return "id: " + id + ", nombre: " + nombre ;
     }
 }

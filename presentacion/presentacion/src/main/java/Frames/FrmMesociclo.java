@@ -52,7 +52,6 @@ ControlMetodologo controlMetodologo = new ControlMetodologo();
         comboBoxModelEntrenador = controlEntrenador.convertComboBoxModel(listEntrenadores);
         comboBoxModelMetodologo = controlMetodologo.convertComboBoxModel(listMetodologos);
         
-        //Para Deporte
         if(comboBoxModelDeporte == null || comboBoxModelRama == null || comboBoxModelJefe == null || comboBoxModelEntrenador == null || comboBoxModelMetodologo == null){
             JOptionPane.showMessageDialog(null, "No hay jefes agregados", "Error", JOptionPane.ERROR_MESSAGE);
             mandarMenu();

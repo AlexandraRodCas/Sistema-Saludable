@@ -32,7 +32,7 @@ public class ControlDeporte {
         }else{
             
             for (int i = 0; i<deportes.size(); i++) {
-                comboBoxModel.addElement(deportes.get(i).getNombre());
+                comboBoxModel.addElement(deportes.get(i).toString());
             }
             return comboBoxModel;
         }

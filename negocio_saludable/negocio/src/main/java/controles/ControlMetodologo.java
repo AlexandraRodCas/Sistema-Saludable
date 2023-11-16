@@ -33,7 +33,7 @@ public class ControlMetodologo {
         }else{
             
             for (int i = 0; i<metodologos.size(); i++) {
-                comboBoxModel.addElement(metodologos.get(i).getNombre());
+                comboBoxModel.addElement(metodologos.get(i).toString());
             }
             return comboBoxModel;
         }

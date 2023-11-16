@@ -44,7 +44,7 @@ public class FrmSemEtapas extends javax.swing.JFrame {
         int pP = eG + eE;
         int pC = eP + eC;
         
-        //Validacion semanas mesociclo = semanas repartidas
+        //Validacion semanas macrociclo = semanas repartidas
         if (!((pP+pC)==semanas)) {
             // Manejar el caso en el que las semanas repartidas no sean igual a las del mesociclo
             JOptionPane.showMessageDialog(this, "La cantidad de semanas del mesociclo son: "+semanas+". Debe repartirlas todas entre las etapas disponibles.", "Error", JOptionPane.ERROR_MESSAGE);
@@ -343,14 +343,14 @@ public class FrmSemEtapas extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(53, 53, 53)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(87, 87, 87)
-                        .addComponent(btnContinuar, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(73, 73, 73)
-                        .addComponent(btnCancelar)))
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(58, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(btnCancelar)
+                .addGap(66, 66, 66)
+                .addComponent(btnContinuar, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(168, 168, 168))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -361,7 +361,7 @@ public class FrmSemEtapas extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnContinuar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(38, Short.MAX_VALUE))
+                .addContainerGap(46, Short.MAX_VALUE))
         );
 
         pack();
@@ -532,7 +532,6 @@ public class FrmSemEtapas extends javax.swing.JFrame {
                     "Es necesario llenar todos los campos requeridos",
                     "Error", JOptionPane.ERROR_MESSAGE);
         } else {
-            System.out.println("Excelente");
             this.calcularPeriodos();
         }
     }//GEN-LAST:event_btnContinuarActionPerformed

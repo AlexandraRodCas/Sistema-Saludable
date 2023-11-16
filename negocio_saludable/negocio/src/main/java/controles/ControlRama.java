@@ -33,7 +33,7 @@ public class ControlRama {
         }else{
             
             for (int i = 0; i<ramas.size(); i++) {
-                comboBoxModel.addElement(ramas.get(i).getNombre());
+                comboBoxModel.addElement(ramas.get(i).toString());
             }
             return comboBoxModel;
         }
