@@ -10,6 +10,7 @@ import interfaces.IConexion;
 import interfaces.IEtapasDAO;
 import java.sql.Connection;
 import java.sql.Date;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -33,23 +34,25 @@ public class EtapasDAO implements IEtapasDAO{
     }
 
     @Override
-    public boolean agregarEtapa(Date inicio, Date fin, int semanas, String tipo, int id_mesociclo) {
-        try
-        {
+    public boolean agregarEtapa(Date inicio, Date fin, int semanas, String tipo) {
+        try {
             Connection conexion = this.conexion.crearConexion();
-            Etapa etapa = new Etapa(inicio, fin, semanas, tipo, id_mesociclo);
-            Statement comandoSQL = conexion.createStatement();
-            String codigoSQL = String.format("INSERT INTO etapa (inicio,fin,semanas,tipo, id_plan)"
-                    + " VALUES ('%s','%s','%s','%s','%s');",
-                    etapa.getInicio(),etapa.getFin(), 
-                    etapa.getSemanas(), etapa.getTipo(), etapa.getId_mesociclo());
-            int numeroRegistrosModificados = comandoSQL.executeUpdate(codigoSQL); // Sirve para realizar modificaciones en la tabla (INSERT, DELETE, UPDATE)
-            
-            conexion.close(); //Cerrar conexion
-            return numeroRegistrosModificados==1;
-        }
-        catch(SQLException e)
-        {
+            Etapa etapa = new Etapa(inicio, fin, semanas, tipo);
+            String codigoSQL = "INSERT INTO etapa (inicio, fin, semanas, tipo)"
+                             + " VALUES (?, ?, ?, ?)";
+            PreparedStatement comandoSQL = conexion.prepareStatement(codigoSQL);
+
+            // Establecer los valores de los parámetros
+            comandoSQL.setDate(1, new java.sql.Date(etapa.getInicio().getTime()));
+            comandoSQL.setDate(2, new java.sql.Date(etapa.getFin().getTime()));
+            comandoSQL.setInt(3, etapa.getSemanas());
+            comandoSQL.setString(4, etapa.getTipo());
+
+            int numeroRegistrosModificados = comandoSQL.executeUpdate(); // Ejecutar la inserción
+
+            conexion.close(); // Cerrar conexión
+            return numeroRegistrosModificados == 1;
+        } catch (SQLException e) {
             System.err.println(e.getMessage());
             return false;
         }
@@ -68,9 +71,8 @@ public class EtapasDAO implements IEtapasDAO{
                 Date fin = resultados.getDate("fin");
                 int semanas = resultados.getInt("semanas");
                 String tipo = resultados.getString("tipo");
-                int id_mesociclo = resultados.getInt("id_plan");
 
-                Etapa etapa = new Etapa(inicio, fin, semanas, tipo, id_mesociclo);
+                Etapa etapa = new Etapa(inicio, fin, semanas, tipo);
                 etapas.add(etapa);
             }
 

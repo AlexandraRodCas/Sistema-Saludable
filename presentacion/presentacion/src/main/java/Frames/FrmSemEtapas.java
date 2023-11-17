@@ -1,8 +1,6 @@
 package Frames;
 
-import entidades.*;
-import implementaciones.*;
-import interfaces.*;
+import controles.ControlEtapa;
 import java.awt.Color;
 import java.sql.Date;
 import java.time.LocalDate;
@@ -17,8 +15,7 @@ public class FrmSemEtapas extends javax.swing.JFrame {
 
     private Date inicio, fin;
     private int semanas, id_mesociclo;
-    IConexion conexion = new Conexion();
-    IEtapasDAO etapasDAO = new EtapasDAO(conexion);
+    ControlEtapa controlEtapa = new ControlEtapa();
     /**
      * Creates new form FrmSemEtapas
      */
@@ -47,7 +44,7 @@ public class FrmSemEtapas extends javax.swing.JFrame {
         //Validacion semanas macrociclo = semanas repartidas
         if (!((pP+pC)==semanas)) {
             // Manejar el caso en el que las semanas repartidas no sean igual a las del mesociclo
-            JOptionPane.showMessageDialog(this, "La cantidad de semanas del mesociclo son: "+semanas+". Debe repartirlas todas entre las etapas disponibles.", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "La cantidad de semanas del macrocilo son: "+semanas+". Debe repartirlas todas entre las etapas disponibles.", "Error", JOptionPane.ERROR_MESSAGE);
             return; // No continuar con el proceso
         }
 
@@ -66,32 +63,21 @@ public class FrmSemEtapas extends javax.swing.JFrame {
         LocalDate fin3LocalDate = fin2LocalDate.plus(eP, ChronoUnit.WEEKS);
         Date fin3 = Date.valueOf(fin3LocalDate);
         
-        //Aqui se guardan las etapas por ahora
-        boolean et=etapasDAO.agregarEtapa(inicio, fin1, eG, Tipo.General.toString(), id_mesociclo);
-        boolean et2=etapasDAO.agregarEtapa(fin1, fin2, eE, Tipo.Especial.toString(), id_mesociclo);
-        boolean et3=etapasDAO.agregarEtapa(fin2, fin3, eP, Tipo.Precompetitiva.toString(), id_mesociclo);
-        boolean et4=etapasDAO.agregarEtapa(fin3, fin, eC, Tipo.Competitiva.toString(), id_mesociclo);
-
-        if (et&&et2&&et3&&et4) {
-            JOptionPane.showMessageDialog(this, "Se guardo la informacion de las etapas",
-                    "Información", JOptionPane.INFORMATION_MESSAGE);
-            txtFieldPeriodoPrep.setText(String.valueOf(pP));
-            txtFieldPeriodoCom.setText(String.valueOf(pC));
-        } else {
-            JOptionPane.showMessageDialog(this, "No se pudieron guardar las etapas",
-                    "Error", JOptionPane.ERROR_MESSAGE);
-        }
+        txtFieldPeriodoPrep.setText(String.valueOf(pP));
+        txtFieldPeriodoCom.setText(String.valueOf(pC));
+        txtFieldTotal.setText(String.valueOf(pC+pP));
         
         int confirmar = JOptionPane.showConfirmDialog(null, "Periodo preparatorio: " + pP+". Periodo competitivo: "+pC, "Total de semanas", JOptionPane.YES_NO_OPTION);
             if (confirmar == JOptionPane.YES_OPTION) {
+                boolean et=controlEtapa.agregarEtapa(inicio, fin1, eG, "General");
+                boolean et2=controlEtapa.agregarEtapa(fin1, fin2, eE, "Especial");
+                boolean et3=controlEtapa.agregarEtapa(fin2, fin3, eP, "Precompetitiva");
+                boolean et4=controlEtapa.agregarEtapa(fin3, fin, eC, "Competitiva");
+
                 this.dispose();
                 FrmElecMedios medios = new FrmElecMedios();
                 medios.setVisible(true);
-            }else{
             }
-        
-        
-
     }
 
     /**
@@ -116,25 +102,33 @@ public class FrmSemEtapas extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         txtFieldPeriodoPrep = new javax.swing.JTextField();
         txtFieldPeriodoCom = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        txtFieldTotal = new javax.swing.JTextField();
         btnCancelar = new javax.swing.JToggleButton();
         btnContinuar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(56, 133, 185));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel1.setText("Etapa general");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 27, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel2.setText("Etapa especial");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 71, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel3.setText("Precompetitivo");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 124, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel4.setText("Competitivo");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 170, -1, -1));
 
         txtEtapaG.setForeground(new java.awt.Color(204, 204, 204));
         txtEtapaG.setText("0");
@@ -154,6 +148,7 @@ public class FrmSemEtapas extends javax.swing.JFrame {
                 txtEtapaGKeyTyped(evt);
             }
         });
+        jPanel1.add(txtEtapaG, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 20, 34, -1));
 
         txtEtapaP.setText("0");
         txtEtapaP.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -177,6 +172,7 @@ public class FrmSemEtapas extends javax.swing.JFrame {
                 txtEtapaPKeyTyped(evt);
             }
         });
+        jPanel1.add(txtEtapaP, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 120, 34, -1));
 
         txtEtapaE.setText("0");
         txtEtapaE.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -200,6 +196,7 @@ public class FrmSemEtapas extends javax.swing.JFrame {
                 txtEtapaEKeyTyped(evt);
             }
         });
+        jPanel1.add(txtEtapaE, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 70, 34, -1));
 
         txtEtapaC.setText("0");
         txtEtapaC.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -223,12 +220,15 @@ public class FrmSemEtapas extends javax.swing.JFrame {
                 txtEtapaCKeyTyped(evt);
             }
         });
+        jPanel1.add(txtEtapaC, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 170, 34, -1));
 
         jLabel5.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel5.setText("Periodo competitivo");
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 110, -1, -1));
 
         jLabel6.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel6.setText("Periodo preparatorio");
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 60, -1, -1));
 
         txtFieldPeriodoPrep.setText("0");
         txtFieldPeriodoPrep.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -244,6 +244,7 @@ public class FrmSemEtapas extends javax.swing.JFrame {
                 txtFieldPeriodoPrepKeyTyped(evt);
             }
         });
+        jPanel1.add(txtFieldPeriodoPrep, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 60, 34, -1));
 
         txtFieldPeriodoCom.setText("0");
         txtFieldPeriodoCom.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -259,67 +260,29 @@ public class FrmSemEtapas extends javax.swing.JFrame {
                 txtFieldPeriodoComKeyTyped(evt);
             }
         });
+        jPanel1.add(txtFieldPeriodoCom, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 110, 34, -1));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(18, 18, 18)
-                        .addComponent(txtEtapaG, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtEtapaC, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(txtEtapaP, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(30, 30, 30)
-                                        .addComponent(jLabel5))
-                                    .addComponent(jLabel6))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtFieldPeriodoPrep, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtFieldPeriodoCom, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtEtapaE, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(18, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(txtEtapaG, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(22, 22, 22)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(txtEtapaE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6)
-                    .addComponent(txtFieldPeriodoPrep, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(22, 22, 22)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(txtEtapaP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5)
-                    .addComponent(txtFieldPeriodoCom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(22, 22, 22)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(txtEtapaC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(32, Short.MAX_VALUE))
-        );
+        jLabel7.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel7.setText("Total semanas");
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 160, -1, -1));
+
+        txtFieldTotal.setText("0");
+        txtFieldTotal.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtFieldTotalFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtFieldTotalFocusLost(evt);
+            }
+        });
+        txtFieldTotal.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtFieldTotalKeyTyped(evt);
+            }
+        });
+        jPanel1.add(txtFieldTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 160, 34, -1));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(53, 44, 470, 230));
 
         btnCancelar.setBackground(new java.awt.Color(56, 133, 185));
         btnCancelar.setText("Cancelar");
@@ -328,6 +291,7 @@ public class FrmSemEtapas extends javax.swing.JFrame {
                 btnCancelarActionPerformed(evt);
             }
         });
+        getContentPane().add(btnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(168, 340, -1, 34));
 
         btnContinuar.setBackground(new java.awt.Color(56, 133, 185));
         btnContinuar.setText("Continuar");
@@ -336,33 +300,7 @@ public class FrmSemEtapas extends javax.swing.JFrame {
                 btnContinuarActionPerformed(evt);
             }
         });
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(53, 53, 53)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(58, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(btnCancelar)
-                .addGap(66, 66, 66)
-                .addComponent(btnContinuar, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(168, 168, 168))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(44, 44, 44)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(34, 34, 34)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnContinuar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(46, Short.MAX_VALUE))
-        );
+        getContentPane().add(btnContinuar, new org.netbeans.lib.awtextra.AbsoluteConstraints(317, 340, 84, 34));
 
         pack();
         setLocationRelativeTo(null);
@@ -598,41 +536,38 @@ public class FrmSemEtapas extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_txtFieldPeriodoComKeyTyped
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FrmSemEtapas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FrmSemEtapas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FrmSemEtapas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FrmSemEtapas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    private void txtFieldTotalFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtFieldTotalFocusGained
+        // TODO add your handling code here:
+        if (txtFieldPeriodoCom.getText().equals("")) {
+            txtFieldPeriodoCom.setText("0");
+            txtFieldPeriodoCom.setForeground(new Color(153, 153, 153));
         }
-        //</editor-fold>
+    }//GEN-LAST:event_txtFieldTotalFocusGained
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new FrmSemEtapas().setVisible(true);
-            }
-        });
-    }
+    private void txtFieldTotalFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtFieldTotalFocusLost
+        // TODO add your handling code here:
+        if (txtFieldPeriodoPrep.getText().equals("")) {
+            txtFieldPeriodoPrep.setText("0");
+            txtFieldPeriodoPrep.setForeground(new Color(153, 153, 153));
+        }
+    }//GEN-LAST:event_txtFieldTotalFocusLost
 
+    private void txtFieldTotalKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFieldTotalKeyTyped
+        // TODO add your handling code here:
+        int key = evt.getKeyChar();
+
+        boolean numeros = key >= 48 && key <= 57;
+
+        if (!numeros) {
+            evt.consume();
+        }
+
+        if (txtFieldPeriodoCom.getText().trim().length() == 3) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtFieldTotalKeyTyped
+
+   
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JToggleButton btnCancelar;
     private javax.swing.JButton btnContinuar;
@@ -642,6 +577,7 @@ public class FrmSemEtapas extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField txtEtapaC;
     private javax.swing.JTextField txtEtapaE;
@@ -649,5 +585,6 @@ public class FrmSemEtapas extends javax.swing.JFrame {
     private javax.swing.JTextField txtEtapaP;
     private javax.swing.JTextField txtFieldPeriodoCom;
     private javax.swing.JTextField txtFieldPeriodoPrep;
+    private javax.swing.JTextField txtFieldTotal;
     // End of variables declaration//GEN-END:variables
 }

@@ -6,6 +6,7 @@ package controles;
 
 import entidades.Rama;
 import implementaciones.RamasDAO;
+import interfaces.IRamasDAO;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
@@ -15,7 +16,7 @@ import javax.swing.JOptionPane;
  * @author Alexandra
  */
 public class ControlRama {
-    RamasDAO ramasDAO = new RamasDAO();
+    IRamasDAO ramasDAO = new RamasDAO();
     
     public ControlRama() {
     }

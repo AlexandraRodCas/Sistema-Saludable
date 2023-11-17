@@ -6,6 +6,7 @@ package controles;
 
 import entidades.Deporte;
 import implementaciones.DeportesDAO;
+import interfaces.IDeportesDAO;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
@@ -15,7 +16,7 @@ import javax.swing.JOptionPane;
  * @author Alexandra
  */
 public class ControlDeporte {
-    DeportesDAO deportesDAO = new DeportesDAO();
+    IDeportesDAO deportesDAO = new DeportesDAO();
     
     public ControlDeporte() {
     }

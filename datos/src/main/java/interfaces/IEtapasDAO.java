@@ -13,6 +13,6 @@ import java.util.List;
  * @author elisa
  */
 public interface IEtapasDAO {
-    public boolean agregarEtapa(Date inicio, Date fin, int semanas, String tipo, int id_mesociclo);
+    public boolean agregarEtapa(Date inicio, Date fin, int semanas, String tipo);
     public List<Etapa> consultarEtapas();
 }

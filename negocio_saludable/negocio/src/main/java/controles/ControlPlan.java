@@ -6,6 +6,7 @@ package controles;
 
 import entidades.Plan;
 import implementaciones.PlanDAO;
+import interfaces.IPlanDAO;
 import java.util.Date;
 
 /**
@@ -13,7 +14,7 @@ import java.util.Date;
  * @author Alexandra
  */
 public class ControlPlan {
-    PlanDAO planDAO = new PlanDAO();
+    IPlanDAO planDAO = new PlanDAO();
     
     public boolean fechaVacia(Date inicio, Date fin){
         if(inicio == null || fin == null){

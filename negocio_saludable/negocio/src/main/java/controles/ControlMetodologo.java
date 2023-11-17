@@ -6,6 +6,7 @@ package controles;
 
 import entidades.Metodologo;
 import implementaciones.MetodologosDAO;
+import interfaces.IMetodologosDAO;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
@@ -15,7 +16,7 @@ import javax.swing.JOptionPane;
  * @author Alexandra
  */
 public class ControlMetodologo {
-    MetodologosDAO metodologosDAO = new MetodologosDAO();
+    IMetodologosDAO metodologosDAO = new MetodologosDAO();
     
     public ControlMetodologo() {
     }

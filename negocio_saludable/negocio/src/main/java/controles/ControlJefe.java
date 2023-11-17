@@ -6,6 +6,7 @@ package controles;
 
 import entidades.Jefe;
 import implementaciones.JefeDAO;
+import interfaces.IJefeDAO;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
@@ -15,7 +16,7 @@ import javax.swing.JOptionPane;
  * @author Alexandra
  */
 public class ControlJefe {
-    JefeDAO jefeDAO = new JefeDAO();
+    IJefeDAO jefeDAO = new JefeDAO();
     
     public ControlJefe() {
     }

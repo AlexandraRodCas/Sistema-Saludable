@@ -7,6 +7,7 @@ package controles;
 import entidades.Deporte;
 import entidades.Usuario;
 import implementaciones.UsuariosDAO;
+import interfaces.IUsuariosDAO;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
@@ -16,7 +17,7 @@ import javax.swing.JOptionPane;
  * @author Alexandra
  */
 public class ControlEntrenador {
-    UsuariosDAO usuariosDAO = new UsuariosDAO();
+    IUsuariosDAO usuariosDAO = new UsuariosDAO();
     
     public List<Usuario> consultarDeportes(){
         List<Usuario> entrenadores = usuariosDAO.consultarUsuarios();
