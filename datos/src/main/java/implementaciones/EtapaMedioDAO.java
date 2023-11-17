@@ -31,7 +31,7 @@ public class EtapaMedioDAO implements IEtapaMedioDAO{
     public boolean agregarEtapaMedio(Etapa etapa, int medio, double volumen) {
         try {
             Connection conexion = this.conexion.crearConexion();
-            PreparedStatement statement = conexion.prepareStatement("INSERT INTO etapa_medio (etapa_id, medio_id, volumen) VALUES (?, ?, ?)");
+            PreparedStatement statement = conexion.prepareStatement("INSERT INTO etapa_medio (etapa_id_etapa, medio_id, volumen) VALUES (?, ?, ?)");
             statement.setInt(1, etapa.getId());
             statement.setInt(2, medio);
             statement.setDouble(3, volumen);

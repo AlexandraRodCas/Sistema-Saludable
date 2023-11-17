@@ -23,6 +23,7 @@ public class ControlEtapaMedio {
     public boolean agregarEtapaMedio(int medio, double volumen){
         try{
             List<Etapa> listaEtapasAgregadas = controlEtapa.consultarUltimasEtapasAgregada();
+            
             for(int i = 0; i<listaEtapasAgregadas.size(); i++){
                 etapaMedioDAO.agregarEtapaMedio(listaEtapasAgregadas.get(i), medio, volumen);
             }
