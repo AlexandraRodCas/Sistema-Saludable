@@ -1,7 +1,11 @@
 package Frames;
 
+import controles.ControlMedio;
+import entidades.Medio;
+import java.awt.GridLayout;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JCheckBox;
 
 /**
  *
@@ -10,6 +14,9 @@ import java.util.List;
 public class FrmElecMedios extends javax.swing.JFrame {
 
     List<String> listaJCB = new ArrayList<>();
+    List<Medio> listaMedios = new ArrayList<>();
+    ControlMedio controlMedio = new ControlMedio();
+    int eG = 0, eE = 0, eC = 0;
 
     /**
      * Creates new form FrmElecMedios
@@ -18,8 +25,18 @@ public class FrmElecMedios extends javax.swing.JFrame {
         initComponents();
     }
     
-    public FrmElecMedios(int id_mesociclo) {
+    public FrmElecMedios(int eG, int eE, int eC) {
         initComponents();
+        this.eG = eG;
+        this.eE = eE;
+        this.eC = eC;
+        jPanel2.setLayout(new GridLayout(0, 1)); 
+        listaMedios = controlMedio.consultarRamas();
+
+        for (Medio elemento : listaMedios) {
+            JCheckBox checkBox = new JCheckBox(elemento.toString());
+            jPanel2.add(checkBox); // Agrega el checkbox al panel
+        }
     }
 
     public FrmElecMedios(String[] arreglo) {
@@ -161,16 +178,16 @@ public class FrmElecMedios extends javax.swing.JFrame {
                         .addGap(374, 374, 374)
                         .addComponent(lblCriterioBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(352, 352, 352)
-                        .addComponent(btnContinuar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(176, 176, 176)
-                        .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 435, Short.MAX_VALUE))
+                        .addGap(357, 357, 357)
+                        .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(161, 161, 161)
+                        .addComponent(btnContinuar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 0, Short.MAX_VALUE))
             .addComponent(FondoTitulo)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(40, 40, 40)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 984, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(119, Short.MAX_VALUE))
+                .addContainerGap(82, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -191,9 +208,7 @@ public class FrmElecMedios extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -217,7 +232,7 @@ public class FrmElecMedios extends javax.swing.JFrame {
     private void btnContinuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContinuarActionPerformed
 
         revisarCheckedBox();
-        FrmCalculadora calculadora = new FrmCalculadora(listaJCB);
+        FrmCalculadora calculadora = new FrmCalculadora(listaJCB, eG, eE, eC);
         this.dispose();
         calculadora.setVisible(true);
     }//GEN-LAST:event_btnContinuarActionPerformed
@@ -225,94 +240,48 @@ public class FrmElecMedios extends javax.swing.JFrame {
     public void revisarCheckedBox() {
         listaJCB = new ArrayList<>();
         if (RAG.isSelected()) {
-            System.out.println("RAG Está seleccionado");
             String rag = RAG.getText();
             listaJCB.add(rag);
         }
         if (RAE.isSelected()) {
-            System.out.println("RAE Está seleccionado");
             String rae = RAE.getText();
             listaJCB.add(rae);
         }
         if (VelGeneral.isSelected()) {
-            System.out.println("VelGeneral Está seleccionado");
             String velGeneral = VelGeneral.getText();
             listaJCB.add(velGeneral);
         }
         if (VelEspecial.isSelected()) {
-            System.out.println("VelEspecial Está seleccionado");
             String velEspecial = VelEspecial.getText();
             listaJCB.add(velEspecial);
         }
         if (ResVelGen.isSelected()) {
-            System.out.println("ResVelGen Está seleccionado");
             String resVelGen = ResVelGen.getText();
             listaJCB.add(resVelGen);
         }
         if (ResVelEsp.isSelected()) {
-            System.out.println("ResVelEsp Está seleccionado");
             String relVelEsp = ResVelEsp.getText();
             listaJCB.add(relVelEsp);
         }
         if (FuerzaGen.isSelected()) {
-            System.out.println("FuerzaGen Está seleccionado");
             String fuerzaGen = FuerzaGen.getText();
             listaJCB.add(fuerzaGen);
         }
         if (FuerzaEsp.isSelected()) {
-            System.out.println("FuerzaEsp Está seleccionado");
             String fuerzaEsp = FuerzaEsp.getText();
             listaJCB.add(fuerzaEsp);
         }
         if (CoordinacionTecnica.isSelected()) {
-            System.out.println("CoordinacionTecnica Está seleccionado");
             String coordTec = CoordinacionTecnica.getText();
             listaJCB.add(coordTec);
         }
         if (Flexibilidad.isSelected()) {
-            System.out.println("Flexibilidad Está seleccionado");
             String Flex = Flexibilidad.getText();
             listaJCB.add(Flex);
         }
-        System.out.println("------------------------------------------");
         for (String string : listaJCB) {
             System.out.println(string);
         }
-    }
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FrmElecMedios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FrmElecMedios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FrmElecMedios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FrmElecMedios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new FrmElecMedios().setVisible(true);
-            }
-        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

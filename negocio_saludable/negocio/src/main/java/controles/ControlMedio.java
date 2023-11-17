@@ -4,9 +4,9 @@
  */
 package controles;
 
-import entidades.Rama;
-import implementaciones.RamasDAO;
-import interfaces.IRamasDAO;
+import entidades.Medio;
+import implementaciones.MedioDAO;
+import interfaces.IMedioDAO;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
@@ -15,23 +15,23 @@ import javax.swing.JOptionPane;
  *
  * @author Alexandra
  */
-public class ControlRama {
-    IRamasDAO ramasDAO = new RamasDAO();
+public class ControlMedio {
+     IMedioDAO medioDAO = new MedioDAO();
     
-    public List<Rama> consultarRamas(){
-        List<Rama> ramas = ramasDAO.consultarRamas();
+    public List<Medio> consultarRamas(){
+        List<Medio> ramas = medioDAO.consultarMedios();
         return ramas;
     }
     
-    public DefaultComboBoxModel<String> convertComboBoxModel(List<Rama> ramas){
+    public DefaultComboBoxModel<String> convertComboBoxModel(List<Medio> medios){
         DefaultComboBoxModel<String> comboBoxModel = new DefaultComboBoxModel<>();
-        if(ramas.isEmpty()){
-            JOptionPane.showMessageDialog(null, "No hay ramas agregados", "Error", JOptionPane.ERROR_MESSAGE);
+        if(medios.isEmpty()){
+            JOptionPane.showMessageDialog(null, "No hay medios agregados", "Error", JOptionPane.ERROR_MESSAGE);
             return comboBoxModel = null;
         }else{
             
-            for (int i = 0; i<ramas.size(); i++) {
-                comboBoxModel.addElement(ramas.get(i).toString());
+            for (int i = 0; i<medios.size(); i++) {
+                comboBoxModel.addElement(medios.get(i).toString());
             }
             return comboBoxModel;
         }

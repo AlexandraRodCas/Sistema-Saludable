@@ -75,7 +75,7 @@ public class FrmSemEtapas extends javax.swing.JFrame {
                 boolean et4=controlEtapa.agregarEtapa(fin3, fin, eC, "Competitiva");
 
                 this.dispose();
-                FrmElecMedios medios = new FrmElecMedios();
+                FrmElecMedios medios = new FrmElecMedios(eG, eE, eC+eP);
                 medios.setVisible(true);
             }
     }

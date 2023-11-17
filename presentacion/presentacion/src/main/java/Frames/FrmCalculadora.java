@@ -18,12 +18,12 @@ public class FrmCalculadora extends javax.swing.JFrame {
      * Creates new form FrmEntrenadores2
      * @param listaJCB
      */
-    public FrmCalculadora(List<String> listaJCB) {
+    public FrmCalculadora(List<String> listaJCB, int eG, int eE, int eC) {
         initComponents();
         DefaultTableModel model = (DefaultTableModel) tblCalculadora.getModel();
-        int semEtGen = 20;
-        int semEtEsp = 10;
-        int semEtCom = 5;
+        int semEtGen = eG;
+        int semEtEsp = eE;
+        int semEtCom = eC;
 
         //Comprobando que llegan los medios
 //        for (String string : listaJCB) {
