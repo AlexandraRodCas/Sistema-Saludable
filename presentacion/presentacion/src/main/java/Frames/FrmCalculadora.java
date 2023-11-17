@@ -256,9 +256,10 @@ public class FrmCalculadora extends javax.swing.JFrame {
                 int rowCountGuardar = tblCalculadora.getRowCount();
                 int colCount = tblCalculadora.getColumnCount();
                 for (int i2 = 0; i2 < rowCountGuardar; i2++) {
-                    for(int j = 0; j<colCount; i = i+6)
-                    controlEtapaMedio.agregarEtapaMedio(numeroID(tblCalculadora.getValueAt(i2, 0).toString()), Double.parseDouble(tblCalculadora.getValueAt(i2, i).toString()));
-
+                    for(int j = 6; j<colCount; j = j+6){
+                        int medioId = numeroID(tblCalculadora.getValueAt(i2, 0).toString());
+                        controlEtapaMedio.agregarEtapaMedio(medioId, Double.parseDouble(tblCalculadora.getValueAt(i2, j).toString()));
+                    }
                 }
             }
         }
@@ -407,9 +408,18 @@ public class FrmCalculadora extends javax.swing.JFrame {
     }
     
      public int numeroID(String id){
-        String numeroStr = id.replaceAll("[^0-9]", ""); 
-        int numero = Integer.parseInt(numeroStr); 
-        return numero;
+        int indiceEspacio = id.indexOf(' ');
+
+        // Verifica si se encontró un espacio
+        if (indiceEspacio != -1) {
+            // Obtiene la parte del texto antes del primer espacio
+            String parteAntesDelEspacio = id.substring(0, indiceEspacio);
+            System.out.println();
+            return Integer.parseInt(parteAntesDelEspacio);
+        } else {
+            System.out.println("No se encontró ningún espacio en el texto.");
+            return 0;
+        }
     }
     
     //Método para ver si una cadena es un int
