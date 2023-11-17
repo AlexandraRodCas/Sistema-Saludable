@@ -54,7 +54,7 @@ public class ControlEtapa {
         for (int i = indiceInicio; i < totalEtapas; i++) {
             ultimasCuatroAgregadas.add(listaEtapasAgregadas.get(i));
         }
-        return listaEtapasAgregadas;
+        return ultimasCuatroAgregadas;
         
     }
     

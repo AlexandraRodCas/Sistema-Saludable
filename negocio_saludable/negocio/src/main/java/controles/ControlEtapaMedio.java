@@ -20,12 +20,13 @@ public class ControlEtapaMedio {
     ControlEtapa controlEtapa = new ControlEtapa();
     IMedioDAO medioDAO = new MedioDAO();
     
-    public boolean agregarEtapaMedio(int medio, double volumen){
+    public boolean agregarEtapaMedio(int medio, double volumen, String tipo){
         try{
             List<Etapa> listaEtapasAgregadas = controlEtapa.consultarUltimasEtapasAgregada();
-            
             for(int i = 0; i<listaEtapasAgregadas.size(); i++){
-                etapaMedioDAO.agregarEtapaMedio(listaEtapasAgregadas.get(i), medio, volumen);
+                if(listaEtapasAgregadas.get(i).getTipo() == tipo){
+                    etapaMedioDAO.agregarEtapaMedio(listaEtapasAgregadas.get(i), medio, volumen);
+                }
             }
             
             return true;

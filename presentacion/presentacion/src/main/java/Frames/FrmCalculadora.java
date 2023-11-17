@@ -258,7 +258,15 @@ public class FrmCalculadora extends javax.swing.JFrame {
                 for (int i2 = 0; i2 < rowCountGuardar; i2++) {
                     for(int j = 6; j<colCount; j = j+6){
                         int medioId = numeroID(tblCalculadora.getValueAt(i2, 0).toString());
-                        controlEtapaMedio.agregarEtapaMedio(medioId, Double.parseDouble(tblCalculadora.getValueAt(i2, j).toString()));
+                        if(j == 6){
+                            controlEtapaMedio.agregarEtapaMedio(medioId, Double.parseDouble(tblCalculadora.getValueAt(i2, j).toString()), "General");
+                        }
+                        if(j == 12){
+                            controlEtapaMedio.agregarEtapaMedio(medioId, Double.parseDouble(tblCalculadora.getValueAt(i2, j).toString()), "Especial");
+                        }
+                        if(j == 18){
+                            controlEtapaMedio.agregarEtapaMedio(medioId, Double.parseDouble(tblCalculadora.getValueAt(i2, j).toString()), "Competitiva");
+                        }
                     }
                 }
             }
