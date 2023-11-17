@@ -8,6 +8,7 @@ import entidades.Plan;
 import implementaciones.PlanDAO;
 import interfaces.IPlanDAO;
 import java.util.Date;
+import java.util.List;
 
 /**
  *
@@ -27,5 +28,11 @@ public class ControlPlan {
     
     public void agregarPlan(Plan plan){
         planDAO.agregarPlan(plan);
+    }
+    
+    public Plan consultarUltimoPlanAgregado(){
+        List<Plan> listaPlanes = planDAO.consultarPlanes();
+        return listaPlanes.get(listaPlanes.size()-1);
+        
     }
 }

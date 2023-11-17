@@ -39,6 +39,14 @@ public class Etapa implements Serializable {
     
     //constructor
 
+    public Etapa(int id, Date inicio, Date fin, int semanas, String tipo) {
+        this.inicio = inicio;
+        this.fin = fin;
+        this.semanas = semanas;
+        this.tipo = tipo;
+        this.id = id;
+    }
+    
     public Etapa(Date inicio, Date fin, int semanas, String tipo) {
         this.inicio = inicio;
         this.fin = fin;

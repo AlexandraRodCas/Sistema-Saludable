@@ -31,14 +31,14 @@ public class EtapaMedio {
     @JoinColumn(name = "medio_id")
     private Medio medio;
 
-    private int volumen;
+    private double volumen;
 
     // Constructor vacío
     public EtapaMedio() {
     }
 
     // Constructor con parámetros
-    public EtapaMedio(Etapa etapa, Medio medio, int volumen) {
+    public EtapaMedio(Etapa etapa, Medio medio, double volumen) {
         this.etapa = etapa;
         this.medio = medio;
         this.volumen = volumen;
@@ -69,11 +69,11 @@ public class EtapaMedio {
         this.medio = medio;
     }
 
-    public int getVolumen() {
+    public double getVolumen() {
         return volumen;
     }
 
-    public void setVolumen(int volumen) {
+    public void setVolumen(double volumen) {
         this.volumen = volumen;
     }
     
@@ -83,10 +83,10 @@ public class EtapaMedio {
     @Override
     public int hashCode() {
         int hash = 3;
-        hash = 71 * hash + Objects.hashCode(this.id);
-        hash = 71 * hash + Objects.hashCode(this.etapa);
-        hash = 71 * hash + Objects.hashCode(this.medio);
-        hash = 71 * hash + this.volumen;
+        hash = 97 * hash + Objects.hashCode(this.id);
+        hash = 97 * hash + Objects.hashCode(this.etapa);
+        hash = 97 * hash + Objects.hashCode(this.medio);
+        hash = 97 * hash + (int) (Double.doubleToLongBits(this.volumen) ^ (Double.doubleToLongBits(this.volumen) >>> 32));
         return hash;
     }
 

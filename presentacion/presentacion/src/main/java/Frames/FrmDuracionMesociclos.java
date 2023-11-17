@@ -82,7 +82,7 @@ public class FrmDuracionMesociclos extends javax.swing.JFrame {
                 System.out.println(plan.getFin());
                 controlPlan.agregarPlan(plan);
                 this.dispose();
-                FrmSemEtapas fE= new FrmSemEtapas(inicio, fin, semanasEntreFechas, 0);
+                FrmSemEtapas fE= new FrmSemEtapas(inicio, fin, semanasEntreFechas);
                 fE.setVisible(true);
             }else{
             }

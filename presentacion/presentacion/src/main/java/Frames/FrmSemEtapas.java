@@ -1,6 +1,7 @@
 package Frames;
 
 import controles.ControlEtapa;
+import entidades.Plan;
 import java.awt.Color;
 import java.sql.Date;
 import java.time.LocalDate;
@@ -16,6 +17,7 @@ public class FrmSemEtapas extends javax.swing.JFrame {
     private Date inicio, fin;
     private int semanas, id_mesociclo;
     ControlEtapa controlEtapa = new ControlEtapa();
+    Plan plan = null;
     /**
      * Creates new form FrmSemEtapas
      */
@@ -23,12 +25,12 @@ public class FrmSemEtapas extends javax.swing.JFrame {
         initComponents();
     }
     
-    public FrmSemEtapas(Date inicio, Date fin, int semanas, int id_mesociclo) {
+    public FrmSemEtapas(Date inicio, Date fin, int semanas) {
         initComponents();
         this.inicio=inicio;
         this.fin=fin;
         this.semanas=semanas;
-        this.id_mesociclo=id_mesociclo;
+        this.plan = plan;
     }
 
     public void calcularPeriodos() {

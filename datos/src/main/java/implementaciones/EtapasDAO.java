@@ -67,12 +67,13 @@ public class EtapasDAO implements IEtapasDAO{
             ResultSet resultados = comandoSQL.executeQuery(codigoSQL); 
 
             while (resultados.next()) {
+                int id = resultados.getInt("id");
                 Date inicio = resultados.getDate("inicio");
                 Date fin = resultados.getDate("fin");
                 int semanas = resultados.getInt("semanas");
                 String tipo = resultados.getString("tipo");
 
-                Etapa etapa = new Etapa(inicio, fin, semanas, tipo);
+                Etapa etapa = new Etapa(id, inicio, fin, semanas, tipo);
                 etapas.add(etapa);
             }
 

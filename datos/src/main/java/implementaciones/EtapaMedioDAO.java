@@ -34,7 +34,7 @@ public class EtapaMedioDAO implements IEtapaMedioDAO{
             PreparedStatement statement = conexion.prepareStatement("INSERT INTO etapa_medio (etapa_id, medio_id, volumen) VALUES (?, ?, ?)");
             statement.setInt(1, etapa.getId());
             statement.setInt(2, medio.getId());
-            statement.setInt(3, volumen);
+            statement.setInt(3, (int) volumen);
             int numeroRegistrosModificados = statement.executeUpdate();
 
             conexion.close();
