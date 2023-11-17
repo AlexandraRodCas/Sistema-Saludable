@@ -309,7 +309,7 @@ public class FrmSemEtapas extends javax.swing.JFrame {
         getContentPane().add(btnContinuar, new org.netbeans.lib.awtextra.AbsoluteConstraints(317, 340, 100, 34));
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 620, 410));
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 620, 430));
 
         pack();
         setLocationRelativeTo(null);
