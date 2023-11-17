@@ -15,6 +15,7 @@ public class FrmElecMedios extends javax.swing.JFrame {
 
     List<String> listaJCB = new ArrayList<>();
     List<Medio> listaMedios = new ArrayList<>();
+    List<JCheckBox> checkboxes = new ArrayList<>();
     ControlMedio controlMedio = new ControlMedio();
     int eG = 0, eE = 0, eC = 0;
 
@@ -35,7 +36,8 @@ public class FrmElecMedios extends javax.swing.JFrame {
 
         for (Medio elemento : listaMedios) {
             JCheckBox checkBox = new JCheckBox(elemento.toString());
-            jPanel2.add(checkBox); // Agrega el checkbox al panel
+            jPanel2.add(checkBox); 
+            checkboxes.add(checkBox);
         }
     }
 
@@ -56,16 +58,6 @@ public class FrmElecMedios extends javax.swing.JFrame {
         FondoTitulo = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         lblApartado = new javax.swing.JLabel();
-        Flexibilidad = new javax.swing.JCheckBox();
-        RAG = new javax.swing.JCheckBox();
-        RAE = new javax.swing.JCheckBox();
-        ResVelGen = new javax.swing.JCheckBox();
-        ResVelEsp = new javax.swing.JCheckBox();
-        FuerzaGen = new javax.swing.JCheckBox();
-        CoordinacionTecnica = new javax.swing.JCheckBox();
-        VelGeneral = new javax.swing.JCheckBox();
-        VelEspecial = new javax.swing.JCheckBox();
-        FuerzaEsp = new javax.swing.JCheckBox();
         btnCancelar = new javax.swing.JButton();
         btnContinuar = new javax.swing.JButton();
         lblCriterioBusqueda = new javax.swing.JLabel();
@@ -91,56 +83,6 @@ public class FrmElecMedios extends javax.swing.JFrame {
         lblApartado.setText("Medios Físicos a practicar");
         jPanel2.add(lblApartado);
         lblApartado.setBounds(350, 20, 310, 30);
-
-        Flexibilidad.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        Flexibilidad.setText("FLEXIBILIDAD (MIN)");
-        jPanel2.add(Flexibilidad);
-        Flexibilidad.setBounds(660, 220, 230, 20);
-
-        RAG.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        RAG.setText("RAG (KM)");
-        jPanel2.add(RAG);
-        RAG.setBounds(70, 90, 170, 20);
-
-        RAE.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        RAE.setText("RAE (MIN)");
-        jPanel2.add(RAE);
-        RAE.setBounds(70, 150, 170, 20);
-
-        ResVelGen.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        ResVelGen.setText("RES. VEL. GEN(MTROS)");
-        jPanel2.add(ResVelGen);
-        ResVelGen.setBounds(360, 90, 240, 20);
-
-        ResVelEsp.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        ResVelEsp.setText("RES. VEL. ESP(MIN)");
-        jPanel2.add(ResVelEsp);
-        ResVelEsp.setBounds(360, 150, 210, 20);
-
-        FuerzaGen.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        FuerzaGen.setText("FUERZA GEN(REP)");
-        jPanel2.add(FuerzaGen);
-        FuerzaGen.setBounds(360, 210, 230, 20);
-
-        CoordinacionTecnica.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        CoordinacionTecnica.setText("COORDINACIÓN TÉCNICA (REP)");
-        jPanel2.add(CoordinacionTecnica);
-        CoordinacionTecnica.setBounds(660, 150, 320, 20);
-
-        VelGeneral.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        VelGeneral.setText("VEL. GENERAL (Mtros)");
-        jPanel2.add(VelGeneral);
-        VelGeneral.setBounds(70, 210, 230, 20);
-
-        VelEspecial.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        VelEspecial.setText("VEL. ESPECIAL (SEG)");
-        jPanel2.add(VelEspecial);
-        VelEspecial.setBounds(70, 270, 220, 20);
-
-        FuerzaEsp.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        FuerzaEsp.setText("FUERZA ESP(REP)");
-        jPanel2.add(FuerzaEsp);
-        FuerzaEsp.setBounds(360, 270, 200, 20);
 
         btnCancelar.setBackground(new java.awt.Color(56, 133, 185));
         btnCancelar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -226,7 +168,9 @@ public class FrmElecMedios extends javax.swing.JFrame {
     }//GEN-LAST:event_FondoTituloActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-
+        Menu calculadora = new Menu();
+        this.dispose();
+        calculadora.setVisible(true);
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnContinuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContinuarActionPerformed
@@ -239,63 +183,49 @@ public class FrmElecMedios extends javax.swing.JFrame {
 
     public void revisarCheckedBox() {
         listaJCB = new ArrayList<>();
-        if (RAG.isSelected()) {
-            String rag = RAG.getText();
-            listaJCB.add(rag);
+        // Para verificar qué checkboxes están seleccionados
+        for (JCheckBox checkBox : checkboxes) {
+            if (checkBox.isSelected()) {
+                listaJCB.add(checkBox.getText());
+            }
         }
-        if (RAE.isSelected()) {
-            String rae = RAE.getText();
-            listaJCB.add(rae);
+        
+    }
+    
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(Menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(Menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(Menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(Menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        if (VelGeneral.isSelected()) {
-            String velGeneral = VelGeneral.getText();
-            listaJCB.add(velGeneral);
-        }
-        if (VelEspecial.isSelected()) {
-            String velEspecial = VelEspecial.getText();
-            listaJCB.add(velEspecial);
-        }
-        if (ResVelGen.isSelected()) {
-            String resVelGen = ResVelGen.getText();
-            listaJCB.add(resVelGen);
-        }
-        if (ResVelEsp.isSelected()) {
-            String relVelEsp = ResVelEsp.getText();
-            listaJCB.add(relVelEsp);
-        }
-        if (FuerzaGen.isSelected()) {
-            String fuerzaGen = FuerzaGen.getText();
-            listaJCB.add(fuerzaGen);
-        }
-        if (FuerzaEsp.isSelected()) {
-            String fuerzaEsp = FuerzaEsp.getText();
-            listaJCB.add(fuerzaEsp);
-        }
-        if (CoordinacionTecnica.isSelected()) {
-            String coordTec = CoordinacionTecnica.getText();
-            listaJCB.add(coordTec);
-        }
-        if (Flexibilidad.isSelected()) {
-            String Flex = Flexibilidad.getText();
-            listaJCB.add(Flex);
-        }
-        for (String string : listaJCB) {
-            System.out.println(string);
-        }
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new Menu().setVisible(true);
+            }
+        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JCheckBox CoordinacionTecnica;
-    private javax.swing.JCheckBox Flexibilidad;
     private javax.swing.JTextField FondoTitulo;
-    private javax.swing.JCheckBox FuerzaEsp;
-    private javax.swing.JCheckBox FuerzaGen;
-    private javax.swing.JCheckBox RAE;
-    private javax.swing.JCheckBox RAG;
-    private javax.swing.JCheckBox ResVelEsp;
-    private javax.swing.JCheckBox ResVelGen;
-    private javax.swing.JCheckBox VelEspecial;
-    private javax.swing.JCheckBox VelGeneral;
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnContinuar;
     private javax.swing.JPanel jPanel1;

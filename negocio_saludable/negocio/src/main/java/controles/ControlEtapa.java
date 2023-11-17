@@ -41,4 +41,12 @@ public class ControlEtapa {
         
     }
     
+    public void consultarEtapaTipo(String tipo){
+        Plan plan = controlPlan.consultarUltimoPlanAgregado();
+        List<Etapa> listaEtapas = etapasDAO.consultarEtapas();
+        for(int i =0; i<listaEtapas.size(); i++){
+            listaEtapas.get(i).getTipo();
+        }
+    }
+    
 }

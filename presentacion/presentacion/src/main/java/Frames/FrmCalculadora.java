@@ -98,7 +98,7 @@ public class FrmCalculadora extends javax.swing.JFrame {
         tblCalculadora.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         tblCalculadora.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"RAG (KM)", null, null, null, null, "20", null, null, null, null, null, "10", null, null, null, null, null, "5", null, null}
+
             },
             new String [] {
                 "Nombre", "min", "max", "prom", "ins", "semanas", "v. etapa", "min", "max", "prom", "ins", "semanas", "v. etapa", "min", "max", "prom", "ins", "semanas", "v. etapa", "Vol. total"

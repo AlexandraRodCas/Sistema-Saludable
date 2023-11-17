@@ -85,6 +85,6 @@ public class Medio implements Serializable {
 
     @Override
     public String toString() {
-        return "Medio{" + "id=" + id + ", nombre=" + nombre + '}';
+        return nombre;
     }
 }
