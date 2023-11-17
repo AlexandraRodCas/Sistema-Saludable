@@ -24,7 +24,7 @@ public class FrmDuracionMesociclos extends javax.swing.JFrame {
     private Date inicio, fin;
     private int semanasEntreFechas;
     private Plan plan;
-    
+
     ControlPlan controlPlan = new ControlPlan();
 
     /**
@@ -33,10 +33,10 @@ public class FrmDuracionMesociclos extends javax.swing.JFrame {
     public FrmDuracionMesociclos() {
         initComponents();
     }
-    
+
     public FrmDuracionMesociclos(Plan plan) {
         initComponents();
-        this.plan=plan;
+        this.plan = plan;
     }
 
     public void recopilarInfo() {
@@ -44,8 +44,8 @@ public class FrmDuracionMesociclos extends javax.swing.JFrame {
             inicio = new Date(jDateChooser1.getDate().getTime());
             fin = new Date(dateChooserFinPlan.getDate().getTime());
 
-            Date fechaActualDate = new Date(15,11,2023);
-            
+            Date fechaActualDate = new Date(15, 11, 2023);
+
             // Convert java.sql.Date to LocalDate
             LocalDate inicioLocalDate = inicio.toLocalDate();
 
@@ -53,46 +53,51 @@ public class FrmDuracionMesociclos extends javax.swing.JFrame {
             LocalDate finLocalDate = fin.toLocalDate();
 
             LocalDate actualLocalDate = fechaActualDate.toLocalDate();
-            
+
             semanasEntreFechas = (int) ChronoUnit.WEEKS.between(inicioLocalDate, finLocalDate);
 
             txtSemanas.setText(String.valueOf(semanasEntreFechas));
-            
+
             if (finLocalDate.isBefore(inicioLocalDate) || (finLocalDate.isEqual(inicioLocalDate))) {
                 // Manejar el caso en el que la fecha de fin es anterior a la fecha de inicio
                 JOptionPane.showMessageDialog(this, "La fecha de fin debe ser posterior a la fecha de inicio.", "Error", JOptionPane.ERROR_MESSAGE);
                 return; // No continuar con el proceso
             }
 
-            if(inicioLocalDate.isBefore(actualLocalDate) || (finLocalDate.isBefore(actualLocalDate))){
+            if (inicioLocalDate.isBefore(actualLocalDate) || (finLocalDate.isBefore(actualLocalDate))) {
                 // Manejar el caso en el que la fecha de fin es anterior a la fecha de inicio
                 JOptionPane.showMessageDialog(this, "La fecha de fin e inicio debe ser posterior a la fecha actual.", "Error", JOptionPane.ERROR_MESSAGE);
                 return; // No continuar con el proceso
             }
-            if(semanasEntreFechas<10){
-                JOptionPane.showMessageDialog(this, "No hay semanas suficientes. Debe ser mayor a 10. Actualmente: " + semanasEntreFechas, "Error", JOptionPane.ERROR_MESSAGE);
-                return; 
+            //Validación faltante
+            if (inicioLocalDate.equals(finLocalDate)) {
+                JOptionPane.showMessageDialog(this, "La fecha fin e inicio deben ser distintas una de otra.", "Erorr", JOptionPane.ERROR_MESSAGE);
+                return;
             }
-            
+
+            if (semanasEntreFechas < 10) {
+                JOptionPane.showMessageDialog(this, "No hay semanas suficientes. Debe ser mayor a 10. Actualmente: " + semanasEntreFechas, "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
             int confirmar = JOptionPane.showConfirmDialog(null, "Total de semanas: " + semanasEntreFechas, "Total de semanas", JOptionPane.YES_NO_OPTION);
             if (confirmar == JOptionPane.YES_OPTION) {
                 plan.setInicio(inicio);
                 plan.setFin(fin);
-                
+
                 System.out.println(plan.getFin());
                 controlPlan.agregarPlan(plan);
                 this.dispose();
-                FrmSemEtapas fE= new FrmSemEtapas(inicio, fin, semanasEntreFechas);
+                FrmSemEtapas fE = new FrmSemEtapas(inicio, fin, semanasEntreFechas);
                 fE.setVisible(true);
-            }else{
+            } else {
             }
 //           
 
-        }
-        else{
+        } else {
             JOptionPane.showMessageDialog(this, "Hay campos vacíos", "Error", JOptionPane.ERROR_MESSAGE);
         }
-        
+
     }
 
     /**
@@ -220,7 +225,7 @@ public class FrmDuracionMesociclos extends javax.swing.JFrame {
 
     private void btnContinuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContinuarActionPerformed
         this.recopilarInfo();
-        
+
     }//GEN-LAST:event_btnContinuarActionPerformed
 
 
