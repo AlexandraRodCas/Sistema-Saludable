@@ -256,8 +256,8 @@ public class FrmCalculadora extends javax.swing.JFrame {
                 int rowCountGuardar = tblCalculadora.getRowCount();
                 int colCount = tblCalculadora.getColumnCount();
                 for (int i2 = 0; i2 < rowCountGuardar; i2++) {
-                    for(int j = 0; j<colCount; i++)
-                    controlEtapaMedio.agregarEtapaMedio(numeroID(tblCalculadora.getValueAt(i2, 0).toString()), (double) tblCalculadora.getValueAt(i2, 0));
+                    for(int j = 0; j<colCount; i = i+6)
+                    controlEtapaMedio.agregarEtapaMedio(numeroID(tblCalculadora.getValueAt(i2, 0).toString()), Double.parseDouble(tblCalculadora.getValueAt(i2, i).toString()));
 
                 }
             }

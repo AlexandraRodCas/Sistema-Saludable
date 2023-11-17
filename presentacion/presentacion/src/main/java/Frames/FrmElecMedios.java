@@ -24,6 +24,7 @@ public class FrmElecMedios extends javax.swing.JFrame {
      */
     public FrmElecMedios() {
         initComponents();
+        llenarLista();
     }
     
     public FrmElecMedios(int eG, int eE, int eC) {
@@ -34,11 +35,8 @@ public class FrmElecMedios extends javax.swing.JFrame {
         jPanel2.setLayout(new GridLayout(0, 1)); 
         listaMedios = controlMedio.consultarRamas();
 
-        for (Medio elemento : listaMedios) {
-            JCheckBox checkBox = new JCheckBox(elemento.getId() +".- "+elemento.toString());
-            jPanel2.add(checkBox); 
-            checkboxes.add(checkBox);
-        }
+        llenarLista();
+        
     }
 
     public FrmElecMedios(String[] arreglo) {
@@ -190,6 +188,14 @@ public class FrmElecMedios extends javax.swing.JFrame {
             }
         }
         
+    }
+    
+    public void llenarLista(){
+        for (Medio elemento : listaMedios) {
+            JCheckBox checkBox = new JCheckBox(elemento.getId() +" "+elemento.toString());
+            jPanel2.add(checkBox); 
+            checkboxes.add(checkBox);
+        }
     }
     
     public static void main(String args[]) {

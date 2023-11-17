@@ -23,10 +23,9 @@ public class ControlEtapaMedio {
     public boolean agregarEtapaMedio(int medio, double volumen){
         try{
             List<Etapa> listaEtapasAgregadas = controlEtapa.consultarUltimasEtapasAgregada();
-            etapaMedioDAO.agregarEtapaMedio();
-            Etapa etapa = consultarUltimaEtapaAgregada();
-            Plan plan = controlPlan.consultarUltimoPlanAgregado();
-            planEtapaDAO.agregarPlanEtapa(plan, etapa);
+            for(int i = 0; i<listaEtapasAgregadas.size(); i++){
+                etapaMedioDAO.agregarEtapaMedio(listaEtapasAgregadas.get(i), medio, volumen);
+            }
             
             return true;
         }
