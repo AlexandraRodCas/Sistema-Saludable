@@ -116,7 +116,6 @@ public class FrmDuracionMesociclos extends javax.swing.JFrame {
         btnCancelar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setUndecorated(true);
 
         FondoTitulo.setEditable(false);
         FondoTitulo.setBackground(new java.awt.Color(156, 164, 175));
