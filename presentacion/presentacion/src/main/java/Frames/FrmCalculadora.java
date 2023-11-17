@@ -25,21 +25,6 @@ public class FrmCalculadora extends javax.swing.JFrame {
         int semEtEsp = eE;
         int semEtCom = eC;
 
-        //Comprobando que llegan los medios
-//        for (String string : listaJCB) {
-//            System.out.println("elementos: ");
-//            System.out.println(string);
-//        }
-//        for (int i = 0; i < listaJCB.size(); i++) {
-//            var valor = listaJCB.get(i);
-////            tblCalculadora.addColumn(valor.ge);
-////            model.addColumn("valor agregado" );
-//            System.out.println("VALOR : " + valor);
-////            System.out.println("Entra al for");
-//            model.addRow(new Object[]{valor.indexOf(i)});
-//
-//        }
-        
         //Se agregan filas por cada medio seleccionado
         for (int i = 0; i < listaJCB.size(); i++) {
             model.addRow(new Object[] {listaJCB.get(i).toString()});
@@ -265,6 +250,8 @@ public class FrmCalculadora extends javax.swing.JFrame {
             if(colmFinal == null){
                 JOptionPane.showMessageDialog(null, "Datos vacíos. No es posible continuar", "Error", JOptionPane.ERROR_MESSAGE);
                 break;
+            }else{
+                
             }
         }
     }//GEN-LAST:event_btnAgregarActionPerformed

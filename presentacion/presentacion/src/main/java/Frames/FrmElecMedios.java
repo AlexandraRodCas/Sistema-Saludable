@@ -35,7 +35,7 @@ public class FrmElecMedios extends javax.swing.JFrame {
         listaMedios = controlMedio.consultarRamas();
 
         for (Medio elemento : listaMedios) {
-            JCheckBox checkBox = new JCheckBox(elemento.toString());
+            JCheckBox checkBox = new JCheckBox(elemento.getId() +".- "+elemento.toString());
             jPanel2.add(checkBox); 
             checkboxes.add(checkBox);
         }
