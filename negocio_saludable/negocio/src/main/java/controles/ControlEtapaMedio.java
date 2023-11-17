@@ -24,11 +24,12 @@ public class ControlEtapaMedio {
         try{
             List<Etapa> listaEtapasAgregadas = controlEtapa.consultarUltimasEtapasAgregada();
             for(int i = 0; i<listaEtapasAgregadas.size(); i++){
-                if(listaEtapasAgregadas.get(i).getTipo() == tipo){
+                System.out.println(listaEtapasAgregadas.get(i).getTipo().equals(tipo));
+                if(listaEtapasAgregadas.get(i).getTipo().equals(tipo)){
                     etapaMedioDAO.agregarEtapaMedio(listaEtapasAgregadas.get(i), medio, volumen);
                 }
             }
-            
+            System.out.println("Listo");
             return true;
         }
         catch(Exception e){
