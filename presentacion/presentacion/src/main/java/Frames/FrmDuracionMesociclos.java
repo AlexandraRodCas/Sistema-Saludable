@@ -44,7 +44,7 @@ public class FrmDuracionMesociclos extends javax.swing.JFrame {
             inicio = new Date(jDateChooser1.getDate().getTime());
             fin = new Date(dateChooserFinPlan.getDate().getTime());
 
-            Date fechaActualDate = new Date(15, 11, 2023);
+            Date fechaActualDate = new Date(2023 - 1900, 11 - 1, 15);
 
             // Convert java.sql.Date to LocalDate
             LocalDate inicioLocalDate = inicio.toLocalDate();
@@ -58,6 +58,10 @@ public class FrmDuracionMesociclos extends javax.swing.JFrame {
 
             txtSemanas.setText(String.valueOf(semanasEntreFechas));
 
+            if (actualLocalDate.isAfter(inicioLocalDate) || actualLocalDate.isAfter(finLocalDate)) {
+                JOptionPane.showMessageDialog(this, "La fecha fin e inicio no pueden estar antes de " + actualLocalDate + ".", "Erorr", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
             if (finLocalDate.isBefore(inicioLocalDate) || (finLocalDate.isEqual(inicioLocalDate))) {
                 // Manejar el caso en el que la fecha de fin es anterior a la fecha de inicio
                 JOptionPane.showMessageDialog(this, "La fecha de fin debe ser posterior a la fecha de inicio.", "Error", JOptionPane.ERROR_MESSAGE);
