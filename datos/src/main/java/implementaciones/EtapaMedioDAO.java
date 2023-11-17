@@ -28,12 +28,12 @@ public class EtapaMedioDAO implements IEtapaMedioDAO{
     }
 
     @Override
-    public boolean agregarEtapaMedio(Etapa etapa, Medio medio, double volumen) {
+    public boolean agregarEtapaMedio(Etapa etapa, int medio, double volumen) {
         try {
             Connection conexion = this.conexion.crearConexion();
             PreparedStatement statement = conexion.prepareStatement("INSERT INTO etapa_medio (etapa_id, medio_id, volumen) VALUES (?, ?, ?)");
             statement.setInt(1, etapa.getId());
-            statement.setInt(2, medio.getId());
+            statement.setInt(2, medio);
             statement.setDouble(3, volumen);
             int numeroRegistrosModificados = statement.executeUpdate();
 

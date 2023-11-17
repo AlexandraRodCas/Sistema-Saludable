@@ -1,5 +1,6 @@
 package Frames;
 
+import controles.ControlEtapaMedio;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -13,6 +14,7 @@ import javax.swing.table.TableModel;
 public class FrmCalculadora extends javax.swing.JFrame {
 
     List<String> listaJCB = new ArrayList<>();
+    ControlEtapaMedio controlEtapaMedio = new ControlEtapaMedio();
 
     /**
      * Creates new form FrmEntrenadores2
@@ -251,7 +253,13 @@ public class FrmCalculadora extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Datos vacíos. No es posible continuar", "Error", JOptionPane.ERROR_MESSAGE);
                 break;
             }else{
-                
+                int rowCountGuardar = tblCalculadora.getRowCount();
+                int colCount = tblCalculadora.getColumnCount();
+                for (int i2 = 0; i2 < rowCountGuardar; i2++) {
+                    for(int j = 0; j<colCount; i++)
+                    controlEtapaMedio.agregarEtapaMedio(numeroID(tblCalculadora.getValueAt(i2, 0).toString()), (double) tblCalculadora.getValueAt(i2, 0));
+
+                }
             }
         }
     }//GEN-LAST:event_btnAgregarActionPerformed
@@ -396,6 +404,12 @@ public class FrmCalculadora extends javax.swing.JFrame {
                 
             }
         }
+    }
+    
+     public int numeroID(String id){
+        String numeroStr = id.replaceAll("[^0-9]", ""); 
+        int numero = Integer.parseInt(numeroStr); 
+        return numero;
     }
     
     //Método para ver si una cadena es un int

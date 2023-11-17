@@ -402,8 +402,8 @@ ControlMetodologo controlMetodologo = new ControlMetodologo();
     }
     
     public int numeroID(String id){
-        String numeroStr = id.replaceAll("[^0-9]", ""); // Elimina todos los caracteres no numéricos
-        int numero = Integer.parseInt(numeroStr); // Convierte la cadena resultante a un entero
+        String numeroStr = id.replaceAll("[^0-9]", ""); 
+        int numero = Integer.parseInt(numeroStr); 
         return numero;
     }
     

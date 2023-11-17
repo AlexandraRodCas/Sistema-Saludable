@@ -12,5 +12,5 @@ import entidades.Medio;
  * @author Alexandra
  */
 public interface IEtapaMedioDAO {
-    public boolean agregarEtapaMedio(Etapa etapa, Medio medio, double volumen);
+    public boolean agregarEtapaMedio(Etapa etapa, int medio, double volumen);
 }

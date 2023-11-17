@@ -11,6 +11,7 @@ import implementaciones.PlanEtapaDAO;
 import interfaces.IEtapasDAO;
 import interfaces.IPlanEtapaDAO;
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -41,12 +42,20 @@ public class ControlEtapa {
         
     }
     
-    public void consultarEtapaTipo(String tipo){
-        Plan plan = controlPlan.consultarUltimoPlanAgregado();
+    public List<Etapa> consultarUltimasEtapasAgregada(){
         List<Etapa> listaEtapas = etapasDAO.consultarEtapas();
-        for(int i =0; i<listaEtapas.size(); i++){
-            listaEtapas.get(i).getTipo();
+        List<Etapa> listaEtapasAgregadas = etapasDAO.consultarEtapas();
+
+        // Obtener el rango correcto
+        int totalEtapas = listaEtapasAgregadas.size();
+        int indiceInicio = Math.max(totalEtapas - 4, 0); // Índice de inicio para las últimas 4 etapas
+
+        List<Etapa> ultimasCuatroAgregadas = new ArrayList<>();
+        for (int i = indiceInicio; i < totalEtapas; i++) {
+            ultimasCuatroAgregadas.add(listaEtapasAgregadas.get(i));
         }
+        return listaEtapasAgregadas;
+        
     }
     
 }
