@@ -18,18 +18,19 @@ public class FrmSemEtapas extends javax.swing.JFrame {
     private int semanas, id_mesociclo;
     ControlEtapa controlEtapa = new ControlEtapa();
     Plan plan = null;
+
     /**
      * Creates new form FrmSemEtapas
      */
     public FrmSemEtapas() {
         initComponents();
     }
-    
+
     public FrmSemEtapas(Date inicio, Date fin, int semanas) {
         initComponents();
-        this.inicio=inicio;
-        this.fin=fin;
-        this.semanas=semanas;
+        this.inicio = inicio;
+        this.fin = fin;
+        this.semanas = semanas;
         this.plan = plan;
     }
 
@@ -42,11 +43,11 @@ public class FrmSemEtapas extends javax.swing.JFrame {
 
         int pP = eG + eE;
         int pC = eP + eC;
-        
+
         //Validacion semanas macrociclo = semanas repartidas
-        if (!((pP+pC)==semanas)) {
+        if (!((pP + pC) == semanas)) {
             // Manejar el caso en el que las semanas repartidas no sean igual a las del mesociclo
-            JOptionPane.showMessageDialog(this, "La cantidad de semanas del macrocilo son: "+semanas+". Debe repartirlas todas entre las etapas disponibles.", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "La cantidad de semanas del macrociclo son: " + semanas + ". Debe repartirlas todas entre las etapas disponibles.", "Error", JOptionPane.ERROR_MESSAGE);
             return; // No continuar con el proceso
         }
 
@@ -61,25 +62,25 @@ public class FrmSemEtapas extends javax.swing.JFrame {
 
         LocalDate fin2LocalDate = fin1LocalDate.plus(eE, ChronoUnit.WEEKS);
         Date fin2 = Date.valueOf(fin2LocalDate);
-        
+
         LocalDate fin3LocalDate = fin2LocalDate.plus(eP, ChronoUnit.WEEKS);
         Date fin3 = Date.valueOf(fin3LocalDate);
-        
+
         txtFieldPeriodoPrep.setText(String.valueOf(pP));
         txtFieldPeriodoCom.setText(String.valueOf(pC));
-        txtFieldTotal.setText(String.valueOf(pC+pP));
-        
-        int confirmar = JOptionPane.showConfirmDialog(null, "Periodo preparatorio: " + pP+". Periodo competitivo: "+pC, "Total de semanas", JOptionPane.YES_NO_OPTION);
-            if (confirmar == JOptionPane.YES_OPTION) {
-                boolean et=controlEtapa.agregarEtapa(inicio, fin1, eG, "General");
-                boolean et2=controlEtapa.agregarEtapa(fin1, fin2, eE, "Especial");
-                boolean et3=controlEtapa.agregarEtapa(fin2, fin3, eP, "Precompetitiva");
-                boolean et4=controlEtapa.agregarEtapa(fin3, fin, eC, "Competitiva");
+        txtFieldTotal.setText(String.valueOf(pC + pP));
 
-                this.dispose();
-                FrmElecMedios medios = new FrmElecMedios(eG, eE, eC+eP);
-                medios.setVisible(true);
-            }
+        int confirmar = JOptionPane.showConfirmDialog(null, "Periodo preparatorio: " + pP + ". Periodo competitivo: " + pC, "Total de semanas", JOptionPane.YES_NO_OPTION);
+        if (confirmar == JOptionPane.YES_OPTION) {
+            boolean et = controlEtapa.agregarEtapa(inicio, fin1, eG, "General");
+            boolean et2 = controlEtapa.agregarEtapa(fin1, fin2, eE, "Especial");
+            boolean et3 = controlEtapa.agregarEtapa(fin2, fin3, eP, "Precompetitiva");
+            boolean et4 = controlEtapa.agregarEtapa(fin3, fin, eC, "Competitiva");
+
+            this.dispose();
+            FrmElecMedios medios = new FrmElecMedios(eG, eE, eC + eP);
+            medios.setVisible(true);
+        }
     }
 
     /**
@@ -110,7 +111,6 @@ public class FrmSemEtapas extends javax.swing.JFrame {
         btnContinuar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(56, 133, 185));
@@ -467,7 +467,7 @@ public class FrmSemEtapas extends javax.swing.JFrame {
     private void btnContinuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContinuarActionPerformed
         // TODO add your handling code here:
         //|| txtEtapaE.getText().isBlank() || txtEtapaP.getText().isBlank() || txtEtapaC.getText().isBlank() || txtFieldPeriodoCom.getText().isBlank() || txtFieldPeriodoPrep.getText().isBlank()
-        if (txtEtapaG.getText().equals("0")) {
+        if (txtEtapaG.getText().equals("0") || txtEtapaE.getText().equals("0") || txtEtapaC.getText().equals("0")) {
             JOptionPane.showMessageDialog(null,
                     "Es necesario llenar todos los campos requeridos",
                     "Error", JOptionPane.ERROR_MESSAGE);
@@ -569,7 +569,7 @@ public class FrmSemEtapas extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_txtFieldTotalKeyTyped
 
-   
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JToggleButton btnCancelar;
     private javax.swing.JButton btnContinuar;
