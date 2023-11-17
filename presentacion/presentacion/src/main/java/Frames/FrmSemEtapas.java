@@ -48,6 +48,9 @@ public class FrmSemEtapas extends javax.swing.JFrame {
         if (!((pP + pC) == semanas)) {
             // Manejar el caso en el que las semanas repartidas no sean igual a las del mesociclo
             JOptionPane.showMessageDialog(this, "La cantidad de semanas del macrociclo son: " + semanas + ". Debe repartirlas todas entre las etapas disponibles.", "Error", JOptionPane.ERROR_MESSAGE);
+            txtFieldPeriodoPrep.setText(String.valueOf(pP));
+            txtFieldPeriodoCom.setText(String.valueOf(pC));
+            txtFieldTotal.setText(String.valueOf(pC + pP));
             return; // No continuar con el proceso
         }
 
@@ -109,6 +112,7 @@ public class FrmSemEtapas extends javax.swing.JFrame {
         txtFieldTotal = new javax.swing.JTextField();
         btnCancelar = new javax.swing.JToggleButton();
         btnContinuar = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -293,7 +297,7 @@ public class FrmSemEtapas extends javax.swing.JFrame {
                 btnCancelarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(168, 340, -1, 34));
+        getContentPane().add(btnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(154, 340, 90, 34));
 
         btnContinuar.setBackground(new java.awt.Color(56, 133, 185));
         btnContinuar.setText("Continuar");
@@ -302,7 +306,10 @@ public class FrmSemEtapas extends javax.swing.JFrame {
                 btnContinuarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnContinuar, new org.netbeans.lib.awtextra.AbsoluteConstraints(317, 340, 84, 34));
+        getContentPane().add(btnContinuar, new org.netbeans.lib.awtextra.AbsoluteConstraints(317, 340, 100, 34));
+
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 620, 410));
 
         pack();
         setLocationRelativeTo(null);
@@ -581,6 +588,7 @@ public class FrmSemEtapas extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JTextField txtEtapaC;
     private javax.swing.JTextField txtEtapaE;
     private javax.swing.JTextField txtEtapaG;
