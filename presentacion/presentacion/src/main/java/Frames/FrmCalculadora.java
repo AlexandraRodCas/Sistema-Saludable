@@ -269,6 +269,7 @@ public class FrmCalculadora extends javax.swing.JFrame {
                         }
                     }
                 }
+                JOptionPane.showMessageDialog(null, "Datos guardados correctamente", "Calculadora", JOptionPane.INFORMATION_MESSAGE);
             }
         }
     }//GEN-LAST:event_btnAgregarActionPerformed

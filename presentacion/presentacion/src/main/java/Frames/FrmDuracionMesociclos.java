@@ -44,7 +44,7 @@ public class FrmDuracionMesociclos extends javax.swing.JFrame {
             inicio = new Date(jDateChooser1.getDate().getTime());
             fin = new Date(dateChooserFinPlan.getDate().getTime());
 
-            Date fechaActualDate = new Date(2023 - 1900, 11 - 1, 15);
+            Date fechaActualDate = new Date(2023 - 1900, 11 - 1, 19);
 
             // Convert java.sql.Date to LocalDate
             LocalDate inicioLocalDate = inicio.toLocalDate();
