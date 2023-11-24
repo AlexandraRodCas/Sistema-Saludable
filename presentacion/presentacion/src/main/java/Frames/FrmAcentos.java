@@ -43,20 +43,21 @@ public class FrmAcentos extends javax.swing.JFrame {
         btnListarCategorias = new javax.swing.JButton();
         btnBuscarCategoria = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
+        btnAgregar2 = new javax.swing.JButton();
         lblLogoCabecera1 = new javax.swing.JLabel();
-        lblApartado1 = new javax.swing.JLabel();
         FondoTitulo1 = new javax.swing.JTextField();
         jPanel5 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         txtNombreCategoria1 = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        txtNombreCategoria2 = new javax.swing.JTextField();
+        txtNombreCategoria3 = new javax.swing.JTextField();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        btnCancelar = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblCategorias1 = new javax.swing.JTable();
-        btnModificar1 = new javax.swing.JButton();
-        btnAgregar1 = new javax.swing.JButton();
-        btnSalir1 = new javax.swing.JButton();
-        btnEliminar1 = new javax.swing.JButton();
-        btnListarCategorias1 = new javax.swing.JButton();
-        btnBuscarCategoria1 = new javax.swing.JButton();
 
         jFrame1.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         jFrame1.setBackground(new java.awt.Color(255, 255, 255));
@@ -232,34 +233,40 @@ public class FrmAcentos extends javax.swing.JFrame {
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
         jPanel4.setLayout(null);
 
+        btnAgregar2.setBackground(new java.awt.Color(56, 133, 185));
+        btnAgregar2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnAgregar2.setText("Continuar");
+        btnAgregar2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnAgregar2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnAgregar2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregar2ActionPerformed(evt);
+            }
+        });
+        jPanel4.add(btnAgregar2);
+        btnAgregar2.setBounds(310, 450, 84, 40);
+
         lblLogoCabecera1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jPanel4.add(lblLogoCabecera1);
         lblLogoCabecera1.setBounds(120, 0, 220, 30);
 
-        lblApartado1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        lblApartado1.setForeground(new java.awt.Color(255, 255, 255));
-        lblApartado1.setText("Acentos");
-        jPanel4.add(lblApartado1);
-        lblApartado1.setBounds(10, 0, 200, 30);
-
         FondoTitulo1.setEditable(false);
-        FondoTitulo1.setBackground(new java.awt.Color(110, 88, 68));
+        FondoTitulo1.setBackground(new java.awt.Color(156, 164, 175));
         FondoTitulo1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 FondoTitulo1ActionPerformed(evt);
             }
         });
         jPanel4.add(FondoTitulo1);
-        FondoTitulo1.setBounds(0, 0, 474, 30);
+        FondoTitulo1.setBounds(0, 0, 970, 30);
 
-        jPanel5.setBackground(new java.awt.Color(0, 145, 155));
+        jPanel5.setBackground(new java.awt.Color(56, 133, 185));
         jPanel5.setLayout(null);
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Acentos");
+        jLabel2.setText("Fin mesociclo");
         jPanel5.add(jLabel2);
-        jLabel2.setBounds(10, 10, 140, 16);
+        jLabel2.setBounds(590, 40, 140, 16);
 
         txtNombreCategoria1.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -267,10 +274,73 @@ public class FrmAcentos extends javax.swing.JFrame {
             }
         });
         jPanel5.add(txtNombreCategoria1);
-        txtNombreCategoria1.setBounds(20, 30, 180, 30);
+        txtNombreCategoria1.setBounds(680, 30, 160, 30);
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel3.setText("No. mesociclo");
+        jPanel5.add(jLabel3);
+        jLabel3.setBounds(20, 40, 140, 16);
+
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel4.setText("Inicio Mesociclo");
+        jPanel5.add(jLabel4);
+        jLabel4.setBounds(240, 40, 140, 16);
+
+        txtNombreCategoria2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNombreCategoria2KeyTyped(evt);
+            }
+        });
+        jPanel5.add(txtNombreCategoria2);
+        txtNombreCategoria2.setBounds(110, 30, 60, 30);
+
+        txtNombreCategoria3.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNombreCategoria3KeyTyped(evt);
+            }
+        });
+        jPanel5.add(txtNombreCategoria3);
+        txtNombreCategoria3.setBounds(340, 30, 160, 30);
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "Medio", "1", "2", "3", "4", "5", "6"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, true, true, true, true, true, true
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane3.setViewportView(jTable1);
+
+        jPanel5.add(jScrollPane3);
+        jScrollPane3.setBounds(70, 120, 800, 220);
 
         jPanel4.add(jPanel5);
-        jPanel5.setBounds(20, 50, 220, 80);
+        jPanel5.setBounds(20, 50, 920, 380);
+
+        btnCancelar.setBackground(new java.awt.Color(56, 133, 185));
+        btnCancelar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnCancelar.setText("Cancelar");
+        btnCancelar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnCancelar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarActionPerformed(evt);
+            }
+        });
+        jPanel4.add(btnCancelar);
+        btnCancelar.setBounds(520, 450, 77, 40);
 
         tblCategorias1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -305,93 +375,17 @@ public class FrmAcentos extends javax.swing.JFrame {
         jScrollPane2.setViewportView(tblCategorias1);
 
         jPanel4.add(jScrollPane2);
-        jScrollPane2.setBounds(20, 140, 340, 260);
-
-        btnModificar1.setBackground(new java.awt.Color(255, 145, 77));
-        btnModificar1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btnModificar1.setText("Modificar");
-        btnModificar1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnModificar1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnModificar1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnModificar1ActionPerformed(evt);
-            }
-        });
-        jPanel4.add(btnModificar1);
-        btnModificar1.setBounds(370, 140, 90, 80);
-
-        btnAgregar1.setBackground(new java.awt.Color(255, 145, 77));
-        btnAgregar1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btnAgregar1.setText("Agregar");
-        btnAgregar1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnAgregar1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnAgregar1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAgregar1ActionPerformed(evt);
-            }
-        });
-        jPanel4.add(btnAgregar1);
-        btnAgregar1.setBounds(370, 50, 90, 80);
-
-        btnSalir1.setBackground(new java.awt.Color(255, 145, 77));
-        btnSalir1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btnSalir1.setText("Salir");
-        btnSalir1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnSalir1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnSalir1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSalir1ActionPerformed(evt);
-            }
-        });
-        jPanel4.add(btnSalir1);
-        btnSalir1.setBounds(370, 320, 90, 80);
-
-        btnEliminar1.setBackground(new java.awt.Color(255, 145, 77));
-        btnEliminar1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btnEliminar1.setText("Eliminar");
-        btnEliminar1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnEliminar1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnEliminar1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEliminar1ActionPerformed(evt);
-            }
-        });
-        jPanel4.add(btnEliminar1);
-        btnEliminar1.setBounds(370, 230, 90, 80);
-
-        btnListarCategorias1.setBackground(new java.awt.Color(255, 145, 77));
-        btnListarCategorias1.setFont(new java.awt.Font("Segoe UI", 1, 11)); // NOI18N
-        btnListarCategorias1.setText("Listar");
-        btnListarCategorias1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnListarCategorias1ActionPerformed(evt);
-            }
-        });
-        jPanel4.add(btnListarCategorias1);
-        btnListarCategorias1.setBounds(250, 95, 110, 35);
-
-        btnBuscarCategoria1.setBackground(new java.awt.Color(255, 145, 77));
-        btnBuscarCategoria1.setFont(new java.awt.Font("Segoe UI", 1, 11)); // NOI18N
-        btnBuscarCategoria1.setText("Buscar");
-        btnBuscarCategoria1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBuscarCategoria1ActionPerformed(evt);
-            }
-        });
-        jPanel4.add(btnBuscarCategoria1);
-        btnBuscarCategoria1.setBounds(250, 50, 110, 35);
+        jScrollPane2.setBounds(50, 140, 850, 260);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 474, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 968, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 418, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 512, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -447,37 +441,31 @@ public class FrmAcentos extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_FondoTitulo1ActionPerformed
 
-    private void txtNombreCategoria1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreCategoria1KeyTyped
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtNombreCategoria1KeyTyped
-
     private void tblCategorias1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblCategorias1MouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_tblCategorias1MouseClicked
 
-    private void btnModificar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificar1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnModificar1ActionPerformed
+    private void btnAgregar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregar2ActionPerformed
+        
+    }//GEN-LAST:event_btnAgregar2ActionPerformed
 
-    private void btnAgregar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregar1ActionPerformed
+    private void txtNombreCategoria1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreCategoria1KeyTyped
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnAgregar1ActionPerformed
+    }//GEN-LAST:event_txtNombreCategoria1KeyTyped
 
-    private void btnSalir1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalir1ActionPerformed
+    private void txtNombreCategoria2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreCategoria2KeyTyped
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnSalir1ActionPerformed
+    }//GEN-LAST:event_txtNombreCategoria2KeyTyped
 
-    private void btnEliminar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminar1ActionPerformed
+    private void txtNombreCategoria3KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreCategoria3KeyTyped
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnEliminar1ActionPerformed
+    }//GEN-LAST:event_txtNombreCategoria3KeyTyped
 
-    private void btnListarCategorias1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarCategorias1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnListarCategorias1ActionPerformed
-
-    private void btnBuscarCategoria1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarCategoria1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnBuscarCategoria1ActionPerformed
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        Menu calculadora = new Menu();
+        this.dispose();
+        calculadora.setVisible(true);
+    }//GEN-LAST:event_btnCancelarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -519,33 +507,34 @@ public class FrmAcentos extends javax.swing.JFrame {
     private javax.swing.JTextField FondoTitulo;
     private javax.swing.JTextField FondoTitulo1;
     private javax.swing.JButton btnAgregar;
-    private javax.swing.JButton btnAgregar1;
+    private javax.swing.JButton btnAgregar2;
     private javax.swing.JButton btnBuscarCategoria;
-    private javax.swing.JButton btnBuscarCategoria1;
+    private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnEliminar;
-    private javax.swing.JButton btnEliminar1;
     private javax.swing.JButton btnListarCategorias;
-    private javax.swing.JButton btnListarCategorias1;
     private javax.swing.JButton btnModificar;
-    private javax.swing.JButton btnModificar1;
     private javax.swing.JButton btnSalir;
-    private javax.swing.JButton btnSalir1;
     private javax.swing.JFrame jFrame1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JTable jTable1;
     private javax.swing.JLabel lblApartado;
-    private javax.swing.JLabel lblApartado1;
     private javax.swing.JLabel lblLogoCabecera;
     private javax.swing.JLabel lblLogoCabecera1;
     private javax.swing.JTable tblCategorias;
     private javax.swing.JTable tblCategorias1;
     private javax.swing.JTextField txtNombreCategoria;
     private javax.swing.JTextField txtNombreCategoria1;
+    private javax.swing.JTextField txtNombreCategoria2;
+    private javax.swing.JTextField txtNombreCategoria3;
     // End of variables declaration//GEN-END:variables
 }
