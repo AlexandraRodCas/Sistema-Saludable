@@ -26,14 +26,7 @@ jobs:
       with:
         java-version: '17'
         distribution: 'temurin'
-        
-        - name: Cache
-        uses: actions/cache@v3
-        with:
-          path: ~/.m2/repository
-          key: ${{ runner.os }}-maven-${{ hashFiles('**/*.xml') }}
-          restore-keys: |
-            ${{ runner.os }}-maven-
+        cache: maven
             
 #    - name: Build with Maven
  #     run: mvn -B package --file pom.xml
