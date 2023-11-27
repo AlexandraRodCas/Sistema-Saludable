@@ -1,12 +1,12 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package Frames;
 
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
+ * HU8
  *
- * @author gabri
+ * @author Gabriel
  */
 public class FrmAcentos extends javax.swing.JFrame {
 
@@ -15,6 +15,51 @@ public class FrmAcentos extends javax.swing.JFrame {
      */
     public FrmAcentos() {
         initComponents();
+        int filas = tblAcentos.getRowCount();
+        System.out.println("filas: " + filas); //Renglones vacíos 
+        //Recorriendo los renglones de la tabla para saber si hay renglones vacíos
+        tablaTieneDatos();
+        validacionVacios();
+        validacionPositivos();
+    }
+
+    private void validacionPositivos() {
+        int NoMesociclos = Integer.parseInt(txtNoMesociclo.getText());
+        if (NoMesociclos <= 0 || txtInicioMesociclo.toString().equals("00/00/0000") || txtFinMesociclo.toString().equals("00/00/0000")) {
+            //ERROR
+            JOptionPane.showMessageDialog(this, "Error!!!");
+        }
+    }
+
+    private void validacionVacios() {
+        if (txtNoMesociclo.toString().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Error mesociclos vacíos");
+        } else {
+            //Todo correcto
+            if (txtInicioMesociclo.toString().isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Error Inicio mesociclo vacío");
+            } else {
+                if (txtFinMesociclo.toString().isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "Error Fin mesociclo vacío");
+
+                }
+            }
+        }
+    }
+
+    private boolean tablaTieneDatos() {
+        //Se tiene que validar que la tabla tenga datos
+        DefaultTableModel model = (DefaultTableModel) tblAcentos.getModel();
+
+        for (int fila = 0; fila < model.getRowCount(); fila++) {
+            for (int columna = 0; columna < 10; columna++) {
+                Object valor = model.getValueAt(fila, columna);
+                if (valor == null || valor.toString().isBlank() || valor.toString().isEmpty()) {
+                    return false; //La tabla no tiene datos 
+                }
+            }
+        }
+        return true; //La tabla tiene datos
     }
 
     /**
@@ -48,13 +93,13 @@ public class FrmAcentos extends javax.swing.JFrame {
         FondoTitulo1 = new javax.swing.JTextField();
         jPanel5 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        txtNombreCategoria1 = new javax.swing.JTextField();
+        txtFinMesociclo = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        txtNombreCategoria2 = new javax.swing.JTextField();
-        txtNombreCategoria3 = new javax.swing.JTextField();
+        txtNoMesociclo = new javax.swing.JTextField();
+        txtInicioMesociclo = new javax.swing.JTextField();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblAcentos = new javax.swing.JTable();
         btnCancelar = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblCategorias1 = new javax.swing.JTable();
@@ -244,7 +289,7 @@ public class FrmAcentos extends javax.swing.JFrame {
             }
         });
         jPanel4.add(btnAgregar2);
-        btnAgregar2.setBounds(310, 450, 84, 40);
+        btnAgregar2.setBounds(310, 450, 85, 40);
 
         lblLogoCabecera1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jPanel4.add(lblLogoCabecera1);
@@ -268,13 +313,13 @@ public class FrmAcentos extends javax.swing.JFrame {
         jPanel5.add(jLabel2);
         jLabel2.setBounds(590, 40, 140, 16);
 
-        txtNombreCategoria1.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtFinMesociclo.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtNombreCategoria1KeyTyped(evt);
+                txtFinMesocicloKeyTyped(evt);
             }
         });
-        jPanel5.add(txtNombreCategoria1);
-        txtNombreCategoria1.setBounds(680, 30, 160, 30);
+        jPanel5.add(txtFinMesociclo);
+        txtFinMesociclo.setBounds(680, 30, 160, 30);
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel3.setText("No. mesociclo");
@@ -286,23 +331,23 @@ public class FrmAcentos extends javax.swing.JFrame {
         jPanel5.add(jLabel4);
         jLabel4.setBounds(240, 40, 140, 16);
 
-        txtNombreCategoria2.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtNoMesociclo.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtNombreCategoria2KeyTyped(evt);
+                txtNoMesocicloKeyTyped(evt);
             }
         });
-        jPanel5.add(txtNombreCategoria2);
-        txtNombreCategoria2.setBounds(110, 30, 60, 30);
+        jPanel5.add(txtNoMesociclo);
+        txtNoMesociclo.setBounds(110, 30, 60, 30);
 
-        txtNombreCategoria3.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtInicioMesociclo.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtNombreCategoria3KeyTyped(evt);
+                txtInicioMesocicloKeyTyped(evt);
             }
         });
-        jPanel5.add(txtNombreCategoria3);
-        txtNombreCategoria3.setBounds(340, 30, 160, 30);
+        jPanel5.add(txtInicioMesociclo);
+        txtInicioMesociclo.setBounds(340, 30, 160, 30);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblAcentos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null},
@@ -321,7 +366,7 @@ public class FrmAcentos extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane3.setViewportView(jTable1);
+        jScrollPane3.setViewportView(tblAcentos);
 
         jPanel5.add(jScrollPane3);
         jScrollPane3.setBounds(70, 120, 800, 220);
@@ -389,6 +434,7 @@ public class FrmAcentos extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void FondoTituloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FondoTituloActionPerformed
@@ -446,20 +492,20 @@ public class FrmAcentos extends javax.swing.JFrame {
     }//GEN-LAST:event_tblCategorias1MouseClicked
 
     private void btnAgregar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregar2ActionPerformed
-        
+
     }//GEN-LAST:event_btnAgregar2ActionPerformed
 
-    private void txtNombreCategoria1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreCategoria1KeyTyped
+    private void txtFinMesocicloKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFinMesocicloKeyTyped
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtNombreCategoria1KeyTyped
+    }//GEN-LAST:event_txtFinMesocicloKeyTyped
 
-    private void txtNombreCategoria2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreCategoria2KeyTyped
+    private void txtNoMesocicloKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNoMesocicloKeyTyped
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtNombreCategoria2KeyTyped
+    }//GEN-LAST:event_txtNoMesocicloKeyTyped
 
-    private void txtNombreCategoria3KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreCategoria3KeyTyped
+    private void txtInicioMesocicloKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtInicioMesocicloKeyTyped
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtNombreCategoria3KeyTyped
+    }//GEN-LAST:event_txtInicioMesocicloKeyTyped
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         Menu calculadora = new Menu();
@@ -526,15 +572,15 @@ public class FrmAcentos extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTable jTable1;
     private javax.swing.JLabel lblApartado;
     private javax.swing.JLabel lblLogoCabecera;
     private javax.swing.JLabel lblLogoCabecera1;
+    private javax.swing.JTable tblAcentos;
     private javax.swing.JTable tblCategorias;
     private javax.swing.JTable tblCategorias1;
+    private javax.swing.JTextField txtFinMesociclo;
+    private javax.swing.JTextField txtInicioMesociclo;
+    private javax.swing.JTextField txtNoMesociclo;
     private javax.swing.JTextField txtNombreCategoria;
-    private javax.swing.JTextField txtNombreCategoria1;
-    private javax.swing.JTextField txtNombreCategoria2;
-    private javax.swing.JTextField txtNombreCategoria3;
     // End of variables declaration//GEN-END:variables
 }
