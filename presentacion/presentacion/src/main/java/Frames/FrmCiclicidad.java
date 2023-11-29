@@ -4,6 +4,8 @@
  */
 package Frames;
 
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author velas
@@ -15,6 +17,31 @@ public class FrmCiclicidad extends javax.swing.JFrame {
      */
     public FrmCiclicidad() {
         initComponents();
+        DefaultTableModel model = (DefaultTableModel) tblCiclicidad.getModel();
+
+    }
+
+    public void funcionalidad() {
+        DefaultTableModel model = (DefaultTableModel) tblCiclicidad.getModel();
+
+        // Obtener el número de filas y columnas
+        int numCols = model.getColumnCount();
+        int row = 0;
+
+        // Ignorar la primera columna y mostrar el contenido de las otras columnas
+        for (int col = 1; col < numCols; col++) {
+            int mesociclo = (int) model.getValueAt(0, col);
+            int ciclicidad = (int) model.getValueAt(1, col);
+            if(mesociclo==0||ciclicidad==0){
+                break;
+            }
+            guardar(mesociclo, ciclicidad);
+        }
+
+    }
+    
+    public void guardar(int mesociclo, int ciclicidad){
+        
     }
 
     /**
@@ -26,17 +53,85 @@ public class FrmCiclicidad extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblCiclicidad = new javax.swing.JTable();
+        btnAceptar = new javax.swing.JButton();
+        btnCancelar = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(1500, 308));
+
+        jPanel1.setBackground(new java.awt.Color(56, 133, 185));
+        jPanel1.setPreferredSize(new java.awt.Dimension(1200, 287));
+
+        tblCiclicidad.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {"Microciclo", null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {"Ciclicidad", null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "Mesociclo", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20"
+            }
+        ));
+        tblCiclicidad.setAutoscrolls(false);
+        tblCiclicidad.setPreferredSize(new java.awt.Dimension(1600, 80));
+        tblCiclicidad.setShowGrid(false);
+        tblCiclicidad.setShowHorizontalLines(true);
+        tblCiclicidad.setShowVerticalLines(true);
+        jScrollPane1.setViewportView(tblCiclicidad);
+        tblCiclicidad.getAccessibleContext().setAccessibleParent(jPanel1);
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1)
+                .addContainerGap())
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(38, 38, 38)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 69, Short.MAX_VALUE)
+                .addGap(64, 64, 64))
+        );
+
+        btnAceptar.setBackground(new java.awt.Color(56, 133, 185));
+        btnAceptar.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
+        btnAceptar.setText("Aceptar");
+
+        btnCancelar.setBackground(new java.awt.Color(56, 133, 185));
+        btnCancelar.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
+        btnCancelar.setText("Cancelar");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1315, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(449, 449, 449)
+                .addComponent(btnAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(167, 167, 167)
+                .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(485, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(33, 33, 33)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(34, 34, 34))
         );
 
         pack();
@@ -79,5 +174,10 @@ public class FrmCiclicidad extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAceptar;
+    private javax.swing.JButton btnCancelar;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable tblCiclicidad;
     // End of variables declaration//GEN-END:variables
 }
