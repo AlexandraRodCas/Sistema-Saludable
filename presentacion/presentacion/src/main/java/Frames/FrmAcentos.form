@@ -475,14 +475,9 @@
                 <Component class="javax.swing.JTable" name="tblAcentos">
                   <Properties>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                      <Table columnCount="7" rowCount="4">
+                      <Table columnCount="2" rowCount="4">
                         <Column editable="false" title="Medio" type="java.lang.Object"/>
                         <Column editable="true" title="1" type="java.lang.Object"/>
-                        <Column editable="true" title="2" type="java.lang.Object"/>
-                        <Column editable="true" title="3" type="java.lang.Object"/>
-                        <Column editable="true" title="4" type="java.lang.Object"/>
-                        <Column editable="true" title="5" type="java.lang.Object"/>
-                        <Column editable="true" title="6" type="java.lang.Object"/>
                       </Table>
                     </Property>
                     <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">

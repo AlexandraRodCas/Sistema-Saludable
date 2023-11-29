@@ -16,11 +16,12 @@ public class FrmAcentos extends javax.swing.JFrame {
     public FrmAcentos() {
         initComponents();
         int filas = tblAcentos.getRowCount();
+        acentos("5,1");
         System.out.println("filas: " + filas); //Renglones vacíos 
         //Recorriendo los renglones de la tabla para saber si hay renglones vacíos
-        tablaTieneDatos();
-        validacionVacios();
-        validacionPositivos();
+        //tablaTieneDatos();
+        //validacionVacios();
+        //validacionPositivos();
     }
 
     private void validacionPositivos() {
@@ -289,7 +290,7 @@ public class FrmAcentos extends javax.swing.JFrame {
             }
         });
         jPanel4.add(btnAgregar2);
-        btnAgregar2.setBounds(310, 450, 85, 40);
+        btnAgregar2.setBounds(310, 450, 84, 40);
 
         lblLogoCabecera1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jPanel4.add(lblLogoCabecera1);
@@ -349,17 +350,17 @@ public class FrmAcentos extends javax.swing.JFrame {
 
         tblAcentos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
             },
             new String [] {
-                "Medio", "1", "2", "3", "4", "5", "6"
+                "Medio", "1"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, true, true, true, true, true, true
+                false, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -513,40 +514,25 @@ public class FrmAcentos extends javax.swing.JFrame {
         calculadora.setVisible(true);
     }//GEN-LAST:event_btnCancelarActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FrmAcentos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FrmAcentos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FrmAcentos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FrmAcentos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    public void acentos(String ciclicidad){
+        int numeroCiclicidad = sumarNumerosPorComa(ciclicidad);
+        DefaultTableModel model =  (DefaultTableModel) tblAcentos.getModel();
+        for (int i = 2; i <= numeroCiclicidad; i++) {
+            model.addColumn(String.valueOf(i));
         }
-        //</editor-fold>
-        //</editor-fold>
+        
+        
+    }
+    
+    public static int sumarNumerosPorComa(String cadena) {
+        String[] numerosComoString = cadena.split(",");
+        int suma = 0;
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new FrmAcentos().setVisible(true);
-            }
-        });
+        for (String numero : numerosComoString) {
+            suma += Integer.parseInt(numero);
+        }
+
+        return suma;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
