@@ -98,30 +98,27 @@
               <Properties>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                   <Table columnCount="21" rowCount="2">
-                    <Column editable="true" title="Mesociclo" type="java.lang.Object">
-                      <Data value="Microciclo"/>
-                      <Data value="Ciclicidad"/>
-                    </Column>
-                    <Column editable="true" title="1" type="java.lang.Object"/>
-                    <Column editable="true" title="2" type="java.lang.Object"/>
-                    <Column editable="true" title="3" type="java.lang.Object"/>
-                    <Column editable="true" title="4" type="java.lang.Object"/>
-                    <Column editable="true" title="5" type="java.lang.Object"/>
-                    <Column editable="true" title="6" type="java.lang.Object"/>
-                    <Column editable="true" title="7" type="java.lang.Object"/>
-                    <Column editable="true" title="8" type="java.lang.Object"/>
-                    <Column editable="true" title="9" type="java.lang.Object"/>
-                    <Column editable="true" title="10" type="java.lang.Object"/>
-                    <Column editable="true" title="11" type="java.lang.Object"/>
-                    <Column editable="true" title="12" type="java.lang.Object"/>
-                    <Column editable="true" title="13" type="java.lang.Object"/>
-                    <Column editable="true" title="14" type="java.lang.Object"/>
-                    <Column editable="true" title="15" type="java.lang.Object"/>
-                    <Column editable="true" title="16" type="java.lang.Object"/>
-                    <Column editable="true" title="17" type="java.lang.Object"/>
-                    <Column editable="true" title="18" type="java.lang.Object"/>
-                    <Column editable="true" title="19" type="java.lang.Object"/>
-                    <Column editable="true" title="20" type="java.lang.Object"/>
+                    <Column editable="true" title="Mesociclo" type="java.lang.String"/>
+                    <Column editable="true" title="1" type="java.lang.String"/>
+                    <Column editable="true" title="2" type="java.lang.String"/>
+                    <Column editable="true" title="3" type="java.lang.String"/>
+                    <Column editable="true" title="4" type="java.lang.String"/>
+                    <Column editable="true" title="5" type="java.lang.String"/>
+                    <Column editable="true" title="6" type="java.lang.String"/>
+                    <Column editable="true" title="7" type="java.lang.String"/>
+                    <Column editable="true" title="8" type="java.lang.String"/>
+                    <Column editable="true" title="9" type="java.lang.String"/>
+                    <Column editable="true" title="10" type="java.lang.String"/>
+                    <Column editable="true" title="11" type="java.lang.String"/>
+                    <Column editable="true" title="12" type="java.lang.String"/>
+                    <Column editable="true" title="13" type="java.lang.String"/>
+                    <Column editable="true" title="14" type="java.lang.String"/>
+                    <Column editable="true" title="15" type="java.lang.String"/>
+                    <Column editable="true" title="16" type="java.lang.String"/>
+                    <Column editable="true" title="17" type="java.lang.String"/>
+                    <Column editable="true" title="18" type="java.lang.String"/>
+                    <Column editable="true" title="19" type="java.lang.String"/>
+                    <Column editable="true" title="20" type="java.lang.String"/>
                   </Table>
                 </Property>
                 <Property name="autoscrolls" type="boolean" value="false"/>

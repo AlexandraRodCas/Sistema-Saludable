@@ -4,6 +4,7 @@
  */
 package Frames;
 
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -30,9 +31,13 @@ public class FrmCiclicidad extends javax.swing.JFrame {
 
         // Ignorar la primera columna y mostrar el contenido de las otras columnas
         for (int col = 1; col < numCols; col++) {
-            int mesociclo = (int) model.getValueAt(0, col);
-            int ciclicidad = (int) model.getValueAt(1, col);
-            if(mesociclo==0||ciclicidad==0){
+            String mesociclo = (String) model.getValueAt(0, col);
+            String ciclicidad = (String) model.getValueAt(1, col);
+            if(mesociclo.isBlank()||ciclicidad.isBlank()){
+                if(col==1&&mesociclo.isBlank()||col==1&&ciclicidad.isBlank()){
+                    JOptionPane.showMessageDialog(null, "Debes completar los datos requeridos.", "Error", JOptionPane.ERROR_MESSAGE);
+                    break;
+                }
                 break;
             }
             guardar(mesociclo, ciclicidad);
@@ -40,7 +45,7 @@ public class FrmCiclicidad extends javax.swing.JFrame {
 
     }
     
-    public void guardar(int mesociclo, int ciclicidad){
+    public void guardar(String mesociclo, String ciclicidad){
         
     }
 
@@ -67,13 +72,21 @@ public class FrmCiclicidad extends javax.swing.JFrame {
 
         tblCiclicidad.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"Microciclo", null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {"Ciclicidad", null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
                 "Mesociclo", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20"
             }
-        ));
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
         tblCiclicidad.setAutoscrolls(false);
         tblCiclicidad.setPreferredSize(new java.awt.Dimension(1600, 80));
         tblCiclicidad.setShowGrid(false);
