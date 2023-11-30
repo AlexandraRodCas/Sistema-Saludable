@@ -4,6 +4,7 @@
  */
 package Frames;
 
+import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -12,6 +13,8 @@ import javax.swing.table.DefaultTableModel;
  * @author velas
  */
 public class FrmCiclicidad extends javax.swing.JFrame {
+
+    private final Pattern pattern = Pattern.compile("[0-9,]*");
 
     /**
      * Creates new form FrmCiclicidad
@@ -27,26 +30,31 @@ public class FrmCiclicidad extends javax.swing.JFrame {
 
         // Obtener el número de filas y columnas
         int numCols = model.getColumnCount();
-        int row = 0;
 
         // Ignorar la primera columna y mostrar el contenido de las otras columnas
         for (int col = 1; col < numCols; col++) {
             String mesociclo = (String) model.getValueAt(0, col);
             String ciclicidad = (String) model.getValueAt(1, col);
-            if(mesociclo.isBlank()||ciclicidad.isBlank()){
-                if(col==1&&mesociclo.isBlank()||col==1&&ciclicidad.isBlank()){
+            if (!pattern.matcher(String.valueOf(mesociclo)).matches()
+                    ||!pattern.matcher(String.valueOf(ciclicidad)).matches()) {
+                JOptionPane.showMessageDialog(null, "Solo puedes ingresar numeros y comas. Intentalo otra vez.", "Error", JOptionPane.ERROR_MESSAGE);
+                    
+            }
+            if (mesociclo == null || ciclicidad == null) {
+                if (col == 1 && mesociclo == null || col == 1 && ciclicidad == null) {
                     JOptionPane.showMessageDialog(null, "Debes completar los datos requeridos.", "Error", JOptionPane.ERROR_MESSAGE);
                     break;
                 }
                 break;
             }
+
             guardar(mesociclo, ciclicidad);
         }
 
     }
-    
-    public void guardar(String mesociclo, String ciclicidad){
-        
+
+    public void guardar(String mesociclo, String ciclicidad) {
+
     }
 
     /**
@@ -92,6 +100,17 @@ public class FrmCiclicidad extends javax.swing.JFrame {
         tblCiclicidad.setShowGrid(false);
         tblCiclicidad.setShowHorizontalLines(true);
         tblCiclicidad.setShowVerticalLines(true);
+        tblCiclicidad.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                tblCiclicidadKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                tblCiclicidadKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                tblCiclicidadKeyTyped(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblCiclicidad);
         tblCiclicidad.getAccessibleContext().setAccessibleParent(jPanel1);
 
@@ -114,10 +133,20 @@ public class FrmCiclicidad extends javax.swing.JFrame {
         btnAceptar.setBackground(new java.awt.Color(56, 133, 185));
         btnAceptar.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
         btnAceptar.setText("Aceptar");
+        btnAceptar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAceptarActionPerformed(evt);
+            }
+        });
 
         btnCancelar.setBackground(new java.awt.Color(56, 133, 185));
         btnCancelar.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
         btnCancelar.setText("Cancelar");
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -148,6 +177,46 @@ public class FrmCiclicidad extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
+        // TODO add your handling code here:
+        this.funcionalidad();
+    }//GEN-LAST:event_btnAceptarActionPerformed
+
+    private void tblCiclicidadKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tblCiclicidadKeyTyped
+        // TODO add your handling code here:
+        Pattern pattern = Pattern.compile("[0-9,]*");
+        char c = evt.getKeyChar();
+        // Validar si el carácter es un número o una coma
+        if (!pattern.matcher(String.valueOf(c)).matches()) {
+            evt.consume();  // Consumir el evento para evitar que se ingrese el carácter no válido
+        }
+
+
+    }//GEN-LAST:event_tblCiclicidadKeyTyped
+
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_btnCancelarActionPerformed
+
+    private void tblCiclicidadKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tblCiclicidadKeyPressed
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        // Validar si el carácter es un número o una coma
+        if (!pattern.matcher(String.valueOf(c)).matches()) {
+            evt.consume();  // Consumir el evento para evitar que se ingrese el carácter no válido
+        }
+    }//GEN-LAST:event_tblCiclicidadKeyPressed
+
+    private void tblCiclicidadKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tblCiclicidadKeyReleased
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        // Validar si el carácter es un número o una coma
+        if (!pattern.matcher(String.valueOf(c)).matches()) {
+            evt.consume();  // Consumir el evento para evitar que se ingrese el carácter no válido
+        }
+    }//GEN-LAST:event_tblCiclicidadKeyReleased
 
     /**
      * @param args the command line arguments
