@@ -13,6 +13,7 @@ import javax.swing.table.DefaultTableModel;
  * @author velas
  */
 public class FrmCiclicidad extends javax.swing.JFrame {
+
     private final Pattern pattern = Pattern.compile("[0-9]*");
     private final Pattern pattern2 = Pattern.compile("[0-9,]*");
 
@@ -36,25 +37,46 @@ public class FrmCiclicidad extends javax.swing.JFrame {
             String mesociclo = (String) model.getValueAt(0, col);
             String ciclicidad = (String) model.getValueAt(1, col);
             if (mesociclo == null || ciclicidad == null || mesociclo.isBlank() || ciclicidad.isBlank()) {
-                if (col == 1 && mesociclo == null || col == 1 && ciclicidad == null 
+                if (col == 1 && mesociclo == null || col == 1 && ciclicidad == null
                         || col == 1 && mesociclo.isBlank() || col == 1 && ciclicidad.isBlank()) {
                     JOptionPane.showMessageDialog(null, "Debes completar los datos requeridos.", "Error", JOptionPane.ERROR_MESSAGE);
-                    break;
+                    return;
                 }
                 break;
             }
             if (!pattern.matcher(String.valueOf(mesociclo)).matches()
-                    ||!pattern2.matcher(String.valueOf(ciclicidad)).matches()) {
+                    || !pattern2.matcher(String.valueOf(ciclicidad)).matches()) {
                 JOptionPane.showMessageDialog(null, "Solo puedes ingresar numeros en microcilos, o numeros y comas para indicar la ciclicidad. Intentalo otra vez.", "Error", JOptionPane.ERROR_MESSAGE);
-                    
+                return;
+            }
+
+            // Validar la suma de los números en ciclicidad
+            String[] numerosCiclicidad = ciclicidad.split(",");
+            if (numerosCiclicidad.length == 2) {
+                try {
+                    int num1 = Integer.parseInt(numerosCiclicidad[0].trim());
+                    int num2 = Integer.parseInt(numerosCiclicidad[1].trim());
+                    int sumaCiclicidad = num1 + num2;
+
+                    if (sumaCiclicidad != Integer.parseInt(mesociclo)) {
+                        JOptionPane.showMessageDialog(null, "La suma de los dos números en ciclicidad no es igual al número en mesociclo.", "Error", JOptionPane.ERROR_MESSAGE);
+                        return; // Salir de la función si se encuentra un error
+                    }
+                } catch (NumberFormatException e) {
+                    JOptionPane.showMessageDialog(null, "Error al convertir los números en ciclicidad.", "Error", JOptionPane.ERROR_MESSAGE);
+                    return; // Salir de la función si se encuentra un error
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Formato incorrecto para ciclicidad. Debe ser 'n1,n2'.", "Error", JOptionPane.ERROR_MESSAGE);
+                return; // Salir de la función si se encuentra un error
             }
 
             guardar(mesociclo, ciclicidad);
         }
-        JOptionPane.showMessageDialog(null, 
-                "Se termino", "Listo", 
+        JOptionPane.showMessageDialog(null,
+                "Se termino", "Listo",
                 JOptionPane.INFORMATION_MESSAGE);
-                
+
     }
 
     public void guardar(String mesociclo, String ciclicidad) {
