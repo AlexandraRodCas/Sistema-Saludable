@@ -270,6 +270,9 @@ public class FrmCalculadora extends javax.swing.JFrame {
                     }
                 }
                 JOptionPane.showMessageDialog(null, "Datos guardados correctamente", "Calculadora", JOptionPane.INFORMATION_MESSAGE);
+                FrmCiclicidad ciclicidad = new FrmCiclicidad();
+                    this.dispose();
+                    ciclicidad.setVisible(true);
             }
         }
     }//GEN-LAST:event_btnAgregarActionPerformed
