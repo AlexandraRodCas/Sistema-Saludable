@@ -68,4 +68,27 @@ public class MedioDAO implements IMedioDAO {
         }
         return medios;
     }
+    
+    @Override
+    public Medio consultarMedioId(int id) {
+        Medio medio = null; // Valor predeterminado si no se encuentra el medio
+
+        try {
+            Connection conexion = this.conexion.crearConexion();
+            PreparedStatement statement = conexion.prepareStatement("SELECT nombre FROM medio WHERE id = ?");
+            statement.setInt(1, id);
+            ResultSet resultados = statement.executeQuery();
+
+            if (resultados.next()) {
+                String nombreMedio = resultados.getString("nombre");
+                medio = new Medio(id, nombreMedio);
+            }
+
+            conexion.close();
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
+        }
+
+        return medio;
+    }
 }

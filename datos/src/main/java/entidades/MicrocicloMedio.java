@@ -42,8 +42,6 @@ public class MicrocicloMedio implements Serializable {
 
     // Getters y setters
 
-    // Omitiendo los getters y setters para id y otros atributos por brevedad
-
     public int getId() {
         return id;
     }

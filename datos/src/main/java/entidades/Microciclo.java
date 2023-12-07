@@ -48,6 +48,13 @@ public class Microciclo implements Serializable {
         this.fin = fin;
         this.etapa = etapa;
     }
+    
+    public Microciclo(String ciclicidad, int noMesociclo, Date inicio, Date fin) {
+        this.ciclicidad = ciclicidad;
+        this.noMesociclo = noMesociclo;
+        this.inicio = inicio;
+        this.fin = fin;
+    }
 
     // Getters y setters
     public int getId() {

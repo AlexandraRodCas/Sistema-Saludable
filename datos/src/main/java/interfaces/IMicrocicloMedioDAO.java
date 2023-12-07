@@ -4,15 +4,14 @@
  */
 package interfaces;
 
-import entidades.Medio;
+import entidades.MicrocicloMedio;
 import java.util.List;
 
 /**
  *
  * @author Alexandra
  */
-public interface IMedioDAO {
-    public boolean agregarMedio(String nombre);
-    public List<Medio> consultarMedios();
-    public Medio consultarMedioId(int id);
+public interface IMicrocicloMedioDAO {
+    public boolean agregarMicrocicloMedio(MicrocicloMedio microcicloMedio);
+    public List<MicrocicloMedio> consultarMicrocicloMedios();
 }

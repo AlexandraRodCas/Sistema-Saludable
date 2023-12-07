@@ -84,6 +84,31 @@ public class EtapasDAO implements IEtapasDAO{
         return etapas;
     }
 
-    
+    @Override
+    public Etapa consultarEtapaId(int id) {
+        Etapa etapa = null; // Valor predeterminado si no se encuentra la etapa
+
+        try {
+            Connection conexion = this.conexion.crearConexion();
+            PreparedStatement statement = conexion.prepareStatement("SELECT * FROM etapa WHERE id = ?");
+            statement.setInt(1, id);
+            ResultSet resultados = statement.executeQuery();
+
+            if (resultados.next()) {
+                Date inicio = resultados.getDate("inicio");
+                Date fin = resultados.getDate("fin");
+                int semanas = resultados.getInt("semanas");
+                String tipo = resultados.getString("tipo");
+
+                etapa = new Etapa(id, inicio, fin, semanas, tipo);
+            }
+
+            conexion.close();
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
+        }
+
+        return etapa;
+    }
     
 }

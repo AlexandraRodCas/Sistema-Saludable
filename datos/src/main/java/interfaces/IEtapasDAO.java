@@ -15,4 +15,5 @@ import java.util.List;
 public interface IEtapasDAO {
     public boolean agregarEtapa(Date inicio, Date fin, int semanas, String tipo);
     public List<Etapa> consultarEtapas();
+    public Etapa consultarEtapaId(int id);
 }
