@@ -43,7 +43,6 @@ public class ControlEtapa {
     }
     
     public List<Etapa> consultarUltimasEtapasAgregada(){
-        List<Etapa> listaEtapas = etapasDAO.consultarEtapas();
         List<Etapa> listaEtapasAgregadas = etapasDAO.consultarEtapas();
 
         // Obtener el rango correcto

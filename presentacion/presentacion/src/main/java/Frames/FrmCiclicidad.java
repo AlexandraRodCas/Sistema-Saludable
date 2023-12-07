@@ -73,27 +73,30 @@ public class FrmCiclicidad extends javax.swing.JFrame {
                         ControlCiclicidad controlCicli = new ControlCiclicidad();
                         int columnas = tblCiclicidad.getColumnCount();
                         tblCiclicidad.clearSelection();
+                        int contEtGen = semEtGen;
+                        int contEtEsp = semEtEsp;
+                        int contEtCom = semEtCom;
                         
                         for (int j = 1; j < columnas; j++) {
                             Object cantMicros = tblCiclicidad.getValueAt(0, j);
                             Object ciclicidadTabla = tblCiclicidad.getValueAt(1, j);
                             if(cantMicros != null){
                                 for(int c = 0; c < Integer.parseInt(cantMicros.toString()); c++){
-                                    for (int i = 0; i <=(semEtGen + semEtEsp + semEtCom) ; i++) {
-                                        if(semEtGen>0){
+                                    for (int i = 0; i <=(contEtGen + contEtEsp + contEtCom) ; i++) {
+                                        if(contEtGen>0){
                                             controlCicli.agregarMicrociclo(i, ciclicidadTabla.toString(), j, "General");
-                                            semEtGen = semEtGen - 1;
+                                            contEtGen = contEtGen - 1;
                                             break;
                                         }else{
-                                            if(semEtEsp >0){
+                                            if(contEtEsp >0){
                                                 controlCicli.agregarMicrociclo(i, ciclicidadTabla.toString(), j, "Especial");
-                                                semEtEsp = semEtEsp -1;
+                                                contEtEsp = contEtEsp -1;
                                                 break;
                                             }
                                             else{
-                                                if(semEtCom > 0 ){
+                                                if(contEtCom > 0 ){
                                                     controlCicli.agregarMicrociclo(i, ciclicidadTabla.toString(), j, "Competitiva");
-                                                    semEtCom = semEtCom -1;
+                                                    contEtCom = contEtCom -1;
                                                     break;
                                                 }
                                             }
@@ -101,7 +104,7 @@ public class FrmCiclicidad extends javax.swing.JFrame {
                                     }
                                 }
                             }
-                            if(semEtCom == 0){
+                            if(contEtCom == 0){
                                 break;
                             }
                         }
@@ -120,7 +123,7 @@ public class FrmCiclicidad extends javax.swing.JFrame {
         }
         JOptionPane.showMessageDialog(null, "Datos guardados", "Listo", JOptionPane.INFORMATION_MESSAGE);
         this.dispose();
-        FrmAcentos frmAcentos = new FrmAcentos();
+        FrmAcentos frmAcentos = new FrmAcentos(semEtGen, semEtEsp, semEtCom);
         frmAcentos.setVisible(true);
 
     }

@@ -10,14 +10,20 @@ import javax.swing.table.DefaultTableModel;
  */
 public class FrmAcentos extends javax.swing.JFrame {
 
+    int semEtGen = 0;
+    int semEtEsp = 0;
+    int semEtCom = 0;
+    
     /**
      * Creates new form p
      */
-    public FrmAcentos() {
+    public FrmAcentos(int eG, int eE, int eC) {
         initComponents();
         int filas = tblAcentos.getRowCount();
         acentos("5,1");
-        System.out.println("filas: " + filas); //Renglones vacíos 
+        semEtGen = eG;
+        semEtEsp = eE;
+        semEtCom = eC;
         //Recorriendo los renglones de la tabla para saber si hay renglones vacíos
         //tablaTieneDatos();
         //validacionVacios();
