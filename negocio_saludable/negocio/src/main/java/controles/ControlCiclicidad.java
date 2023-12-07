@@ -42,11 +42,14 @@ public class ControlCiclicidad {
     public void agregarMicrociclo(int cantidad, String ciclicidad, int mesociclo, String etapa){
         Date inicio = new Date(2023 - 1900, 11, 7 );
         Date fin = new Date(2023 - 1900, 11, 7 );
-            if(cantidad == 0){
+        Microciclo micro = consultarUltimoMicroAgregado();
+            if(micro == null){
                 inicio = fechaInicial();
                 fin = new Date(inicio.getTime());
+            }else{
+                inicio = new Date(micro.getFin().getTime());
+                fin = new Date(inicio.getTime());
             }
-            
             fin.setDate(inicio.getDate() + 7);
             
             Etapa etapaEncontrada = null;
@@ -60,13 +63,15 @@ public class ControlCiclicidad {
             
             Microciclo microciclo = new Microciclo(ciclicidad, mesociclo, inicio, fin, etapaEncontrada);
             microcicloDAO.agregarMicrociclo(microciclo);
-            Microciclo micro = consultarUltimoMicroAgregado();
-            inicio = new Date(micro.getFin().getTime());
+            
     }
     public Microciclo consultarUltimoMicroAgregado(){
         List<Microciclo> listaMicrociclos = microcicloDAO.consultarMicrociclos();
-        return listaMicrociclos.get(listaMicrociclos.size()-1);
-        
+        if(listaMicrociclos.size() == 0){
+            return null;
+        }else{
+            return listaMicrociclos.get(listaMicrociclos.size()-1);
+        }
     }
     
 }

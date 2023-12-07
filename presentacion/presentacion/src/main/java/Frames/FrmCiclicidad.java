@@ -73,31 +73,36 @@ public class FrmCiclicidad extends javax.swing.JFrame {
                         ControlCiclicidad controlCicli = new ControlCiclicidad();
                         int columnas = tblCiclicidad.getColumnCount();
                         tblCiclicidad.clearSelection();
-                        for (int i = 0; i <=(semEtGen + semEtEsp + semEtCom) ; i++) {
-                            for (int j = 1; j < columnas; j++) {
-                                Object cantMicros = tblCiclicidad.getValueAt(0, j);
-                                Object ciclicidadTabla = tblCiclicidad.getValueAt(1, j);
-                                if(semEtGen>0){
-                                    System.out.println("Etapa general: " + semEtGen);
-                                    controlCicli.agregarMicrociclo(i, ciclicidadTabla.toString(), j, "General");
-                                    semEtGen = semEtGen - 1;
-                                    break;
-                                }else{
-                                    if(semEtEsp >0){
-                                        System.out.println("Etapa especial: " + semEtEsp);
-                                        controlCicli.agregarMicrociclo(i, ciclicidadTabla.toString(), j, "Especial");
-                                        semEtEsp = semEtEsp -1;
-                                        break;
-                                    }
-                                    else{
-                                        System.out.println("Etapa Compe: " + semEtCom);
-                                        if(semEtCom > 0 ){
-                                            controlCicli.agregarMicrociclo(i, ciclicidadTabla.toString(), j, "Competitiva");
-                                            semEtCom = semEtCom -1;
+                        
+                        for (int j = 1; j < columnas; j++) {
+                            Object cantMicros = tblCiclicidad.getValueAt(0, j);
+                            Object ciclicidadTabla = tblCiclicidad.getValueAt(1, j);
+                            if(cantMicros != null){
+                                for(int c = 0; c < Integer.parseInt(cantMicros.toString()); c++){
+                                    for (int i = 0; i <=(semEtGen + semEtEsp + semEtCom) ; i++) {
+                                        if(semEtGen>0){
+                                            controlCicli.agregarMicrociclo(i, ciclicidadTabla.toString(), j, "General");
+                                            semEtGen = semEtGen - 1;
                                             break;
+                                        }else{
+                                            if(semEtEsp >0){
+                                                controlCicli.agregarMicrociclo(i, ciclicidadTabla.toString(), j, "Especial");
+                                                semEtEsp = semEtEsp -1;
+                                                break;
+                                            }
+                                            else{
+                                                if(semEtCom > 0 ){
+                                                    controlCicli.agregarMicrociclo(i, ciclicidadTabla.toString(), j, "Competitiva");
+                                                    semEtCom = semEtCom -1;
+                                                    break;
+                                                }
+                                            }
                                         }
                                     }
                                 }
+                            }
+                            if(semEtCom == 0){
+                                break;
                             }
                         }
                         
