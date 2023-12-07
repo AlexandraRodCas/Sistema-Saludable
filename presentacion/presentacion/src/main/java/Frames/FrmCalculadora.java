@@ -15,6 +15,9 @@ public class FrmCalculadora extends javax.swing.JFrame {
 
     List<String> listaJCB = new ArrayList<>();
     ControlEtapaMedio controlEtapaMedio = new ControlEtapaMedio();
+    int semEtGen = 0;
+    int semEtEsp = 0;
+    int semEtCom = 0;
 
     /**
      * Creates new form FrmEntrenadores2
@@ -23,9 +26,9 @@ public class FrmCalculadora extends javax.swing.JFrame {
     public FrmCalculadora(List<String> listaJCB, int eG, int eE, int eC) {
         initComponents();
         DefaultTableModel model = (DefaultTableModel) tblCalculadora.getModel();
-        int semEtGen = eG;
-        int semEtEsp = eE;
-        int semEtCom = eC;
+        semEtGen = eG;
+        semEtEsp = eE;
+        semEtCom = eC;
 
         //Se agregan filas por cada medio seleccionado
         for (int i = 0; i < listaJCB.size(); i++) {
@@ -270,7 +273,7 @@ public class FrmCalculadora extends javax.swing.JFrame {
                     }
                 }
                 JOptionPane.showMessageDialog(null, "Datos guardados correctamente", "Calculadora", JOptionPane.INFORMATION_MESSAGE);
-                FrmCiclicidad ciclicidad = new FrmCiclicidad();
+                FrmCiclicidad ciclicidad = new FrmCiclicidad(semEtGen, semEtEsp, semEtCom);
                     this.dispose();
                     ciclicidad.setVisible(true);
             }

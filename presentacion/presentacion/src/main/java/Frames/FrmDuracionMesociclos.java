@@ -44,7 +44,7 @@ public class FrmDuracionMesociclos extends javax.swing.JFrame {
             inicio = new Date(jDateChooser1.getDate().getTime());
             fin = new Date(dateChooserFinPlan.getDate().getTime());
 
-            Date fechaActualDate = new Date(2023 - 1900, 11 - 1, 19);
+            Date fechaActualDate = new Date(2023 - 1900, 11, 7);
 
             // Convert java.sql.Date to LocalDate
             LocalDate inicioLocalDate = inicio.toLocalDate();
@@ -79,8 +79,8 @@ public class FrmDuracionMesociclos extends javax.swing.JFrame {
                 return;
             }
 
-            if (semanasEntreFechas < 10) {
-                JOptionPane.showMessageDialog(this, "No hay semanas suficientes. Debe ser mayor a 10. Actualmente: " + semanasEntreFechas, "Error", JOptionPane.ERROR_MESSAGE);
+            if (semanasEntreFechas < 15) {
+                JOptionPane.showMessageDialog(this, "No hay semanas suficientes. Debe ser mayor a 15. Actualmente: " + semanasEntreFechas, "Error", JOptionPane.ERROR_MESSAGE);
                 return;
             }
 

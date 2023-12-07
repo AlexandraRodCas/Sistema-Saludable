@@ -4,6 +4,7 @@
  */
 package Frames;
 
+import controles.ControlCiclicidad;
 import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -16,13 +17,19 @@ public class FrmCiclicidad extends javax.swing.JFrame {
 
     private final Pattern pattern = Pattern.compile("[0-9]*");
     private final Pattern pattern2 = Pattern.compile("[0-9,]*");
+    int semEtGen = 0;
+    int semEtEsp = 0;
+    int semEtCom = 0;
 
     /**
      * Creates new form FrmCiclicidad
      */
-    public FrmCiclicidad() {
+    public FrmCiclicidad(int eG, int eE, int eC) {
         initComponents();
         DefaultTableModel model = (DefaultTableModel) tblCiclicidad.getModel();
+        semEtGen = eG;
+        semEtEsp = eE;
+        semEtCom = eC;
 
     }
 
@@ -62,6 +69,39 @@ public class FrmCiclicidad extends javax.swing.JFrame {
                         JOptionPane.showMessageDialog(null, "La suma de los dos números en ciclicidad no es igual al número en mesociclo.", "Error", JOptionPane.ERROR_MESSAGE);
                         return; // Salir de la función si se encuentra un error
                     }
+                    else{
+                        ControlCiclicidad controlCicli = new ControlCiclicidad();
+                        int columnas = tblCiclicidad.getColumnCount();
+                        tblCiclicidad.clearSelection();
+                        for (int i = 0; i <=(semEtGen + semEtEsp + semEtCom) ; i++) {
+                            for (int j = 1; j < columnas; j++) {
+                                Object cantMicros = tblCiclicidad.getValueAt(0, j);
+                                Object ciclicidadTabla = tblCiclicidad.getValueAt(1, j);
+                                if(semEtGen>0){
+                                    System.out.println("Etapa general: " + semEtGen);
+                                    controlCicli.agregarMicrociclo(i, ciclicidadTabla.toString(), j, "General");
+                                    semEtGen = semEtGen - 1;
+                                    break;
+                                }else{
+                                    if(semEtEsp >0){
+                                        System.out.println("Etapa especial: " + semEtEsp);
+                                        controlCicli.agregarMicrociclo(i, ciclicidadTabla.toString(), j, "Especial");
+                                        semEtEsp = semEtEsp -1;
+                                        break;
+                                    }
+                                    else{
+                                        System.out.println("Etapa Compe: " + semEtCom);
+                                        if(semEtCom > 0 ){
+                                            controlCicli.agregarMicrociclo(i, ciclicidadTabla.toString(), j, "Competitiva");
+                                            semEtCom = semEtCom -1;
+                                            break;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        
+                    }
                 } catch (NumberFormatException e) {
                     JOptionPane.showMessageDialog(null, "Error al convertir los números en ciclicidad.", "Error", JOptionPane.ERROR_MESSAGE);
                     return; // Salir de la función si se encuentra un error
@@ -73,9 +113,48 @@ public class FrmCiclicidad extends javax.swing.JFrame {
 
             guardar(mesociclo, ciclicidad);
         }
-        JOptionPane.showMessageDialog(null,
-                "Se termino", "Listo",
-                JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(null, "Datos guardados", "Listo", JOptionPane.INFORMATION_MESSAGE);
+        this.dispose();
+        FrmAcentos frmAcentos = new FrmAcentos();
+        frmAcentos.setVisible(true);
+
+    }
+    
+    public boolean validarSemanas(){
+        double suma = 0.0;
+
+        tblCiclicidad.clearSelection();
+        int columnas = tblCiclicidad.getColumnCount();
+        for (int i = 1; i < columnas; i++) {
+            Object valorCelda = tblCiclicidad.getValueAt(0, i);
+
+            
+            if (valorCelda != null && valorCelda != "") {
+                suma += Double.parseDouble(valorCelda.toString());
+            }
+        }
+
+        if(suma == (semEtGen + semEtEsp + semEtCom)){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+    
+    public boolean validarSemanasCantidad(){
+        tblCiclicidad.clearSelection();
+        int columnas = tblCiclicidad.getColumnCount();
+        for (int i = 1; i < columnas; i++) {
+            Object valorCelda = tblCiclicidad.getValueAt(0, i);
+            if (valorCelda != null) {
+                if(Integer.parseInt(valorCelda.toString())>6 || Integer.parseInt(valorCelda.toString())<2){
+                    return false;
+                }
+                
+            }
+        }
+        return true;
 
     }
 
@@ -206,7 +285,17 @@ public class FrmCiclicidad extends javax.swing.JFrame {
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
         // TODO add your handling code here:
-        this.funcionalidad();
+        if(validarSemanas()){
+            if(validarSemanasCantidad()){
+                this.funcionalidad();
+            }
+            else{
+            JOptionPane.showMessageDialog(null, "El número de semana por mesociclo debe ser mayor a 1 y menor o igual a 6", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }else{
+            JOptionPane.showMessageDialog(null, "Debe coincidir con el número de semanas antes determinado. " + (semEtGen + semEtEsp + semEtCom), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        
     }//GEN-LAST:event_btnAceptarActionPerformed
 
     private void tblCiclicidadKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tblCiclicidadKeyTyped
@@ -243,41 +332,6 @@ public class FrmCiclicidad extends javax.swing.JFrame {
             evt.consume();  // Consumir el evento para evitar que se ingrese el carácter no válido
         }
     }//GEN-LAST:event_tblCiclicidadKeyReleased
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FrmCiclicidad.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FrmCiclicidad.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FrmCiclicidad.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FrmCiclicidad.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new FrmCiclicidad().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAceptar;

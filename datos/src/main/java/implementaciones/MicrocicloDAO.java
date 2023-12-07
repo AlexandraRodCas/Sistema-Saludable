@@ -32,7 +32,7 @@ public class MicrocicloDAO implements IMicrocicloDAO {
     public boolean agregarMicrociclo(Microciclo microciclo) {
         try {
             Connection conexion = this.conexion.crearConexion();
-            PreparedStatement statement = conexion.prepareStatement("INSERT INTO microciclo (ciclicidad, no_mesociclo, inicio, fin, etapa_id) VALUES (?, ?, ?, ?, ?)");
+            PreparedStatement statement = conexion.prepareStatement("INSERT INTO microciclos (ciclicidad, noMesociclo, inicio, fin, etapa_id) VALUES (?, ?, ?, ?, ?)");
             statement.setString(1, microciclo.getCiclicidad());
             statement.setInt(2, microciclo.getNoMesociclo());
             statement.setDate(3, new java.sql.Date(microciclo.getInicio().getTime()));
@@ -54,12 +54,12 @@ public class MicrocicloDAO implements IMicrocicloDAO {
         try {
             Connection conexion = this.conexion.crearConexion();
             Statement statement = conexion.createStatement();
-            ResultSet resultados = statement.executeQuery("SELECT * FROM microciclo");
+            ResultSet resultados = statement.executeQuery("SELECT * FROM microciclos");
 
             while (resultados.next()) {
                 int id = resultados.getInt("id");
                 String ciclicidad = resultados.getString("ciclicidad");
-                int noMesociclo = resultados.getInt("no_mesociclo");
+                int noMesociclo = resultados.getInt("noMesociclo");
                 Date inicio = resultados.getDate("inicio");
                 Date fin = resultados.getDate("fin");
                 int etapaId = resultados.getInt("etapa_id");
@@ -85,13 +85,13 @@ public class MicrocicloDAO implements IMicrocicloDAO {
 
         try {
             Connection conexion = this.conexion.crearConexion();
-            PreparedStatement statement = conexion.prepareStatement("SELECT * FROM microciclo WHERE id = ?");
+            PreparedStatement statement = conexion.prepareStatement("SELECT * FROM microciclos WHERE id = ?");
             statement.setInt(1, id);
             ResultSet resultados = statement.executeQuery();
 
             if (resultados.next()) {
                 String ciclicidad = resultados.getString("ciclicidad");
-                int noMesociclo = resultados.getInt("no_mesociclo");
+                int noMesociclo = resultados.getInt("noMesociclo");
                 Date inicio = resultados.getDate("inicio");
                 Date fin = resultados.getDate("fin");
 

@@ -1,6 +1,6 @@
 package com.mycompany.presentacion;
 
-import Frames.FrmAcentos;
+import Frames.FrmCiclicidad;
 
 /**
  *
@@ -9,7 +9,7 @@ import Frames.FrmAcentos;
 public class Presentacion {
 
     public static void main(String[] args) {
-        FrmAcentos menu = new FrmAcentos();
+        FrmCiclicidad menu = new FrmCiclicidad(5, 10, 5);
         menu.setVisible(true);
     }
 }
