@@ -20,7 +20,7 @@ public class Conexion implements IConexion {
     
     final String CADENA_CONEXION = "jdbc:mysql://localhost:3306/sistemasaludable?serverTimezone=UTC";
     final String USUARIO = "root";
-    final String CONTRASENIA = "root";
+    final String CONTRASENIA = "Manchis5";
     
     @Override
     public Connection crearConexion() throws SQLException
