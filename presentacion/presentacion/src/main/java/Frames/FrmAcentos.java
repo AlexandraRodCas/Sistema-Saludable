@@ -2,6 +2,7 @@ package Frames;
 
 import controles.ControlMicroMedio;
 import entidades.Microciclo;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -19,7 +20,9 @@ public class FrmAcentos extends javax.swing.JFrame {
     int semEtEsp = 0;
     int semEtCom = 0;
     int contadorMesos = 0;
-    int cantidad = 0;
+    int inEmpezar = 0;
+    int etapaIdGlobal = 0;
+     List<Microciclo> listaMicros = new ArrayList<>();
     
     ControlMicroMedio controlAcentos = new ControlMicroMedio();
     
@@ -34,9 +37,9 @@ public class FrmAcentos extends javax.swing.JFrame {
         semEtEsp = eE;
         semEtCom = eC;
         contadorMesos = cantidad;
-        this.cantidad = cantidad;
+        this.inEmpezar = inEmpezar;
         
-        List<Microciclo> listaMicros = controlAcentos.consultarUltimosMicrosAgregados(semEtGen+semEtEsp+semEtCom);
+        listaMicros = controlAcentos.consultarUltimosMicrosAgregados(semEtGen+semEtEsp+semEtCom);
         
         //Se establecen las columnas
         acentos(controlAcentos.consultarCiclicidad(listaMicros, inEmpezar));
@@ -57,6 +60,7 @@ public class FrmAcentos extends javax.swing.JFrame {
             }
         }
         
+        etapaIdGlobal = idEtapa;
         calcularVolumen(idEtapa);
         
         //Se llenan los textField
@@ -562,8 +566,27 @@ public class FrmAcentos extends javax.swing.JFrame {
 
     private void btnAgregar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregar2ActionPerformed
         
-        if(contadorMesos<cantidad){
-            
+        int rowCount = tblAcentos.getRowCount();
+        List<Double> listaVolumenes = new ArrayList();
+        for(int i=0; i<rowCount; i++){
+            listaVolumenes = obtenerDatosFila(tblAcentos, i);
+        }
+        
+        
+        if(inEmpezar<contadorMesos){
+            for(int j = 0; j<rowCount; j++){
+                controlAcentos.guardarMicroMedio(listaMicros, inEmpezar, listaVolumenes, etapaIdGlobal, tblAcentos.getValueAt(j,0)+"");
+            }
+            this.dispose();
+            contadorMesos --;
+            inEmpezar ++;
+            FrmAcentos frmAcentos = new FrmAcentos(semEtGen, semEtEsp, semEtCom, contadorMesos,inEmpezar);
+            frmAcentos.setVisible(true);
+        }
+        if(contadorMesos == 0){
+            this.dispose();
+            Menu menu = new Menu();
+            menu.setVisible(true);
         }
     }//GEN-LAST:event_btnAgregar2ActionPerformed
 
@@ -594,6 +617,18 @@ public class FrmAcentos extends javax.swing.JFrame {
         
         
     }
+    
+    public List<Double> obtenerDatosFila(JTable tabla, int fila) {
+    List<Double> datosFila = new ArrayList<>();
+    int columnCount = tabla.getColumnCount();
+
+    for (int columna = 1; columna < columnCount; columna++) {
+        Double valorCelda = Double.parseDouble(tabla.getValueAt(fila, columna)+"");
+        datosFila.add(valorCelda);
+    }
+
+    return datosFila;
+}
     
     public static int sumarNumerosPorComa(String cadena) {
         String[] numerosComoString = cadena.split(",");

@@ -57,4 +57,9 @@ public class ControlEtapa {
         
     }
     
+    public Etapa consultarId(int id){
+        Etapa etapa = etapasDAO.consultarEtapaId(id);
+        return etapa;
+    }
+    
 }

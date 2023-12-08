@@ -34,7 +34,7 @@ public class MicrocicloMedioDAO implements IMicrocicloMedioDAO {
     public boolean agregarMicrocicloMedio(MicrocicloMedio microcicloMedio) {
         try {
             Connection conexion = this.conexion.crearConexion();
-            PreparedStatement statement = conexion.prepareStatement("INSERT INTO microciclo_medio (microciclo_id, medio_id, volumen) VALUES (?, ?, ?)");
+            PreparedStatement statement = conexion.prepareStatement("INSERT INTO microciclo_medio (microciclos_id, medio_id, volumen) VALUES (?, ?, ?)");
             statement.setInt(1, microcicloMedio.getMicrociclo().getId());
             statement.setInt(2, microcicloMedio.getMedio().getId());
             statement.setFloat(3, microcicloMedio.getVolumen());

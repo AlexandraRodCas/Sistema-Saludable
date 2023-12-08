@@ -7,8 +7,11 @@ package controles;
 import entidades.EtapaMedio;
 import entidades.Medio;
 import entidades.Microciclo;
+import entidades.MicrocicloMedio;
 import implementaciones.MicrocicloDAO;
+import implementaciones.MicrocicloMedioDAO;
 import interfaces.IMicrocicloDAO;
+import interfaces.IMicrocicloMedioDAO;
 import java.util.Date;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,6 +22,7 @@ import java.util.List;
  */
 public class ControlMicroMedio {
     IMicrocicloDAO microcicloDAO = new MicrocicloDAO();
+    IMicrocicloMedioDAO microMedioDAO = new MicrocicloMedioDAO();
     ControlEtapaMedio controlEtapaMedio = new ControlEtapaMedio();
     
     public ControlMicroMedio(){
@@ -137,7 +141,33 @@ public class ControlMicroMedio {
         return listaPorcentajes;
     }
     
-    public void guardarMicroMedio(){
+    public Medio consultarMedio(int idEtapa){
+        List<EtapaMedio> listaEtapaMedios = controlEtapaMedio.consultarTodosCoincidentes(idEtapa);
+        ControlMedio controlMedio = new ControlMedio();
+         
+        for (EtapaMedio etapaMedio : listaEtapaMedios) {
+            Medio medio = controlMedio.consultarMedioPorId(etapaMedio.getMedio().getId());
+            return medio;
+        }
+    
+        return null;
+    }
+    
+    public void guardarMicroMedio(List<Microciclo> listMicrociclos, int noMesociclo, List<Double> listaVolumenes, int etapaId, String medio){
+        List<Microciclo> microciclosFiltrados = filtrarMicros(listMicrociclos, noMesociclo);
+        ControlEtapa controlEtapa = new ControlEtapa();
+        controlEtapa.consultarId(etapaId);
+        
+        
+        for(int i = 0; i<microciclosFiltrados.size(); i++){
+            MicrocicloMedio microMedio = new MicrocicloMedio();
+            if(consultarMedio(etapaId)!=null){
+                microMedio.setMedio(consultarMedio(etapaId));
+            }
+            microMedio.setMicrociclo(listMicrociclos.get(i));
+            microMedio.setVolumen(Float.parseFloat(listaVolumenes.get(i).toString()));
+            microMedioDAO.agregarMicrocicloMedio(microMedio);
+        }
         
     }
 }

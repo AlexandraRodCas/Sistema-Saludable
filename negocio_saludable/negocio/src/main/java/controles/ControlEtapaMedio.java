@@ -38,6 +38,7 @@ public class ControlEtapaMedio {
         }
     }
     
+    //Metodo para ver si id de etapa coincide con la mandada
     public List<EtapaMedio> consultarTodosCoincidentes(int idEtapa){
         List<EtapaMedio> listaEtapasMedios = etapaMedioDAO.consultarTodos();
         List<EtapaMedio> listaEtapasMediosCoincidente = new ArrayList<>();
