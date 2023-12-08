@@ -561,7 +561,7 @@ public class FrmAcentos extends javax.swing.JFrame {
     }//GEN-LAST:event_tblCategorias1MouseClicked
 
     private void btnAgregar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregar2ActionPerformed
-        controlAcentos.
+        
         if(contadorMesos<cantidad){
             
         }
