@@ -68,7 +68,7 @@ public class MicrocicloDAO implements IMicrocicloDAO {
                 EtapasDAO etapaDAO = new EtapasDAO();
                 Etapa etapa = etapaDAO.consultarEtapaId(etapaId);
 
-                Microciclo microciclo = new Microciclo(ciclicidad, noMesociclo, inicio, fin);
+                Microciclo microciclo = new Microciclo(ciclicidad, noMesociclo, inicio, fin, etapa);
                 microciclos.add(microciclo);
             }
 

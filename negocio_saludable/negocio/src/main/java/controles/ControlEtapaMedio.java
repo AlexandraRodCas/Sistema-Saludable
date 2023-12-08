@@ -5,10 +5,12 @@
 package controles;
 
 import entidades.Etapa;
+import entidades.EtapaMedio;
 import implementaciones.EtapaMedioDAO;
 import implementaciones.MedioDAO;
 import interfaces.IEtapaMedioDAO;
 import interfaces.IMedioDAO;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -29,11 +31,26 @@ public class ControlEtapaMedio {
                     etapaMedioDAO.agregarEtapaMedio(listaEtapasAgregadas.get(i), medio, volumen);
                 }
             }
-            System.out.println("Listo");
             return true;
         }
         catch(Exception e){
             return false;
+        }
+    }
+    
+    public List<EtapaMedio> consultarTodosCoincidentes(int idEtapa){
+        List<EtapaMedio> listaEtapasMedios = etapaMedioDAO.consultarTodos();
+        List<EtapaMedio> listaEtapasMediosCoincidente = new ArrayList<>();
+        for (EtapaMedio etapaMedio : listaEtapasMedios) {
+            if (etapaMedio.getEtapa().getId() == idEtapa) {
+                listaEtapasMediosCoincidente.add(etapaMedio);
+            }
+        }
+
+        if(listaEtapasMediosCoincidente == null){
+            return null;
+        }else{
+            return listaEtapasMediosCoincidente;
         }
     }
     

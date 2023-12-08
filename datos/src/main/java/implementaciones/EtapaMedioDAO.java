@@ -7,11 +7,16 @@ package implementaciones;
 import interfaces.IConexion;
 import interfaces.IEtapaMedioDAO;
 import entidades.Etapa;
+import entidades.EtapaMedio;
 import entidades.Medio;
 import interfaces.IConexion;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -43,5 +48,37 @@ public class EtapaMedioDAO implements IEtapaMedioDAO{
             System.err.println(e.getMessage());
             return false;
         }
+    }
+    
+    @Override
+    public List<EtapaMedio> consultarTodos() {
+        List<EtapaMedio> listaEtapaMedio = new ArrayList<>();
+
+        try {
+            Connection conexion = this.conexion.crearConexion();
+            Statement statement = conexion.createStatement();
+            ResultSet resultados = statement.executeQuery("SELECT * FROM etapa_medio");
+
+            while (resultados.next()) {
+                int etapaId = resultados.getInt("etapa_id_etapa");
+                int medioId = resultados.getInt("medio_id");
+                double volumen = resultados.getDouble("volumen");
+                
+                EtapasDAO etapaDAO = new EtapasDAO();
+                Etapa etapa = etapaDAO.consultarEtapaId(etapaId);
+                
+                MedioDAO medioDAO = new MedioDAO();
+                Medio medio = medioDAO.consultarMedioId(medioId);
+
+                EtapaMedio etapaMedio = new EtapaMedio(etapa, medio, volumen);
+                listaEtapaMedio.add(etapaMedio);
+            }
+
+            conexion.close();
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
+        }
+
+        return listaEtapaMedio;
     }
 }

@@ -43,6 +43,12 @@ public class EtapaMedio {
         this.medio = medio;
         this.volumen = volumen;
     }
+    
+    public EtapaMedio(int id, Etapa etapa, Medio medio, double volumen) {
+        this.etapa = etapa;
+        this.medio = medio;
+        this.volumen = volumen;
+    }
 
     // Getters y setters
     public Long getId() {

@@ -1,6 +1,11 @@
 package Frames;
 
+import controles.ControlMicroMedio;
+import entidades.Microciclo;
+import java.util.Date;
+import java.util.List;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -13,23 +18,83 @@ public class FrmAcentos extends javax.swing.JFrame {
     int semEtGen = 0;
     int semEtEsp = 0;
     int semEtCom = 0;
+    int contadorMesos = 0;
+    int cantidad = 0;
+    
+    ControlMicroMedio controlAcentos = new ControlMicroMedio();
     
     /**
      * Creates new form p
      */
-    public FrmAcentos(int eG, int eE, int eC) {
+    public FrmAcentos(int eG, int eE, int eC, int cantidad, int inEmpezar) {
         initComponents();
         int filas = tblAcentos.getRowCount();
-        acentos("5,1");
+        
         semEtGen = eG;
         semEtEsp = eE;
         semEtCom = eC;
+        contadorMesos = cantidad;
+        this.cantidad = cantidad;
+        
+        List<Microciclo> listaMicros = controlAcentos.consultarUltimosMicrosAgregados(semEtGen+semEtEsp+semEtCom);
+        
+        //Se establecen las columnas
+        acentos(controlAcentos.consultarCiclicidad(listaMicros, inEmpezar));
+        Date inicio = controlAcentos.consultarInicioMeso(listaMicros, inEmpezar);
+        Date fin = controlAcentos.consultarFinMeso(listaMicros, inEmpezar);
+        inicio.setDate(inicio.getDate() + 1);
+        fin.setDate(fin.getDate() + 1);
+        int idEtapa = controlAcentos.consultarIdEtapa(listaMicros, inEmpezar);
+
+        List<String> medios = controlAcentos.consultarMedios(idEtapa);
+        DefaultTableModel model = (DefaultTableModel) tblAcentos.getModel();
+
+        
+        if(medios!= null){
+            for (String medio : medios) {
+                Object[] fila = {medio};
+                model.addRow(fila);
+            }
+        }
+        
+        calcularVolumen(idEtapa);
+        
+        //Se llenan los textField
+        txtNoMesociclo.setText(inEmpezar+"");
+        txtInicioMesociclo.setText(inicio.toString());
+        txtFinMesociclo.setText(fin.toString());
+        
         //Recorriendo los renglones de la tabla para saber si hay renglones vacíos
         //tablaTieneDatos();
         //validacionVacios();
         //validacionPositivos();
     }
+    
+    public void calcularVolumen(int idEtapa){
+        int rowCount = tblAcentos.getRowCount();
+        int colCount = tblAcentos.getColumnCount();
+        for (int i = 0; i < rowCount; i++) {
+            String nombreMedio = tblAcentos.getValueAt(i, 0).toString();
+            double volumen = controlAcentos.consultaVolumenMedio(nombreMedio, idEtapa);
+            
+        }
+        List<Integer> acentos = controlAcentos.consultarPorcentaje(tblAcentos.getColumnCount()-1);
+        for (int i = 0; i < rowCount; i++) {
+            String nombreMedio = tblAcentos.getValueAt(i, 0).toString();
+            double volumen = controlAcentos.consultaVolumenMedio(nombreMedio, idEtapa);
 
+            for(int j = 1; j<colCount; j++){
+                if (i < acentos.size()) {
+                    int porcentaje = acentos.get(j-1);
+                    double porcentajeCalculado = (volumen * porcentaje) / 100.0;
+                    tblAcentos.setValueAt(porcentajeCalculado, i, j);
+                } else {
+                    System.out.println("No hay porcentaje definido para esta fila");
+                }
+            }
+        }
+    }
+    
     private void validacionPositivos() {
         int NoMesociclos = Integer.parseInt(txtNoMesociclo.getText());
         if (NoMesociclos <= 0 || txtInicioMesociclo.toString().equals("00/00/0000") || txtFinMesociclo.toString().equals("00/00/0000")) {
@@ -296,7 +361,7 @@ public class FrmAcentos extends javax.swing.JFrame {
             }
         });
         jPanel4.add(btnAgregar2);
-        btnAgregar2.setBounds(310, 450, 84, 40);
+        btnAgregar2.setBounds(294, 450, 100, 40);
 
         lblLogoCabecera1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jPanel4.add(lblLogoCabecera1);
@@ -356,10 +421,7 @@ public class FrmAcentos extends javax.swing.JFrame {
 
         tblAcentos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+
             },
             new String [] {
                 "Medio", "1"
@@ -392,7 +454,7 @@ public class FrmAcentos extends javax.swing.JFrame {
             }
         });
         jPanel4.add(btnCancelar);
-        btnCancelar.setBounds(520, 450, 77, 40);
+        btnCancelar.setBounds(520, 450, 90, 40);
 
         tblCategorias1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -499,7 +561,10 @@ public class FrmAcentos extends javax.swing.JFrame {
     }//GEN-LAST:event_tblCategorias1MouseClicked
 
     private void btnAgregar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregar2ActionPerformed
-
+        controlAcentos.
+        if(contadorMesos<cantidad){
+            
+        }
     }//GEN-LAST:event_btnAgregar2ActionPerformed
 
     private void txtFinMesocicloKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFinMesocicloKeyTyped

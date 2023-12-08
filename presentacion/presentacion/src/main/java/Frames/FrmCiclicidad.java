@@ -121,12 +121,33 @@ public class FrmCiclicidad extends javax.swing.JFrame {
 
             guardar(mesociclo, ciclicidad);
         }
+        int columNoVacias = contarColumnasNoVacias();
         JOptionPane.showMessageDialog(null, "Datos guardados", "Listo", JOptionPane.INFORMATION_MESSAGE);
         this.dispose();
-        FrmAcentos frmAcentos = new FrmAcentos(semEtGen, semEtEsp, semEtCom);
+        FrmAcentos frmAcentos = new FrmAcentos(semEtGen, semEtEsp, semEtCom, columNoVacias, 1);
         frmAcentos.setVisible(true);
 
     }
+    
+    public int contarColumnasNoVacias() {
+    int columnasNoVacias = 0;
+    int columnCount = tblCiclicidad.getColumnCount();
+
+    for (int i = 0; i < columnCount; i++) {
+        boolean columnaVacia = true;
+        for (int j = 0; j < tblCiclicidad.getRowCount(); j++) {
+            if (tblCiclicidad.getValueAt(j, i) != null && !tblCiclicidad.getValueAt(j, i).toString().isEmpty()) {
+                columnaVacia = false;
+                break;
+            }
+        }
+        if (!columnaVacia) {
+            columnasNoVacias++;
+        }
+    }
+
+    return columnasNoVacias;
+}
     
     public boolean validarSemanas(){
         double suma = 0.0;

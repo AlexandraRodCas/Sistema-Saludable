@@ -5,7 +5,9 @@
 package interfaces;
 
 import entidades.Etapa;
+import entidades.EtapaMedio;
 import entidades.Medio;
+import java.util.List;
 
 /**
  *
@@ -13,4 +15,5 @@ import entidades.Medio;
  */
 public interface IEtapaMedioDAO {
     public boolean agregarEtapaMedio(Etapa etapa, int medio, double volumen);
+    public List<EtapaMedio> consultarTodos();
 }

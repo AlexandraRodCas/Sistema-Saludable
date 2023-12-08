@@ -36,4 +36,8 @@ public class ControlMedio {
             return comboBoxModel;
         }
     }
+    
+    public Medio consultarMedioPorId(int id) {
+        return medioDAO.consultarMedioId(id);
+    }
 }
