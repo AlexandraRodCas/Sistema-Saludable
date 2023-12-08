@@ -6,7 +6,6 @@ package controles;
 
 import entidades.Etapa;
 import entidades.Microciclo;
-import java.sql.Date;
 import java.util.List;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -45,7 +44,7 @@ public class ControlCiclicidadTest {
      */
     @Test
     public void testFechaInicial() {
-        System.out.println("consultaEtapas");
+        System.out.println("Test consultaEtapas");
         ControlCiclicidad instance = new ControlCiclicidad();
         List<Etapa> result = instance.consultaEtapas();
         assertNotNull(result);
@@ -57,7 +56,7 @@ public class ControlCiclicidadTest {
      */
     @Test
     public void testConsultaEtapas() {
-        System.out.println("consultaEtapas");
+        System.out.println("Test consultaEtapas");
         ControlCiclicidad instance = new ControlCiclicidad();
         List<Etapa> result = instance.consultaEtapas();
         assertNotNull(result);

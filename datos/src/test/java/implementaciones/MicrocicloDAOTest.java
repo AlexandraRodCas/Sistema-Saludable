@@ -45,7 +45,7 @@ public class MicrocicloDAOTest {
      */
     @Test
     public void testAgregarMicrociclo() {
-        System.out.println("agregarMicrociclo");
+        System.out.println("Test agregarMicrociclo");
         Microciclo microciclo = new Microciclo();
         Date date1 = new Date(2023, 12, 7);
         Date date2 = new Date(2024, 3, 7);
@@ -69,7 +69,7 @@ public class MicrocicloDAOTest {
      */
     @Test
     public void testConsultarMicrociclos() {
-        System.out.println("consultarMicrociclos");
+        System.out.println("Test consultarMicrociclos");
         MicrocicloDAO instance = new MicrocicloDAO();
         List<Microciclo> expResult = null;
         List<Microciclo> result = instance.consultarMicrociclos();
@@ -83,7 +83,7 @@ public class MicrocicloDAOTest {
      */
     @Test
     public void testConsultarMicrocicloId() {
-        System.out.println("consultarMicrocicloId");
+        System.out.println("Test consultarMicrocicloId");
         int id = 0;
         MicrocicloDAO instance = new MicrocicloDAO();
         Microciclo result = instance.consultarMicrocicloId(id);
