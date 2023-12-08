@@ -39,6 +39,9 @@ public class MicrocicloDAOTest {
     @After
     public void tearDown() {
     }
+    
+    //N
+    
 
     /**
      * Test of agregarMicrociclo method, of class MicrocicloDAO.
@@ -54,6 +57,10 @@ public class MicrocicloDAOTest {
         microciclo.setNoMesociclo(1);
         microciclo.setCiclicidad("10,3");
         Etapa etapa = new Etapa();
+        etapa.setTipo("Especial");
+        etapa.setInicio(date1);
+        etapa.setFin(date2);
+        etapa.setSemanas(13);
         microciclo.setEtapa(etapa);
         MicrocicloDAO instance = new MicrocicloDAO();
         boolean result = instance.agregarMicrociclo(microciclo);
