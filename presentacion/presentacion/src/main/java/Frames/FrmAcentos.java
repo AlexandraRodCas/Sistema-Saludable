@@ -573,21 +573,23 @@ public class FrmAcentos extends javax.swing.JFrame {
         }
         
         
-        if(inEmpezar<contadorMesos){
+        if(contadorMesos>0){
             for(int j = 0; j<rowCount; j++){
                 controlAcentos.guardarMicroMedio(listaMicros, inEmpezar, listaVolumenes, etapaIdGlobal, tblAcentos.getValueAt(j,0)+"");
             }
             this.dispose();
             contadorMesos --;
             inEmpezar ++;
-            FrmAcentos frmAcentos = new FrmAcentos(semEtGen, semEtEsp, semEtCom, contadorMesos,inEmpezar);
-            frmAcentos.setVisible(true);
+            if(contadorMesos == 0){
+                this.dispose();
+                Menu menu = new Menu();
+                menu.setVisible(true);
+            }else{   
+                FrmAcentos frmAcentos = new FrmAcentos(semEtGen, semEtEsp, semEtCom, contadorMesos,inEmpezar);
+                frmAcentos.setVisible(true);
+            }
         }
-        if(contadorMesos == 0){
-            this.dispose();
-            Menu menu = new Menu();
-            menu.setVisible(true);
-        }
+        
     }//GEN-LAST:event_btnAgregar2ActionPerformed
 
     private void txtFinMesocicloKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFinMesocicloKeyTyped
